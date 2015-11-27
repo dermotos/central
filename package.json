@@ -1,0 +1,19 @@
+{
+  "name": "CentralControl",
+  "description": "Home automation central controller",
+  "version": "1.0.1",
+  "private": true,
+  "dependencies": {
+    "request": "*",
+    "node-hue-api": "*",
+    "colors": "*",
+    "particle":"*",
+    "moment":"*",
+    "moment-timezone":"*",
+    "express" :"*",
+    "carrier" : "*",
+    "node-schedule" : "*",
+    "underscore.string":"*",
+    "ip" : "*"
+  }
+}

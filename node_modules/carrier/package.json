@@ -1,0 +1,75 @@
+{
+  "name": "carrier",
+  "description": "Evented stream line reader for node.js",
+  "version": "0.2.1",
+  "homepage": "http://github.com/pgte/carrier",
+  "author": {
+    "name": "Pedro Teixeira",
+    "email": "pedro.teixeira@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Pedro Teixeira",
+      "email": "pedro.teixeira@gmail.com"
+    },
+    {
+      "name": "Stéphan Kochen",
+      "email": "stephan@kochen.nl"
+    },
+    {
+      "name": "Patrick Georgi",
+      "url": "https://github.com/pgeorgi"
+    },
+    {
+      "name": "Mattijah",
+      "url": "https://github.com/Mattijah"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pgte/carrier.git"
+  },
+  "bugs": {
+    "url": "http://github.com/pgte/carrier/issues"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "engines": {
+    "node": ">=0.3.0"
+  },
+  "devDependencies": {
+    "tap": "0.2"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "main": "./lib/carrier.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/pgte/carrier/raw/master/LICENSE"
+    }
+  ],
+  "gitHead": "e58c57f8c47126b6daa37df7d421f441e9fe52be",
+  "_id": "carrier@0.2.1",
+  "_shasum": "6b33054b5332dc31c6b8a90b5d1c07c9c2615ee5",
+  "_from": "carrier@*",
+  "_npmVersion": "2.9.1",
+  "_nodeVersion": "0.12.3",
+  "_npmUser": {
+    "name": "pgte",
+    "email": "pedro.teixeira@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "pgte",
+      "email": "pedro.teixeira@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "6b33054b5332dc31c6b8a90b5d1c07c9c2615ee5",
+    "tarball": "http://registry.npmjs.org/carrier/-/carrier-0.2.1.tgz"
+  },
+  "_resolved": "https://registry.npmjs.org/carrier/-/carrier-0.2.1.tgz"
+}
