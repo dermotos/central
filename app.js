@@ -26,8 +26,12 @@ args : [23]. - Array. Can be one or more values, eg: value of fader.
 
 
 eventEmitter.on('event',function(args){
+
+  console.log("Event:" + JSON.stringify(args));
+  return;
+
   switch (args.category) {
-    case "switch":
+    case "sensor":
         eventHandlers.switchHandler(args);
         break;
 
@@ -51,7 +55,7 @@ eventHandlers.switchHandler = function(args){
   switch(args.source){
     case "bedside" :
     {
-      
+
     }
     break;
 
