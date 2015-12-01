@@ -11,5 +11,4 @@ router.initialize(eventEmitter);
 sensors.initialize(eventEmitter);
 
 
-
 console.log("ready");
