@@ -11,12 +11,15 @@ var eventEmitter;
 var webSensors = require('./web-sensors.js');
 var tcp = require('net');
 var carrier = require('carrier'); //Easy new-line terminated chunking over TCP (from spark/arduino)
+var server;
 
 exports.initialize = function(emitter){
   eventEmitter = emitter;
   webSensors.initialize(3001,emitter);
+  server = tcp.createServer(socketHandler);
+};
 
-  var server = tcp.createServer(function(socket){
+function socketHandler(socket){
     carrier.carry(socket, function(msg){
       var message = msg.toString();
   		var items = message.split(":");
@@ -27,9 +30,9 @@ exports.initialize = function(emitter){
   		};
 
       var action = {};
-    
+
       //** Support for older switch firmware **
-      // Some existing switches use older firmware that uses a different format
+      // Some existing switches use older firmware that uses a different format, normalize it...
       items[1] = (items[1] == "checkin") ? "heartbeat" : items[1];
 
       //substring: eg: pot-24. 24 is the arg.
@@ -55,5 +58,4 @@ exports.initialize = function(emitter){
       eventEmitter.emit('event',action);
 
     });
-  });
 }

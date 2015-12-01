@@ -9,7 +9,6 @@ from hardware devices such as switches and sensors
 
 var express = require('express');
 var app = express();
-
 var eventEmitter;
 var server;
 
@@ -52,7 +51,6 @@ exports.initialize = function(port,emitter){
 
 function actionOcurred(action){
   var action = {};
-
   //substring: eg: pot-24. 24 is the arg.
   if(items[1].substr(0,3 == "pot")){
     items[2] = items[1].substr(4); // argument, eg: 24
