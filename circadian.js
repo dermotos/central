@@ -32,6 +32,15 @@ var lightState = hue.lightState;
 */
 
 var sydneyLatLong = [-33.8650, 151.2094];
+var MINUTES_IN_HOUR = 60;
+
+var MIN_BRIGHTNESS = 70;
+var MAX_BRIGHTNESS = 100
+var COOLEST_WHITE = 160;
+var WARMEST_WHITE = 500;
+var DAY_BEGIN_HOUR = 7;
+var DAY_END_HOUR = 21;
+var DAY_END_MINUTE = 59;
 
 
 exports.initialize = function(emitter){
@@ -56,38 +65,35 @@ exports.whiteForTime = function(time){
   Then return progressively warmer colours from sunset until midnight, when its warmest.
   Return warmest color from midnight to 6am
   */
-  var coolest = 158;
-  var warmest = 500;
-  // 153 == coldest.
-  // 500 == warmest.
+
 
   //console.log("Hour: "+ moment(time).format());
   //console.log("Sunset: "+ moment(times.sunset).format());
   //console.log(time.isBefore(times.sunset));
 
-  if(time.hour() <7){
+  if(time.hour() < DAY_BEGIN_HOUR){
     //Late night mode
     //console.log("Return late night");
-    return warmest;
+    return WARMEST_WHITE;
   }
-  if(time.hour() >=7 && time.isBefore(times.sunset)){
+  if(time.hour() >= DAY_BEGIN_HOUR && time.isBefore(times.sunset)){
     // Day light
     //console.log("Return day light");
-    return coolest;
+    return COOLEST_WHITE;
   }
   else{
     //console.log("Calculating...");
-    // Number of minutes between sunset and 11pm:
-    var hours = 21 - moment(times.sunset).hours();
-    var minutes = 59 - moment(times.sunset).minutes();
-    var sunsetMinutesBeforeMidnight = (hours * 60) + minutes;
+    // Number of minutes between sunset and day end
+    var hours = DAY_END_HOUR - moment(times.sunset).hours();
+    var minutes = DAY_END_MINUTE - moment(times.sunset).minutes();
+    var sunsetMinutesBeforeMidnight = (hours * MINUTES_IN_HOUR) + minutes;
 
-    // Current number of minutes before midnight
-    hours = 23 - moment(time).hours();
-    minutes = 59 - moment(time).minutes();
-    var minutesBeforeMidnight = (hours * 60) + minutes;
+    // Current number of minutes before day end
+    hours = DAY_END_HOUR - moment(time).hours();
+    minutes = DAY_END_MINUTE - moment(time).minutes();
+    var minutesBeforeMidnight = (hours * MINUTES_IN_HOUR) + minutes;
 
-    var colorValue = minutesBeforeMidnight.map(sunsetMinutesBeforeMidnight, 0, coolest, warmest);
+    var colorValue = minutesBeforeMidnight.map(sunsetMinutesBeforeMidnight, 0, COOLEST_WHITE, WARMEST_WHITE);
     return Math.floor(colorValue);
   }
 }
@@ -98,19 +104,19 @@ exports.brightnessForTime = function(time, min, max){
   Returns 70% brightness after 11pm.
   Returns a value between 100 and 70 between sunset and 11pm
   */
-  var dimmest = (typeof min == 'undefined') ? 70 : min;
-  var brightest = (typeof max == 'undefined') ? 100 : max;
+  var dimmest = (typeof min == 'undefined') ? MIN_BRIGHTNESS : min;
+  var brightest = (typeof max == 'undefined') ? MAX_BRIGHTNESS : max;
 
   //console.log("Hour: "+ moment(time).format());
   //console.log("Sunset: "+ moment(times.sunset).format());
   //console.log(time.isBefore(times.sunset));
 
-  if(time.hour() <7){
+  if(time.hour() < DAY_BEGIN_HOUR){
     //Late night mode
     //console.log("Return late night");
     return dimmest;
   }
-  if(time.hour() >=7 && time.isBefore(times.sunset)){
+  if(time.hour() >= DAY_BEGIN_HOUR && time.isBefore(times.sunset)){
     // Day light
     //console.log("Return day light");
     return brightest;
@@ -118,13 +124,13 @@ exports.brightnessForTime = function(time, min, max){
   else{
     //console.log("Calculating...");
     // Number of minutes between sunset and 11pm:
-    var hours = 22 - moment(times.sunset).hours();
-    var minutes = 59 - moment(times.sunset).minutes();
-    var sunsetMinutesBeforeMidnight = (hours * 60) + minutes;
+    var hours = DAY_END_HOUR - moment(times.sunset).hours();
+    var minutes = DAY_END_MINUTE - moment(times.sunset).minutes();
+    var sunsetMinutesBeforeMidnight = (hours * MINUTES_IN_HOUR) + minutes;
     // Current number of minutes before midnight
-    hours = 23 - moment(time).hours();
-    minutes = 59 - moment(time).minutes();
-    var minutesBeforeMidnight = (hours * 60) + minutes;
+    hours = DAY_END_HOUR - moment(time).hours();
+    minutes = DAY_END_MINUTE - moment(time).minutes();
+    var minutesBeforeMidnight = (hours * MINUTES_IN_HOUR) + minutes;
     var brightnessValue = minutesBeforeMidnight.map(sunsetMinutesBeforeMidnight, 0, dimmest, brightest);
     return Math.floor(brightnessValue);
   }
