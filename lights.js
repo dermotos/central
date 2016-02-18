@@ -15,7 +15,7 @@ module.exports = {
     id : 4,
     lightType : "colorBulb"
   },
-  "KitchenWhite1" : {
+  "LivingRoomWhite" : {
     id : 5,
     lightType : "dimmableBulb"
   },

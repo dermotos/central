@@ -4,7 +4,9 @@ Provides kelvin values for appropriate white-points dependant on time of day.
 var hue = require('node-hue-api');
 var sunCalculator = require('suncalc');
 var scheduler = require('node-schedule');
-
+var moment = require('moment');
+var timezone = require('moment-timezone');
+var map = require('./map.js');
 var eventEmitter;
 var times;
 var lightState = hue.lightState;
@@ -44,25 +46,90 @@ exports.initialize = function(emitter){
   scheduler.scheduleJob(scheduleRule, calculateSunRelatedTimes());
 };
 
-exports.lightStateForTime = function(currentTime){
+exports.whiteForTime = function(time){
   /*
   Initially, return a daylight color from 6am until sunset,
-  Then return progressively warmer colours from sunset until 11pm, when its warmest.
+  Then return progressively warmer colours from sunset until midnight, when its warmest.
+  Return warmest color from midnight to 6am
   */
+  var coolest = 158;
+  var warmest = 500;
+  // 153 == coldest.
+  // 500 == warmest.
+
+  //console.log("Hour: "+ moment(time).format());
+  //console.log("Sunset: "+ moment(times.sunset).format());
+  //console.log(time.isBefore(times.sunset));
+
+  if(time.hour() <7){
+    //Late night mode
+    //console.log("Return late night");
+    return warmest;
+  }
+  if(time.hour() >=7 && time.isBefore(times.sunset)){
+    // Day light
+    //console.log("Return day light");
+    return coolest;
+  }
+  else{
+    //console.log("Calculating...");
+    // Number of minutes between sunset and 11pm:
+    var hours = 22 - moment(times.sunset).hours();
+    var minutes = 59 - moment(times.sunset).minutes();
+    var sunsetMinutesBeforeMidnight = (hours * 60) + minutes;
+
+    // Current number of minutes before midnight
+    hours = 23 - moment(time).hours();
+    minutes = 59 - moment(time).minutes();
+    var minutesBeforeMidnight = (hours * 60) + minutes;
+
+    var colorValue = minutesBeforeMidnight.map(sunsetMinutesBeforeMidnight, 0, coolest, warmest);
+    return Math.floor(colorValue);
+  }
 }
 
-exports.lightStateForKelvin = function(kelvin){
+exports.brightnessForTime = function(time){
   /*
-  Initially, return a daylight color from 6am until sunset,
-  Then return progressively warmer colours from sunset until 11pm, when its warmest.
+  Returns 100% brightness during the day.
+  Returns 70% brightness after 11pm.
+  Returns a value between 100 and 70 between sunset and 11pm
   */
+  var dimmest = 70;
+  var brightest = 100;
+
+  //console.log("Hour: "+ moment(time).format());
+  //console.log("Sunset: "+ moment(times.sunset).format());
+  //console.log(time.isBefore(times.sunset));
+
+  if(time.hour() <7){
+    //Late night mode
+    //console.log("Return late night");
+    return dimmest;
+  }
+  if(time.hour() >=7 && time.isBefore(times.sunset)){
+    // Day light
+    //console.log("Return day light");
+    return brightest;
+  }
+  else{
+    //console.log("Calculating...");
+    // Number of minutes between sunset and 11pm:
+    var hours = 22 - moment(times.sunset).hours();
+    var minutes = 59 - moment(times.sunset).minutes();
+    var sunsetMinutesBeforeMidnight = (hours * 60) + minutes;
+    // Current number of minutes before midnight
+    hours = 23 - moment(time).hours();
+    minutes = 59 - moment(time).minutes();
+    var minutesBeforeMidnight = (hours * 60) + minutes;
+    var brightnessValue = minutesBeforeMidnight.map(sunsetMinutesBeforeMidnight, 0, dimmest, brightest);
+    return Math.floor(brightnessValue);
+  }
 }
 
-exports.lightStateForPercent = function(kelvin){
-  /*
-  Initially, return a daylight color from 6am until sunset,
-  Then return progressively warmer colours from sunset until 11pm, when its warmest.
-  */
+
+
+exports.currentMoment = function(){
+	return moment().tz('Australia/Sydney');
 }
 
 

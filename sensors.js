@@ -54,4 +54,31 @@ function socketHandler(socket){
       eventEmitter.emit('event',action);
 
     });
+
+    //Send a heartbeat to the device every 30 seconds. Ensures connectivity errors can be self-corrected by either side.
+  	var heartbeatInterval = setInterval(function(){
+  		socket.write("^heartbeat$");
+  	},30 * 1000);
+
+  	//Idle sockets are considered dead after 1 minute of inactivity, and should be discarded.
+  	var socketCheck = socket.setTimeout(60 * 1000,function(){
+  		shutdownSocket();
+  	});
+
+    // Add a 'close' event handler to this instance of socket
+    socket.on('close', function(data) {
+    	shutdownSocket();
+    });
+
+    function shutdownSocket(){
+    	clearInterval(heartbeatInterval);
+    	socket.destroy();
+
+    }
+
+    // Handle errors
+    socket.on('error', function(err) {
+        socket.destroy();
+        clearInterval(socketCheck);
+    });
 }
