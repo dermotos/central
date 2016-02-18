@@ -1,4 +1,5 @@
 var events = require('events');
+var recipes = require("./recipes");
 var eventEmitter;
 var eventHandlers = {};
 
@@ -54,7 +55,7 @@ eventHandlers.sensorHandler = function(args){
 
     case "kitchen":
     {
-      console.log("Kitchen");
+      recipes.kitchen.sensorHandler(args.action,args.args);
     }
     break;
 

@@ -1,45 +1,45 @@
 module.exports = {
-  "LivingRoomLeft" : {
+  livingRoomLeft : {
     id : 1,
     lightType : "colorBulb"
   },
-  "LivingRoomLamp" : {
+  livingRoomLamp : {
     id : 2,
     lightType : "colorBulb"
   },
-  "LivingRoomRight" : {
+  livingRoomRight : {
     id : 3,
     lightType : "colorBulb"
   },
-  "KitchenColor" : {
+  kitchenColor : {
     id : 4,
     lightType : "colorBulb"
   },
-  "LivingRoomWhite" : {
+  livingRoomWhite : {
     id : 5,
     lightType : "dimmableBulb"
   },
-  "KitchenWhite2" : {
+  kitchenWhite0 : {
     id : 6,
     lightType : "dimmableBulb"
   },
-  "KitchenWhite3" : {
+  kitchenWhite1 : {
     id : 7,
     lightType : "dimmableBulb"
   },
-  "Hallway" : {
+  hallway : {
     id : 8,
     lightType : "dimmableBulb"
   },
-  "Bathroom" : {
+  bathroom : {
     id : 9,
     lightType : "dimmableBulb"
   },
-  "BedroomMood" : {
+  bedroomMood : {
     id : 10,
     lightType : "colorMood"
   },
-  "Bedroom" : {
+  bedroom : {
     id : 11,
     lightType : "colorBulb"
   }

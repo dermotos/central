@@ -45,27 +45,72 @@ Late night mode (trip to bathroom)
 //TODO:!! RECPIES use these. Recipes are where "if xyz in the house, do this, otherwise do that" live.
 
 var hue = require('node-hue-api');
-var lights = require('');
+var lights = require('./lights');
+var circadian = require('./circadian');
+var state = require('./state');
 var lightState = hue.lightState;
+var eventEmitter;
 
 var host = "10.0.0.4",
     username = "newdeveloper",
     api = new hue.HueApi(host, username);
 
+exports.initialize = function(emitter){
+  eventEmitter = emitter;
+};
 
-exports.kitchen.lightsOn = function(turnOn, temperature, brightness){
-  state = lightState.create().on(true).bri(255).hue(15331).sat(121);
-  api.setGroupLightState(2,state).done();
+exports.home = {};
+exports.kitchen = {};
+exports.livingRoom = {};
+exports.bathroom = {};
+exports.hallway = {};
+exports.bedroom = {};
+
+
+exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
+  if(turnOn){
+    var coloredLightState;
+
+
+
+    var whiteLightState;
+
+    if(state.getState("kitchenWorkMode")){
+      // Work mode is on. Lights at full brightness
+      coloredLightState = lightState.create()
+      .on(true)
+      .brightness(100)
+      .colorTemperature(circadian.brightnessForTime(circadian.currentMoment()));
+
+      // Getting the brightness from circadian ensures that at 3am (for example)
+      // the full brightness is around 70%.
+      whiteLightState = lightState.create()
+      .on(true)
+      .brightness(circadian.brightnessForTime(circadian.currentMoment()));
+    }
+    else{
+      console.log("Setting white to " + circadian.whiteForTime(circadian.currentMoment()));
+      coloredLightState = lightState.create()
+      .on(true)
+      .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness)
+      .colorTemperature((typeof temperature == 'undefined') ? circadian.whiteForTime(circadian.currentMoment()) : temperature);
+
+      whiteLightState = lightState.create()
+      .on(true)
+      .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness);
+    }
+
+
+
+    api.setLightState(lights.kitchenColor.id,coloredLightState).done();
+    api.setLightState(lights.kitchenWhite0.id,whiteLightState).done();
+    api.setLightState(lights.kitchenWhite1.id,whiteLightState).done();
+  }
+  else{
+
+  }
+
 }
-
-exports.kitchen.lightsOff = function(){
-
-}
-
-
-
-
-
 
 
 // Living room daylight
@@ -123,15 +168,15 @@ exports.hallway.lightsOff = function() {
 
 }
 
-Turn on bedroom night light
-Turn on main bedroom ligh
-Bedroom lights off
-Open blinds,
-Close blinds
-Stop blinds
-
-All lights in house off.
-Late night mode (trip to bathroom)
+// Turn on bedroom night light
+// Turn on main bedroom ligh
+// Bedroom lights off
+// Open blinds,
+// Close blinds
+// Stop blinds
+//
+// All lights in house off.
+// Late night mode (trip to bathroom)
 
 
 
@@ -156,23 +201,20 @@ exports.bedroom.blindsToggle = function(action) {
 //State tasks modify the state of the apartment. The rules engine is executed, and may (or may not) change or do something depending on the new state. These things it does will
 //likely be a recipe, made of other tasks.
 
-exports.apartment.state.midnightMode = function(on){
+exports.home.midnightMode = function(on){
   // Toggles the state of midnight mode. (not the actual light changes)
 }
 
-exports.livingRoom.state.tvMode = function(on) {
-    //Kitchen lights on in tv mode // Triggered by an event in state change of tv turning on/off.
-}
 
-exports.kitchen.state.workMode = function(on){
+exports.home.kitchenWorkMode = function(on){
 
 }
 
-exports.kitchen.state.manualMode = function(on){
+exports.home.kitchenManualMode = function(on){
 
 }
 
-exports.apartment.state.bedtimeMode = function(on){
+exports.home.bedtimeMode = function(on){
   //Disables motion in kitchen, turns on all lights warm and dim. GETTING INTO BED in this state turns off all lights when in bed.
   //This kind of thing really needs Siri integration.
 }

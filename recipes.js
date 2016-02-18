@@ -9,8 +9,34 @@ Individual actions within recipes are defined in tasks.js
 
 */
 var eventEmitter;
+var tasks = require("./tasks");
 
 exports.initialize = function(emitter){
   eventEmitter = emitter;
-  //...
+
 };
+
+exports.home = {};
+exports.kitchen = {};
+exports.livingRoom = {};
+exports.bathroom = {};
+exports.hallway = {};
+exports.bedroom = {};
+
+exports.kitchen.sensorHandler = function(action,args){
+
+  switch(action){
+    case "north-button-pressed":
+      console.log("Kitchen press");
+      tasks.kitchen.lightsToggle(true);
+    break;
+
+    case "north-button-double-pressed":
+      console.log("Kitchen double press");
+    break;
+
+    case "north-button-long-pressed":
+      console.log("Kitchen long press");
+    break;
+  }
+}

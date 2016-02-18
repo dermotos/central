@@ -46,6 +46,10 @@ exports.initialize = function(emitter){
   scheduler.scheduleJob(scheduleRule, calculateSunRelatedTimes());
 };
 
+exports.test = function(){
+  console.log(moment(times.sunrise));
+}
+
 exports.whiteForTime = function(time){
   /*
   Initially, return a daylight color from 6am until sunset,
@@ -74,7 +78,7 @@ exports.whiteForTime = function(time){
   else{
     //console.log("Calculating...");
     // Number of minutes between sunset and 11pm:
-    var hours = 22 - moment(times.sunset).hours();
+    var hours = 21 - moment(times.sunset).hours();
     var minutes = 59 - moment(times.sunset).minutes();
     var sunsetMinutesBeforeMidnight = (hours * 60) + minutes;
 
@@ -88,14 +92,14 @@ exports.whiteForTime = function(time){
   }
 }
 
-exports.brightnessForTime = function(time){
+exports.brightnessForTime = function(time, min, max){
   /*
   Returns 100% brightness during the day.
   Returns 70% brightness after 11pm.
   Returns a value between 100 and 70 between sunset and 11pm
   */
-  var dimmest = 70;
-  var brightest = 100;
+  var dimmest = (typeof min == 'undefined') ? 70 : min;
+  var brightest = (typeof max == 'undefined') ? 100 : max;
 
   //console.log("Hour: "+ moment(time).format());
   //console.log("Sunset: "+ moment(times.sunset).format());
@@ -126,6 +130,21 @@ exports.brightnessForTime = function(time){
   }
 }
 
+exports.isBeforeSunrise = function(time){
+  return time.isBefore(times.sunrise);
+}
+
+exports.isAfterSunrise = function(time){
+  return time.isAfter(times.sunrise);
+}
+
+exports.isBeforeSunset = function(time){
+  return time.isBefore(times.sunset);
+}
+
+exports.isAfterSunset = function(time){
+  return time.isAfter(times.sunset);
+}
 
 
 exports.currentMoment = function(){

@@ -82,4 +82,54 @@ describe('Circidian', function() {
       assert(result0 < result1 && result1 < result2);
     });
 
+    it('should return brightnesses within specified range', function () {
+      var eventEmitter = new events.EventEmitter();
+      testTarget.initialize(eventEmitter);
+
+      var rangeMin = 20, rangeMax = 45;
+      var testTime = moment().set('hour',22).set('minute',00);
+      var result = testTarget.brightnessForTime(testTime,rangeMin,rangeMax);
+      assert(result >= rangeMin && result <= rangeMax);
+    });
+
+    it('should correctly identify a time before sunrise', function () {
+      var eventEmitter = new events.EventEmitter();
+      testTarget.initialize(eventEmitter);
+
+      var testTime = moment().set('hour',3).set('minute',00);
+
+      var result = testTarget.isBeforeSunrise(testTime);
+      assert(result);
+    });
+
+    it('should correctly identify a time after sunrise', function () {
+      var eventEmitter = new events.EventEmitter();
+      testTarget.initialize(eventEmitter);
+
+      var testTime = moment().set('hour',11).set('minute',00);
+
+      var result = testTarget.isAfterSunrise(testTime);
+      assert(result);
+    });
+
+    it('should correctly identify a time before sunset', function () {
+      var eventEmitter = new events.EventEmitter();
+      testTarget.initialize(eventEmitter);
+
+      var testTime = moment().set('hour',15).set('minute',00);
+
+      var result = testTarget.isBeforeSunset(testTime);
+      assert(result);
+    });
+
+    it('should correctly identify a time after sunset', function () {
+      var eventEmitter = new events.EventEmitter();
+      testTarget.initialize(eventEmitter);
+
+      var testTime = moment().set('hour',22).set('minute',00);
+
+      var result = testTarget.isAfterSunset(testTime);
+      assert(result);
+    });
+
 });
