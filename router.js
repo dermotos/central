@@ -63,7 +63,7 @@ eventHandlers.scheduleHandler = function(args){
   }
 }
 
-eventHandlers.humanHandler = function(args)
+eventHandlers.humanHandler = function(args){
   switch(args.source){
     default:
       console.log("Not implemented");
