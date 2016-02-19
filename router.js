@@ -30,45 +30,23 @@ exports.initialize = function(emitter){
 eventHandlers.sensorHandler = function(args){
   switch(args.source){
     case "bedside":
-    {
-      console.log("Bedside");
-    }
-    break;
-
     case "bedroom-door":
-    {
-      console.log("Bedroom door");
-    }
+    case "bedroom-blinds":
+      recipes.bedroom.sensorHandler(args.source, args.action,args.args);
     break;
 
     case "couch":
-    {
-      console.log("Couch");
-    }
-    break;
-
     case "desk":
-    {
-      console.log("Desk");
-    }
+    case "tv":
+      recipes.livingRoom.sensorHandler(args.source, args.action,args.args);
     break;
 
     case "kitchen":
-    {
-      recipes.kitchen.sensorHandler(args.action,args.args);
-    }
+      recipes.kitchen.sensorHandler(args.source, args.action,args.args);
     break;
 
-    case "tv":
-    {
-      console.log("tv");
-    }
-    break;
-
-    case "bedroom-blinds":
-    {
-      console.log("bedroom blinds");
-    }
+    case "bathroom":
+      recipes.bathroom.sensorHandler(args.source, args.action,args.args);
     break;
 
     default:
@@ -79,68 +57,16 @@ eventHandlers.sensorHandler = function(args){
 
 eventHandlers.scheduleHandler = function(args){
   switch(args.source){
-    case "sunrise" :
-    {
-
-    }
-    break;
-
-    case "sunset":
-    {
-
-    }
-    break;
-
-    case "wake-up":
-    {
-
-    }
-    break;
-
-    case "desk-side":
-    {
-
-    }
-    break;
-
-    case "kitchen":
-    {
-
-    }
+    default:
+      console.log("Not implemented");
     break;
   }
 }
 
-eventHandlers.humanHandler = function(args){
+eventHandlers.humanHandler = function(args)
   switch(args.source){
-    case "sunrise" :
-    {
-
-    }
-    break;
-
-    case "sunset":
-    {
-
-    }
-    break;
-
-    case "wake-up":
-    {
-
-    }
-    break;
-
-    case "desk-side":
-    {
-
-    }
-    break;
-
-    case "kitchen":
-    {
-
-    }
+    default:
+      console.log("Not implemented");
     break;
   }
 }

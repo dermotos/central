@@ -10,6 +10,7 @@ Individual actions within recipes are defined in tasks.js
 */
 var eventEmitter;
 var tasks = require("./tasks");
+var state = require("./state");
 
 exports.initialize = function(emitter){
   eventEmitter = emitter;
@@ -23,20 +24,62 @@ exports.bathroom = {};
 exports.hallway = {};
 exports.bedroom = {};
 
-exports.kitchen.sensorHandler = function(action,args){
+exports.kitchen.sensorHandler = function(source, action,args){
 
   switch(action){
-    case "north-button-pressed":
-      console.log("Kitchen press");
+    case "motion-started":              // Turn on lights
       tasks.kitchen.lightsToggle(true);
     break;
 
-    case "north-button-double-pressed":
-      console.log("Kitchen double press");
+    case "motion-stopped":              // Turn off lights
+      tasks.kitchen.lightsToggle(false);
     break;
 
-    case "north-button-long-pressed":
-      console.log("Kitchen long press");
+    case "north-button-pressed":        // Work mode toggle
+      tasks.home.kitchenWorkMode();
+    break;
+
+
+    case "south-button-double-pressed": // Toggle manual mode
+      tasks.home.kitchenManualMode();
+    break;
+
+
+    case "south-button-pressed":        // Lights toggle
+      tasks.kitchen.lightsToggle();
     break;
   }
-}
+};
+
+exports.livingRoom.sensorHandler = function(source, action,args){
+
+  switch(source){
+    case "couch":
+    {
+      switch(action){
+
+      }
+    }
+    break;
+
+    case "desk":
+    break;
+
+    case "tv":
+    break;
+  }
+  console.log("LivingRoom event");
+
+};
+
+exports.bedroom.sensorHandler = function(source, action,args){
+
+  console.log("Bedroom event");
+
+};
+
+exports.bathroom.sensorHandler = function(source, action,args){
+
+  console.log("Bedroom event");
+
+};

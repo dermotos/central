@@ -7,7 +7,7 @@ var moment = require('moment');
 var eventEmitter;
 
 // Some state changes time-out. This array holds a list of setTimeout identifiers that are pending.
-var states =
+var state =
 {
   kitchenWorkMode : {
     enabled : false,
@@ -32,6 +32,7 @@ exports.setState = function(state, enable, timeout){
       if(enable){
           state.kitchenWorkMode.enabled = true;
           if(timeout != 0){
+            timeout = (typeof timeout == 'undefined') ? state.kitchenWorkMode.defaultTimeout : timeout;
             state.kitchenWorkMode.timeoutIdentifier = setTimeout(function(){
               var action = {
                 category : "state-change",
@@ -39,9 +40,8 @@ exports.setState = function(state, enable, timeout){
                 args : [false]
               };
               eventEmitter.emit('event',action);
-            },(typeof timeout == 'undefined') ? state.kitchenWorkMode.defaultTimeout : timeout);
+            },timeout);
           }
-          state.kitchenWorkMode
       }
       else{
         state.kitchenWorkMode.enabled = false;
@@ -63,6 +63,7 @@ exports.setState = function(state, enable, timeout){
       if(enable){
           state.kitchenManualMode.enabled = true;
           if(timeout != 0){
+            timeout = (typeof timeout == 'undefined') ? state.kitchenManualMode.defaultTimeout : timeout;
             state.kitchenManualMode.timeoutIdentifier = setTimeout(function(){
               var action = {
                 category : "state-change",
@@ -70,9 +71,8 @@ exports.setState = function(state, enable, timeout){
                 args : [false]
               };
               eventEmitter.emit('event',action);
-            },(typeof timeout == 'undefined') ? state.kitchenManualMode.defaultTimeout : timeout);
+            },timeout);
           }
-          state.kitchenManualMode
       }
       else{
         state.kitchenManualMode.enabled = false;

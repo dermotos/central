@@ -68,11 +68,17 @@ exports.bedroom = {};
 
 
 exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
+
+  // Toggle handling
+  if(typeof turnOn == 'undefined'){
+    api.lightStatus(lights.kitchenColor.id).then(function(status){
+      exports.kitchen.lightsToggle(!status.state.on);
+    });
+    return;
+  }
+
   if(turnOn){
     var coloredLightState;
-
-
-
     var whiteLightState;
 
     if(state.getState("kitchenWorkMode")){
@@ -99,8 +105,6 @@ exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
       .on(true)
       .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness);
     }
-
-
 
     api.setLightState(lights.kitchenColor.id,coloredLightState).done();
     api.setLightState(lights.kitchenWhite0.id,whiteLightState).done();
