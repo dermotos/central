@@ -48,7 +48,7 @@ var hue = require('node-hue-api');
 var lights = require('./lights');
 var circadian = require('./circadian');
 var state = require('./state');
-var lightState = hue.lightState;
+
 var eventEmitter;
 
 var host = "10.0.0.4",
@@ -68,9 +68,13 @@ exports.bedroom = {};
 
 
 exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
+  console.log("lights toggle");
+  console.log(turnOn);
+  console.log(hue);
 
   // Toggle handling
   if(typeof turnOn == 'undefined'){
+    console.log('turnon is undefined');
     api.lightStatus(lights.kitchenColor.id).then(function(status){
       exports.kitchen.lightsToggle(!status.state.on);
     });
@@ -83,27 +87,27 @@ exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
 
     if(state.getState("kitchenWorkMode")){
       // Work mode is on. Lights at full brightness
-      coloredLightState = lightState.create()
+      coloredLightState = hue.lightState.create()
       .on(true)
       .brightness(100)
       .colorTemperature(circadian.brightnessForTime(circadian.currentMoment()));
 
       // Getting the brightness from circadian ensures that at 3am (for example)
       // the full brightness is around 70%.
-      whiteLightState = lightState.create()
+      whiteLightState = hue.lightState.create()
       .on(true)
       .brightness(circadian.brightnessForTime(circadian.currentMoment()));
     }
     else{
       console.log("Setting white to " + circadian.whiteForTime(circadian.currentMoment()));
-      coloredLightState = lightState.create()
+      coloredLightState = hue.lightState.create()
       .on(true)
       .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness)
       .colorTemperature((typeof temperature == 'undefined') ? circadian.whiteForTime(circadian.currentMoment()) : temperature);
 
-      whiteLightState = lightState.create()
+      whiteLightState = hue.lightState.create()
       .on(true)
-      .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness);
+      .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness).transitionSlow();
     }
 
     api.setLightState(lights.kitchenColor.id,coloredLightState).done();
@@ -111,6 +115,11 @@ exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
     api.setLightState(lights.kitchenWhite1.id,whiteLightState).done();
   }
   else{
+    // Turn off the kitchen lights
+    var lightState = hue.lightState.create().on(false).transitionSlow();
+    api.setLightState(lights.kitchenColor.id,lightState).done();
+    api.setLightState(lights.kitchenWhite0.id,lightState).done();
+    api.setLightState(lights.kitchenWhite1.id,lightState).done();
 
   }
 
@@ -125,14 +134,32 @@ exports.kitchen.lightsToggle = function(turnOn, temperature, brightness){
 // turn on desk lamp
 // turn off desk lamp
 
-exports.livingRoom.lightsOn = function(turnOn, temperature, brightness) {
-  //If temp nil, use time of day
-  //If turnOn not enabled, don't turn on lights, its only a fade operation.
+exports.livingRoom.lightsToggle = function(turnOn, temperature, brightness) {
+
+  if(typeof turnOn == 'undefined'){
+    api.lightStatus(lights.livingRoomLeft.id).then(function(status){
+      exports.livingRoom.lightsToggle(!status.state.on);
+    });
+    return;
+  }
+
+  if(turnOn){
+    var lightState;
+
+      lightState = hue.lightState.create()
+      .on(true)
+      .brightness((typeof brightness == 'undefined') ? circadian.brightnessForTime(circadian.currentMoment()) : brightness)
+      .colorTemperature((typeof temperature == 'undefined') ? circadian.whiteForTime(circadian.currentMoment()) : temperature);
+
+    api.setLightState(lights.livingRoomLeft.id,lightState).done();
+  }
+  else{
+    // Turn off the kitchen lights
+    var lightState = hue.lightState.create().on(false).transitionSlow();
+    api.setLightState(lights.livingRoomLeft.id,lightState).done();
+  }
 }
 
-exports.livingRoom.lightsOff = function() {
-
-}
 
 exports.livingRoom.blindsToggle = function(action) {
   // Action can be null, open, close or stop
@@ -143,12 +170,20 @@ exports.livingRoom.lightsToggle = function() {
 
 }
 
+exports.livingRoom.allOtherLightsOff = function() {
+
+}
+
 
 exports.livingRoom.deskLampToggle = function(action) {
   // Action can be null, on, off or stop
 }
 
 exports.livingRoom.lightsTvMode = function() {
+
+}
+
+exports.livingRoom.lightsFullBrightness = function() {
 
 }
 
@@ -211,7 +246,7 @@ exports.home.midnightMode = function(on){
 
 
 exports.home.kitchenWorkMode = function(on){
-
+  state.setState("kitchenWorkMode");
 }
 
 exports.home.kitchenManualMode = function(on){
@@ -222,15 +257,3 @@ exports.home.bedtimeMode = function(on){
   //Disables motion in kitchen, turns on all lights warm and dim. GETTING INTO BED in this state turns off all lights when in bed.
   //This kind of thing really needs Siri integration.
 }
-
-
-
-
-
-
-
-
-
-
-
-//eof

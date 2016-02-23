@@ -27,6 +27,8 @@ exports.initialize = function(emitter){
 }
 
 exports.setState = function(state, enable, timeout){
+  //Toggle if [enable] is undefined
+  enable = (typeof enable == "undefined") ? !state.kitchenWorkMode.enabled : enable;
   switch(state){
     case "kitchenWorkMode":
       if(enable){
@@ -71,6 +73,7 @@ exports.setState = function(state, enable, timeout){
                 args : [false]
               };
               eventEmitter.emit('event',action);
+              //TODO: A library to handle switch state should be notified of this mode change
             },timeout);
           }
       }
@@ -92,14 +95,16 @@ exports.setState = function(state, enable, timeout){
   }
 }
 
-exports.getState = function(state){
-  switch(state){
+exports.getState = function(requestedState){
+  console.log(JSON.stringify(state));
+  console.log("getting state for " + requestedState);
+  switch(requestedState){
     case "kitchenWorkMode":
-      return states.kitchenWorkMode.enabled;
+      return state.kitchenWorkMode.enabled;
     break;
 
     case "kitchenManualMode":
-      return states.kitchenManualMode.enabled;
+      return state.kitchenManualMode.enabled;
     break;
   }
 }
