@@ -48,15 +48,15 @@ function socketHandler(socket){
          console.log("Unspecified argument");
          return;
      }
-      console.log(items);
+      //console.log(items);
       //substring: eg: pot-24. 24 is the arg.
       if(items[1].startsWith("pot")){
           
         items[2] = items[1].substr(4); // argument, eg: 24
         items[1] = "fader"; // Normalisation
       }
-      console.log("AFTER");
-      console.log(items);
+    //   console.log("AFTER");
+    //   console.log(items);
       // ** ******************************* **
 
 

@@ -1,5 +1,6 @@
 var events = require('events');
 var recipes = require("./recipes");
+var actions = require("./actions");
 var eventEmitter;
 var eventHandlers = {};
 var routingTable;
@@ -47,46 +48,17 @@ eventHandlers.sensorHandler = function(args){
     
     console.log(args);
     if(args.action == 'fader'){
-        console.log("Adjust lights to brightness:" + args.args[0]);
+        actions.executeFade(args.source, args.args);
     }
-    
     else{
         var action = routingTable[args.source][args.action];
-        if(action.type == "custom"){
-            console.log("Running custom action");
+        if(typeof action === 'undefined'){
+            console.log("No action defined for trigger.");
+            return;
         }
-        else if(action.type == "scene"){
-            console.log("Loading scene " + action.name);
-        }
-        
+        console.log("Action is: " + JSON.stringify(action));
+        actions.executeAction(action,action.args);  
     }
-    console.log(routingTable[args.source][args.action]);
-    
-  switch(args.source){
-    case "bedside":
-    case "bedroom-door":
-    case "bedroom-blinds":
-      recipes.bedroom.sensorHandler(args.source, args.action,args.args);
-    break;
-
-    case "couch":
-    case "desk":
-    case "tv":
-      recipes.livingRoom.sensorHandler(args.source, args.action,args.args);
-    break;
-
-    case "kitchen":
-      recipes.kitchen.sensorHandler(args.source, args.action,args.args);
-    break;
-
-    case "bathroom":
-      recipes.bathroom.sensorHandler(args.source, args.action,args.args);
-    break;
-
-    default:
-      console.log("Unknown sensor!");
-      break;
-  }
 }
 
 eventHandlers.scheduleHandler = function(args){
