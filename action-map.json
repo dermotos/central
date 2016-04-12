@@ -1,0 +1,24 @@
+{
+    "desk" :{
+            "button-north-pressed" : {
+            "type" : "scene",
+            "id" : "",
+            "name" : "Unassigned-north"
+        },
+            "button-east-pressed" : {
+            "type" : "scene",
+            "id" : "",
+            "name" : "Unassigned-east"
+        },
+            "button-west-pressed" : {
+            "type" : "scene",
+            "id" : "",
+            "name" : "Unassigned-west"
+        },
+            "button-south-pressed" : {
+            "type" : "scene",
+            "id" : "",
+            "name" : "Unassigned-south"
+        }
+    }
+}

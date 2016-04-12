@@ -82,7 +82,7 @@ exports.livingRoom.sensorHandler = function(source, action,args){
 
         /* North Button */
         case "north-button-pressed":        // TV Watching mode on
-          exports.livingRoom.lightsTvMode();
+          tasks.livingRoom.lightsTvMode();
         break;
 
         case "north-button-double-pressed": // Company mode (warm lights, music, etc...)
@@ -90,7 +90,7 @@ exports.livingRoom.sensorHandler = function(source, action,args){
         break;
 
         case "north-button-long-pressed": // Full brightness (including white only bulb)
-          exports.livingRoom.lightsFullBrightness();
+          tasks.livingRoom.lightsFullBrightness();
         break;
 
 
@@ -100,7 +100,7 @@ exports.livingRoom.sensorHandler = function(source, action,args){
         break;
 
         case "east-button-double-pressed": // Toggle kitchen manual mode
-          exports.home.kitchenWorkMode();
+          tasks.home.kitchenWorkMode();
         break;
 
         case "east-button-long-pressed": // Toggle bedroom blinds
@@ -109,7 +109,7 @@ exports.livingRoom.sensorHandler = function(source, action,args){
 
         /* South Button */
         case "south-button-pressed":        // Toggle lights (circidian)
-          exports.livingRoom.lightsToggle();
+          tasks.livingRoom.lightsToggle();
         break;
 
         case "south-button-double-pressed": // Change to temperature fader mode
@@ -117,7 +117,7 @@ exports.livingRoom.sensorHandler = function(source, action,args){
         break;
 
         case "south-button-long-pressed": // Turn off all other house lights
-          exports.livingRoom.allOtherLightsOff();
+          tasks.livingRoom.allOtherLightsOff();
         break;
 
         /* West Button */
@@ -130,34 +130,131 @@ exports.livingRoom.sensorHandler = function(source, action,args){
         break;
 
         case "west-button-long-pressed": // Toggle bedroom blinds
-          console
+          console("Toggle bedroom blinds");
         break;
 
 
         /* East Button */
-        case "west-button-pressed":        // Toggle living room blind
-
+        case "east-button-pressed":        // Toggle living room blind
+          console.log("Toggle living room blind");
         break;
 
-        case "west-button-double-pressed": // Toggle kitchen manual mode
-
+        case "east-button-double-pressed": // Toggle kitchen manual mode
+          console.log("toggle kitchen manual mode");
         break;
 
-        case "west-button-long-pressed": // Toggle bedroom blinds
-
+        case "east-button-long-pressed": // Toggle bedroom blinds
+          console.log("Reserved for future use");
         break;
       }
     }
     break;
 
     case "desk":
+      switch(action){
+        /*
+        +---------+
+        | N     W |
+        |    o    |
+        |  o o o  |
+        |    o    |
+        | E    S  |
+        +---------+
+
+        1     2
+        3     4
+
+NORTH
+1 press                    Working mode
+1 double-press       Reserved for ceiling fan toggle
+1 long-press           Reserved
+
+SOUTH
+2 press                    Desk lamp toggle
+2 double press        Toggle blind
+2 long press            Turn off all house lights
+
+WEST
+west press                    Toggle lights circadian
+west double press        Switch to temperature fader mode LED indicates state. State is specific to this switch
+west long press            Reserved
+
+East is reserved.
+        */
+
+        /* North Button */
+        case "north-button-pressed":        // Desklamp light on
+          console.log("Reserved");
+        break;
+
+        case "north-button-double-pressed": //
+          console.log("Reserved for 'ceiling fan control on.");
+        break;
+
+        case "north-button-long-pressed": // Full brightness (including white only bulb)
+          console.log("Reserved for ceiling fan off");
+        break;
+
+
+        /* East Button */
+        case "east-button-pressed":
+          console.log("Reserved");
+        break;
+
+        case "east-button-double-pressed": // Toggle kitchen manual mode
+          console.log("Reserved");
+        break;
+
+        case "east-button-long-pressed": // Toggle bedroom blinds
+          console.log("Reserved");
+        break;
+
+        /* South Button - bottom right */
+        case "south-button-pressed":        // Toggle lights (circidian)
+          tasks.livingRoom.desklampToggle();
+        break;
+
+        case "south-button-double-pressed": // Change to temperature fader mode
+          tasks.livingRoom.blindToggle();
+        break;
+
+        case "south-button-long-pressed": // Turn off all other house lights
+          tasks.livingRoom.allLightsOff();
+        break;
+
+        /* West Button - top right */
+        case "west-button-pressed":        // Reserved
+          tasks.livingRoom.lightsToggle();
+        break;
+
+        case "west-button-double-pressed": // Bedtime mode (whole house)
+          console.log("Reserved for temperature fader mode");
+        break;
+
+        case "west-button-long-pressed": // Toggle bedroom blinds
+          tasks.livingRoom.lightsToggle();
+        break;
+
+
+        /* East Button */
+        case "east-button-pressed":        // Toggle living room blind
+          console.log("Reserved");
+        break;
+
+        case "east-button-double-pressed": // Toggle kitchen manual mode
+          console.log("Reserved");
+        break;
+
+        case "east-button-long-pressed": // Toggle bedroom blinds
+          console.log("Reserved");
+        break;
+      }
     break;
 
     case "tv":
+      console.log("TV actions not currently supported.");
     break;
   }
-  console.log("LivingRoom event");
-
 };
 
 exports.bedroom.sensorHandler = function(source, action,args){
@@ -168,6 +265,6 @@ exports.bedroom.sensorHandler = function(source, action,args){
 
 exports.bathroom.sensorHandler = function(source, action,args){
 
-  console.log("Bedroom event");
+  console.log("Bathroom event");
 
 };

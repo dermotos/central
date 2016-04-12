@@ -92,6 +92,38 @@ exports.setState = function(state, enable, timeout){
         eventEmitter.emit('event',action);
       }
       break;
+
+      case "midnightMode":
+        if(enable){
+            state.kitchenManualMode.enabled = true;
+            if(timeout != 0){
+              timeout = (typeof timeout == 'undefined') ? state.kitchenManualMode.defaultTimeout : timeout;
+              state.kitchenManualMode.timeoutIdentifier = setTimeout(function(){
+                var action = {
+                  category : "state-change",
+                  action : "kitchen-manual-mode",
+                  args : [false]
+                };
+                eventEmitter.emit('event',action);
+                //TODO: A library to handle switch state should be notified of this mode change
+              },timeout);
+            }
+        }
+        else{
+          state.kitchenManualMode.enabled = false;
+          // Cancel a timeout if one exists
+          if(state.kitchenManualMode.timeoutIdentifier != 0){
+            clearTimeout(state.kitchenManualMode.timeoutIdentifier);
+            state.kitchenManualMode.timeoutIdentifier = 0;
+          }
+          var action = {
+            category : "state-change",
+            action : "kitchen-manual-mode",
+            args : [false]
+          };
+          eventEmitter.emit('event',action);
+        }
+        break;
   }
 }
 

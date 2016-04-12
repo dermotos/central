@@ -241,19 +241,23 @@ exports.bedroom.blindsToggle = function(action) {
 //likely be a recipe, made of other tasks.
 
 exports.home.midnightMode = function(on){
+  console.log("Midnight mode not yet supported");
+  //state.setState("midnightMode",on);
   // Toggles the state of midnight mode. (not the actual light changes)
 }
 
 
 exports.home.kitchenWorkMode = function(on){
-  state.setState("kitchenWorkMode");
+  state.setState("kitchenWorkMode",on);
 }
 
 exports.home.kitchenManualMode = function(on){
-
+  state.setState("kitchenManualMode",on);
 }
 
 exports.home.bedtimeMode = function(on){
+  console.log("Bedtime mode not yet supported");
+  //state.setState("bedtimeMode",on);
   //Disables motion in kitchen, turns on all lights warm and dim. GETTING INTO BED in this state turns off all lights when in bed.
   //This kind of thing really needs Siri integration.
 }
