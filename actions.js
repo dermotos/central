@@ -13,7 +13,7 @@ exports.getLightPowerState = function(light) {
 };
 
 exports.executeAction = function(action, args){
-    if(action.type == "scene"){
+    if(action.type == "hue-scene"){
         executeScene(action.id);
     }
     else if(action.type == "custom"){

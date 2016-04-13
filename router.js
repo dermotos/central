@@ -34,8 +34,9 @@ exports.initialize = function(emitter){
 
 
 exports.loadRoutingTable = function(){
+    var previouslyExisted = (routingTable != null);
     routingTable = require("./action-map.json");
-    console.log("Routing table loaded");
+    console.log("Routing table "+ (previouslyExisted ? "re" : "")  + "loaded");
 }
 
 

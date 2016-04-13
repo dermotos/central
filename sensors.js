@@ -4,7 +4,6 @@ Interacts with sensors (usually wall switches)
 
 */
 var eventEmitter;
-var webSensors = require('./web-sensors.js');
 var tcp = require('net');
 var carrier = require('carrier'); //Easy new-line terminated chunking over TCP (from spark/arduino)
 var server;
@@ -20,7 +19,7 @@ if (!String.prototype.startsWith) {
 
 exports.initialize = function(emitter){
   eventEmitter = emitter;
-  webSensors.initialize(3001,emitter);
+ 
   server = tcp.createServer(socketHandler);
   server.listen(9998, function(){
       console.log("Socket listening for incoming connections");

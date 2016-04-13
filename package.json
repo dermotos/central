@@ -16,6 +16,7 @@
     "particle": "*",
     "request": "*",
     "suncalc": "*",
+    "body-parser": "*",
     "underscore.string": "*"
   }
 }

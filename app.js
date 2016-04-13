@@ -6,6 +6,7 @@ var schedules = require("./schedules");
 var circadian = require("./circadian");
 var state = require("./state");
 var tasks = require("./tasks");
+var web = require('./web.js');
 var eventHandlers = {};
 
 
@@ -16,6 +17,6 @@ sensors.initialize(eventEmitter);
 schedules.initialize(eventEmitter);
 circadian.initialize(eventEmitter);
 tasks.initialize(eventEmitter);
+web.initialize(3001,eventEmitter);
 
-
-console.log("ready");
+console.log("Server ready");

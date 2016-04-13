@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "toggle-blind",
+        "id" : "toggle-blind",
+        "arg-count" : 1
+    },
+    {
+        "name" : "toggle-work-mode",
+        "id" : "toggle-work-mode",
+        "arg-count" : 1
+    },
+    {
+        "name" : "toggle-party-mode",
+        "id" : "toggle-party-mode",
+        "arg-count" : 1
+    }
+]
