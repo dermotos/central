@@ -1,32 +1,32 @@
 {
-	"desk": {
-		"button-north-pressed": {
-			"type": "scene",
-			"id": "Unassigned-north",
-			"name": "Unassigned-north"
-		},
-        
-		"button-east-pressed": {
-			"type": "scene",
-			"id": "Unassigned-east",
-			"name": "Unassigned-east"
-		},
-        
-		"button-west-pressed": {
-			"type": "scene",
-			"id": "Unassigned-west",
-			"name": "Unassigned-west"
-		},
-         "button-east-double-pressed": {
-			"type": "custom",
-			"id": "toggleBlind",
-			"name": "Toggle blind",
-            "args": ["living-room-blind"]
-		},
-		"button-south-pressed": {
-			"type": "scene",
-			"id": "",
-			"name": "Unassigned-south"
-		}
-	}
+  "desk": {
+    "button-north-pressed": {
+      "type": "hue-scene",
+      "name": "Unassigned-north",
+      "id": "Unassigned-north-test"
+    },
+    "button-east-pressed": {
+      "type": "scene",
+      "id": "Unassigned-east",
+      "name": "Unassigned-east"
+    },
+    "button-west-pressed": {
+      "type": "scene",
+      "id": "Unassigned-west",
+      "name": "Unassigned-west"
+    },
+    "button-east-double-pressed": {
+      "type": "custom",
+      "id": "toggleBlind",
+      "name": "Toggle blind",
+      "args": [
+        "living-room-blind"
+      ]
+    },
+    "button-south-pressed": {
+      "type": "scene",
+      "id": "",
+      "name": "Unassigned-south"
+    }
+  }
 }

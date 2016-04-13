@@ -95,11 +95,13 @@ app.put("/action-mapping/rules/:sensor/:trigger", function(req, res) {
                 "id" : req.body.id
             }
             actionMap[sensor][trigger] = replacementRule;
-            fs.writeFile("./action-map.json", JSON.stringify(actionMap),function(err){
+            fs.writeFile("./action-map.json", JSON.stringify(actionMap, null, 2),function(err){
                 if(err){
                     console.log("Failed to update action-map.json. " + err); 
                 }
-               
+                else{
+                    eventEmitter.emit('action-map-updated',null);
+                }
             });
             res.write("ok");
         }

@@ -30,7 +30,15 @@ exports.initialize = function(emitter){
         break;
     }
   });
+  
+  eventEmitter.on('action-map-updated',function(args){
+   self.loadRoutingTable();
+  });
+  
+  
 };
+
+
 
 
 exports.loadRoutingTable = function(){
