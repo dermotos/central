@@ -20,6 +20,12 @@ var server;
 */
 
 app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(express.static('node_modules'));
+
+// app.get("*", function(req, res) {
+//   res.sendfile("./public/index.html");
+// });
 
 app.get("debug/:switch/:action", function(req, res) {
   if(eventEmitter != undefined){

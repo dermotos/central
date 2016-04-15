@@ -17,6 +17,7 @@
     "request": "*",
     "suncalc": "*",
     "body-parser": "*",
-    "underscore.string": "*"
+    "underscore.string": "*",
+    "angular": "*"
   }
 }
