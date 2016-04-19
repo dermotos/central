@@ -5,6 +5,9 @@
   "version": "1.0.1",
   "private": true,
   "dependencies": {
+    "angular": "*",
+    "angular-route": "^1.5.5",
+    "body-parser": "*",
     "carrier": "*",
     "colors": "*",
     "express": "*",
@@ -16,8 +19,6 @@
     "particle": "*",
     "request": "*",
     "suncalc": "*",
-    "body-parser": "*",
-    "underscore.string": "*",
-    "angular": "*"
+    "underscore.string": "*"
   }
 }

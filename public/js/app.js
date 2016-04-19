@@ -1,5 +1,5 @@
 // Declare app level module which depends on filters, and services
-angular.module('central', ['central.filters', 'central.services', 'central.directives']).
+angular.module('central', ['ngRoute']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {

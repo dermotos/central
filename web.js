@@ -15,7 +15,7 @@ var eventEmitter;
 var server;
 
 /* ******************************
- * Virtual Switches
+ * Static content service
  * ******************************
 */
 
@@ -23,9 +23,12 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
-// app.get("*", function(req, res) {
-//   res.sendfile("./public/index.html");
-// });
+
+
+/* ******************************
+ * Virtual Switches
+ * ******************************
+*/
 
 app.get("debug/:switch/:action", function(req, res) {
   if(eventEmitter != undefined){

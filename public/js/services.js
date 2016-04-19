@@ -1,7 +1,7 @@
 var app = angular.module('central');
-app.controller('actionController', function($scope) {
+app.service('transport', function($scope) {
     $scope.sensorList =
     [
         
-    ];
+    ]
 });
