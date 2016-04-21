@@ -1,6 +1,9 @@
 var events = require('events');
 var recipes = require("./recipes");
 var actions = require("./actions");
+var state = require('./state');
+var hue = require('./hue');
+var fs = require('fs');
 var eventEmitter;
 var eventHandlers = {};
 var routingTable;
@@ -52,6 +55,30 @@ exports.loadRoutingTable = function(){
 }
 
 
+function assignButton(source,action){
+    console.log("setting new action for: "+ source + " | " + action);
+    
+    //Get the latest set scene on the hub, then assign its ID to the current button
+    hue.latestScene(function(latestScene){
+        var actionMap = require('./action-map.json');
+        
+        actionMap[source][action].type = "hue-scene";
+        actionMap[source][action].name = latestScene.name;
+        actionMap[source][action].id = latestScene.id;
+        
+        fs.writeFile("./action-map.json", JSON.stringify(actionMap, null, 2),function(err){
+            if(err){
+                console.log("Failed to update action-map.json. " + err); 
+            }
+            else{
+                eventEmitter.emit('action-map-updated',null);
+            }
+            console.log("Scene change completed");
+            state.setState("program-mode",false);
+        });
+    });  
+}
+
 
 
 eventHandlers.sensorHandler = function(args){
@@ -65,7 +92,11 @@ eventHandlers.sensorHandler = function(args){
     }
     else{
       
-      //TODO: Check are we in learning mode. If so, next button action gets assigned the most recently activated scene.
+      if(state.getState("program-mode")){
+          console.log("Program mode is active");
+          assignButton(args.source,args.action);
+          return;
+      }
       
         var action = routingTable[args.source][args.action];
         if(typeof action === 'undefined'){

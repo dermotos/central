@@ -1,9 +1,4 @@
-var hue = require('node-hue-api');
-var lightState = hue.lightState;
-
-var host = "10.0.0.4",
-    username = "newdeveloper",
-    api = new hue.HueApi(host, username);
+var hue = require('./hue');
 
 
 
@@ -29,7 +24,8 @@ exports.executeFade = function(source, args){
 }
 
 function executeScene(sceneID){
-    console.log("Execute scene with id:" + sceneID);
+    console.log("Activating scene with id:" + sceneID);
+    hue.setScene(sceneID);
 }
 
 function executeCustomAction(actionID, args){

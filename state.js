@@ -36,11 +36,13 @@ var state =
   },
   'program-mode' : { // Used to program the light switches. The next button pressed is assigned the most recent active hue scene
     enabled : false,
-    timeout : 60000,
+    timeout : 60000 * 10, // 10 minutes
     timeoutIdentifier : 0,
     action : function(newState){
         // Action to take when this mode changes state
+        if(newState){
         console.log("I'm the action for the program mode");
+        }
     },
     timeoutAction : function(){
         state['program-mode'].enabled = false;
@@ -98,7 +100,6 @@ exports.getState = function(requestedState){
         if(k == requestedState){
             found = true;
             targetState = state[k];
-            console.log("Target state found: " + JSON.stringify(targetState));
             break;
         }  
     }

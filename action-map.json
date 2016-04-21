@@ -24,9 +24,9 @@
       ]
     },
     "button-south-pressed": {
-      "type": "scene",
-      "id": "",
-      "name": "Unassigned-south"
+      "type": "hue-scene",
+      "id": "78aba2cbb-on-0",
+      "name": "Daylight on 0"
     }
   }
 }

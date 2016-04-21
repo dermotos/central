@@ -14,11 +14,12 @@
     "ip": "*",
     "moment": "*",
     "moment-timezone": "^0.5.0",
-    "node-hue-api": "*",
+    "node-hue-api": "2.2.0",
     "node-schedule": "*",
     "particle": "*",
     "request": "*",
     "suncalc": "*",
+    "underscore": "^1.8.3",
     "underscore.string": "*"
   }
 }
