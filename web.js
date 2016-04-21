@@ -13,6 +13,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var eventEmitter;
 var server;
+var state = require("./state");
 
 /* ******************************
  * Static content service
@@ -23,6 +24,40 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
+/* ******************************
+ * Modes
+ * ******************************
+*/
+
+app.get("/mode/:mode", function(req, res) {
+    var response = {
+        "state" : false,
+        "previousState":false
+    };
+    if(typeof(req.params.mode) == 'undefined'){
+       res.write(response);
+       res.end();
+       return;
+    }
+    
+     console.log("Request received to change mode '" + req.params.mode + "'...");
+    
+    var currentState = state.getState(req.params.mode);
+    if(currentState == "error"){
+        res.write("unknown state");
+    }
+    else{
+      var requestedState = (req.query.state == 'true');
+        if(requestedState != currentState){
+          state.setState(req.params.mode,requestedState); 
+        }
+        response.state = (requestedState == true);  
+        response.previousState = (currentState == true);
+        res.write(JSON.stringify(response));
+    }
+    res.end(); 
+});
+
 
 
 /* ******************************
@@ -30,7 +65,7 @@ app.use(express.static('node_modules'));
  * ******************************
 */
 
-app.get("debug/:switch/:action", function(req, res) {
+app.get("/debug/:switch/:action", function(req, res) {
   if(eventEmitter != undefined){
     var action = {
       category : "sensor",
@@ -43,7 +78,7 @@ app.get("debug/:switch/:action", function(req, res) {
   res.end();
 });
 
-app.get("debug/:switch/:action/:parameter", function(req, res) {
+app.get("/debug/:switch/:action/:parameter", function(req, res) {
   if(eventEmitter != undefined){
     var action = {
       category : "sensor",
@@ -68,6 +103,23 @@ app.get("/action-mapping/rules", function(req, res) {
       res.setHeader('Content-Type', 'application/json');
       var actionMap = require('./action-map.json');
       res.send(actionMap);
+  }
+  res.end();
+});
+
+// PUT a change to all rules
+app.put("/action-mapping/rules", function(req, res) {
+  if(eventEmitter != undefined){
+     var actionMap = req.body;
+     res.write('ok');
+      fs.writeFile("./action-map.json", JSON.stringify(actionMap, null, 2),function(err){
+                if(err){
+                    console.log("Failed to update action-map.json. " + err); 
+                }
+                else{
+                    eventEmitter.emit('action-map-updated',null);
+                }
+            });
   }
   res.end();
 });

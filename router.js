@@ -24,6 +24,10 @@ exports.initialize = function(emitter){
       case "schedule":
         eventHandlers.scheduleHandler(args);
         break;
+        
+        case "homekit":
+        eventHandlers.homekitHandler(args);
+        break;
 
       default:
         console.log("Unknown event category!");
@@ -60,6 +64,9 @@ eventHandlers.sensorHandler = function(args){
         actions.executeFade(args.source, args.args);
     }
     else{
+      
+      //TODO: Check are we in learning mode. If so, next button action gets assigned the most recently activated scene.
+      
         var action = routingTable[args.source][args.action];
         if(typeof action === 'undefined'){
             console.log("No action defined for trigger.");
