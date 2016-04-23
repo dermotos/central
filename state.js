@@ -108,7 +108,7 @@ exports.getState = function(requestedState){
         return "error";
     }
     
-    console.log("The state is currently " + targetState.enabled);
+    //console.log("The state is currently " + targetState.enabled);
     
     return targetState.enabled;
 }
