@@ -15,6 +15,8 @@ var eventEmitter;
 var server;
 var state = require("./state");
 var deviceControl = require('./external-device');
+var blinds = require('./blinds');
+var arduinoLight = require('./arduinoLight');
 
 /* ******************************
  * Static content service
@@ -68,8 +70,21 @@ app.get("/devices/:device/:operation", function(req, res) {
   var device = req.params.device;
   var operation = req.params.operation;
   deviceControl.sendCommand(device,operation);
-  
-  
+  res.end("ok");
+});
+
+app.get("/arduinoLight/:device/:operation", function(req, res) {
+  var device = req.params.device;
+  var operation = req.params.operation;
+  arduinoLight.setLightState(device,operation);
+  res.end("ok");
+});
+
+app.get("/blinds/:room/:index/:action", function(req, res) {
+  var room = req.params.room;
+  var action = req.params.action;
+  var index = req.params.index;
+  blinds.setBlindState(room,index,action);
   res.end("ok");
 });
 

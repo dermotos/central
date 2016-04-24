@@ -16,21 +16,22 @@ exports.getLightState = function(room,index,callback){
 }
 
 //Valid parameters are: 
-// room : "bedroom" | "lounge"
-// index: 0 | 1
-// state: "open" | "close" | "stop" | "toggle"
-exports.setBlindState = function(room,index,state){
-   if(room == "bedroom"){
-      var actor = sensors.sensorStates["bedroom-blinds"];
+// device : "desklamp"
+// state : "on" | "off"
+
+exports.setLightState = function(device,state){
+   if(device == "desklamp"){
+      var actor = sensors.sensorStates["desklamp"];
       if(typeof(actor) === 'undefined' || typeof(actor.socket) === 'undefined'){
         callback("Specified blind's remote interface unavailable");
       }else{
-        //Set sensible defaults (0th blind, toggle) if parameters not defined
-        if(typeof(state) === 'undefined'){ state = "toggle"; }
-        if(!(state == "open" ||state == "close" ||state == "stop" ||state == "toggle")) { state = "toggle"; }
-        if(typeof(index) === 'undefined'){ index = 0; }
-       
-        actor.socket.write('^control-blinds,' + index + ','+  +'$');
+          if(state == "on"){
+              actor.socket.write('^control-lamp,on$');
+          }
+          else if(state == "off"){
+              actor.socket.write('^control-lamp,off$');
+          }
+        
       }
       
     }

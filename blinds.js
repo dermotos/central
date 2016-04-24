@@ -3,10 +3,13 @@ var events = require('events');
 var actions = require("./actions");
 var state = require('./state');
 var sensors = require('./sensors');
+var hue = require('./hue');
 var eventEmitter;
 
 
 var self = this;
+
+
 
 exports.initialize = function(emitter){
   eventEmitter = emitter;
@@ -25,7 +28,7 @@ exports.setBlindState = function(room,index,state,callback){
    if(room == "bedroom"){
       actor = sensors.sensorStates["bedroom-blinds"]; 
     } else if(room == "lounge"){
-      actor = sensors.sensorStates["desklamp"]; //Same actor as the desklamp
+      actor = sensors.sensorStates["desklamp"]; //Same physical actor as the desklamp
     }
     
     if(typeof(actor) === 'undefined' || typeof(actor.socket) === 'undefined' || actor.socket == null){
@@ -38,7 +41,8 @@ exports.setBlindState = function(room,index,state,callback){
         if(typeof(state) === 'undefined'){ state = "toggle"; }
         if(!(state == "open" ||state == "close" ||state == "stop" ||state == "toggle")) { state = "toggle"; }
         if(typeof(index) === 'undefined'){ index = 0; }
-        if(index == 2){
+        hue.alert();
+        if(index == "2"){
           actor.socket.write('^control-blinds,0,'+ state +'$');
           actor.socket.write('^control-blinds,1,'+ state +'$');
         }else{
@@ -47,5 +51,7 @@ exports.setBlindState = function(room,index,state,callback){
         console.log("Command sent to blinds");
       } 
 }
+
+
 
 
