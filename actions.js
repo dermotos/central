@@ -20,8 +20,9 @@ exports.executeAction = function(action, args){
     }
 }
 
-exports.executeFade = function(source, args){
-    console.log("Fade lights for " + source + " switch, to " + args[0]);
+exports.executeFade = function(group, brightness){
+    console.log("Fade lights in " + group + " to " + brightness);
+    hue.setBrightness(group,brightness);
 }
 
 function executeScene(sceneID){

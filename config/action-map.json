@@ -33,6 +33,10 @@
       "type": "hue-scene",
       "id": "78aba2cbb-on-0",
       "name": "Daylight on 0"
+    },
+    "fader" : {
+      "type" : "fade",
+      "group" : "lounge"
     }
   }
 }

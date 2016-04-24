@@ -212,8 +212,12 @@ function socketHandler(socket) {
         };
       }
     } // end for
-
-    disconnectSensor(targetSensor);
+    if(targetSensor){
+      disconnectSensor(targetSensor);
+    }else{
+      console.log("Could not find sensor associated with socket. System is in inconsistent state until this device reconnects");
+    }
+    
 
   });
 }

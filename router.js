@@ -88,7 +88,8 @@ eventHandlers.sensorHandler = function (args) {
 
   console.log(args);
   if (args.action == 'fader') {
-    actions.executeFade(args.source, args.args);
+    var action = routingTable[args.source][args.action];
+    actions.executeFade(action.group,args.args[0]);
   }
   else {
 

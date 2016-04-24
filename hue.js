@@ -13,11 +13,17 @@ var displayResults = function (result) {
     console.log(JSON.stringify(result, null, 2));
 };
 
-// Array.sort(function(a,b){
-//   // Turn your strings into dates, and then subtract them
-//   // to get a value that is either negative, positive, or zero.
-//   return new Date(b.date) - new Date(a.date);
-// });
+//Valid values for group are "lounge" and "bedroom"
+exports.setBrightness = function (group,brightness){
+    //TODO: Move to a config file
+    if(group == "lounge" || group == "bedroom"){
+        var brightnessState = lightState.create().brightness(brightness).transition(300);
+        api.setGroupLightState(group == "lounge" ? 1 : 2,brightnessState);
+    }
+    else{
+        console.log("Fader: Unknown light group '" + group + "' specified");
+    } 
+}
 
 
 exports.setScene = function (id) {
