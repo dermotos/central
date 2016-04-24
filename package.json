@@ -17,6 +17,7 @@
     "node-hue-api": "2.2.0",
     "node-schedule": "*",
     "particle": "*",
+    "queue": "^3.1.0",
     "request": "*",
     "suncalc": "*",
     "underscore": "^1.8.3",

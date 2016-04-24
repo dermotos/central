@@ -2,6 +2,7 @@
   "desk": {
     "button-north-pressed": {
       "type": "hue-scene",
+      "programmable" : true,
       "name": "Unassigned-north",
       "id": "Unassigned-north-test"
     },
@@ -11,9 +12,14 @@
       "name": "Unassigned-east"
     },
     "button-west-pressed": {
-      "type": "scene",
-      "id": "Unassigned-west",
-      "name": "Unassigned-west"
+      "type": "blind",
+      "id": "toggle",
+      "name": "Toggle blinds",
+       "args": [
+        "bedroom",
+        "2",
+        "toggle"
+      ]
     },
     "button-east-double-pressed": {
       "type": "custom",

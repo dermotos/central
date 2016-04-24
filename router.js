@@ -1,5 +1,5 @@
 var events = require('events');
-var recipes = require("./recipes");
+
 var actions = require("./actions");
 var state = require('./state');
 var hue = require('./hue');
@@ -50,7 +50,7 @@ exports.initialize = function(emitter){
 
 exports.loadRoutingTable = function(){
     var previouslyExisted = (routingTable != null);
-    routingTable = require("./action-map.json");
+    routingTable = require("./config/action-map.json");
     console.log("Routing table "+ (previouslyExisted ? "re" : "")  + "loaded");
 }
 
@@ -60,13 +60,13 @@ function assignButton(source,action){
     
     //Get the latest set scene on the hub, then assign its ID to the current button
     hue.latestScene(function(latestScene){
-        var actionMap = require('./action-map.json');
+        var actionMap = require('./config/action-map.json');
         
         actionMap[source][action].type = "hue-scene";
         actionMap[source][action].name = latestScene.name;
         actionMap[source][action].id = latestScene.id;
         
-        fs.writeFile("./action-map.json", JSON.stringify(actionMap, null, 2),function(err){
+        fs.writeFile("./config/action-map.json", JSON.stringify(actionMap, null, 2),function(err){
             if(err){
                 console.log("Failed to update action-map.json. " + err); 
             }
@@ -107,6 +107,11 @@ eventHandlers.sensorHandler = function(args){
         actions.executeAction(action,action.args);  
     }
 }
+
+
+
+
+
 
 eventHandlers.scheduleHandler = function(args){
   switch(args.source){

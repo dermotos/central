@@ -20,6 +20,8 @@ if (!String.prototype.startsWith) {
   };
 }
 
+var self = this;
+
 exports.sensorStates = {
   "couch": {
     socket: null,
@@ -117,19 +119,19 @@ function socketHandler(socket) {
     
     /* Connection hardening
      * Each device (sensor)...
-     *    - Sends a heartbeat every 30 seconds
-     *    - Expects a heartbeat every 60 seconds or less from central control
+     *    - Sends a heartbeat every 25 seconds
+     *    - Expects a heartbeat every 60 seconds or less from central control (should be 2-3 within this time)
      *    - Re-establishes a connection when it detects it has gone down
      * 
      * It is central controls responsibility to...
-     *    - Send a heartbeat every 30 seconds to each sensor
+     *    - Send a heartbeat every 25 seconds to each sensor
      *    - Disconnect a sensor if it hasn't received a heartbeat within 60 seconds
      *    - Disconnect a sensor and cleanup if it detects a problem (eg: socket closed/write failed)
      * */
 
     if (items[1] == "heartbeat") {
-      console.log("Heartbeat received");
-      var sensor = exports.sensorStates[items[0]];
+      console.log("Heartbeat received ("+ items[0] +")");
+      var sensor = self.sensorStates[items[0]];
       if (typeof (sensor) === 'undefined') {
         console.log("An unknown sensor connected (" + items[0] + "). DEBUG");
         return;
@@ -153,16 +155,13 @@ function socketHandler(socket) {
         sensor.heartbeatInTimeout = setTimeout(function(){
           //Code that runs if we don't receive a heartbeat from this device:
           console.log(items[0] + " is not responding, closing connection.");
-          shutdownSensor(sensor);
+          disconnectSensor(sensor);
         },heartbeatReceiveThreshold);
 
       }
-    }
-    
-    
-    
-    
-    var action = {
+      
+    }else{
+       var action = {
       category: "sensor",
       source: items[0], //eg: bedroom-door, bedroom-blinds, kitchen etc
       action: items[1], //eg: north-button-double-pressed, motion-started, left-scale, etc...
@@ -176,15 +175,24 @@ function socketHandler(socket) {
     }
 
     eventEmitter.emit('event', action);
+    }
+    
+    
+    
+    
+   
 
   }); //end of carrier
   
-  function shutdownSensor(errSensor){
-    errSensor.socket.destroy();
+  function disconnectSensor(errSensor){
+    
     errSensor.connected = false;
     clearInterval(errSensor.heartbeatOutInterval);
     errSensor.heartbeatInterval = null;
-    errSensor.socket = null;
+    if(!(typeof(errSensor.socket) === 'undefined' || errSensor.socket == null)){
+      errSensor.socket.destroy();
+      errSensor.socket = null;
+    }
   }
 
   // Add a 'close' event handler to this instance of socket
@@ -192,9 +200,11 @@ function socketHandler(socket) {
     console.log("A socket error occurred");
     //Find the socket in the list:
     var targetSensor = null;
-    for (var key in Object.keys(exports.sensorStates)) {
-      if (Object.keys(exports.sensorStates.hasOwnProperty(key))) {
-        var element = Object.keys(exports.sensorStates[key]);
+    console.log(Object);
+    console.log(self.sensorStates);
+    for (var key in Object.keys(self.sensorStates)) {
+      if (self.sensorStates.hasOwnProperty(key)) {
+        var element = self.sensorStates[key];
         if(element.socket == socket){
           console.log("Found erronous sensor: " + key + ". Shutting down socket...");
           targetSensor = element;
@@ -203,7 +213,7 @@ function socketHandler(socket) {
       }
     } // end for
     
-    shutdownSensor(targetSensor);
+    disconnectSensor(targetSensor);
 
   });
 }

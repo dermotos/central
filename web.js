@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 var eventEmitter;
 var server;
 var state = require("./state");
+var deviceControl = require('./external-device');
 
 /* ******************************
  * Static content service
@@ -58,6 +59,19 @@ app.get("/mode/:mode", function(req, res) {
     res.end(); 
 });
 
+
+/* ******************************
+ * Devices (eg: for homebridge interface)
+ * ******************************
+*/
+app.get("/devices/:device/:operation", function(req, res) {
+  var device = req.params.device;
+  var operation = req.params.operation;
+  deviceControl.sendCommand(device,operation);
+  
+  
+  res.end("ok");
+});
 
 
 /* ******************************
@@ -128,7 +142,7 @@ app.put("/action-mapping/rules", function(req, res) {
 app.get("/action-mapping/catalog", function(req, res) {
   if(eventEmitter != undefined){
       res.setHeader('Content-Type', 'application/json');
-      var actionCatalog = require('./action-catalog.json');
+      var actionCatalog = require('./config/action-catalog.json');
       res.send(actionCatalog);
   }
   res.end();
@@ -137,7 +151,7 @@ app.get("/action-mapping/catalog", function(req, res) {
 app.put("/action-mapping/rules/:sensor/:trigger", function(req, res) {
   if(eventEmitter != undefined){
       var actionMap = require('./action-map.json');
-      var actionCatalog = require('./action-catalog.json');
+      var actionCatalog = require('./config/action-catalog.json');
       
       var sensor = req.params.sensor;
       var trigger = req.params.trigger;

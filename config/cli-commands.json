@@ -1,0 +1,116 @@
+{
+  "hvac": {
+    "off": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c 'Off'",
+      "duration": 5000
+    },
+    "auto18": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '18'",
+      "duration": 5000
+    },
+    "auto18Powerful": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '18-pwr'",
+      "duration": 5000
+    },
+    "auto18PowerfulHighFan": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '18-pwr-high-fan'",
+      "duration": 5000
+    },
+    "auto21": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '21'",
+      "duration": 5000
+    },
+    "auto21Powerful": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '21-pwr'",
+      "duration": 5000
+    },
+    "auto21PowerfulHighFan": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '21-pwr-high-fan'",
+      "duration": 5000
+    },
+    "auto24": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '24'",
+      "duration": 5000
+    },
+    "auto24Powerful": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '24-pwr'",
+      "duration": 5000
+    },
+    "auto24PowerfulHighFan": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '24-pwr-high-fan'",
+      "duration": 5000
+    },
+    "auto28": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '28'",
+      "duration": 5000
+    },
+    "auto28Powerful": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '28-pwr'",
+      "duration": 5000
+    },
+    "auto28PowerfulHighFan": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '28-pwr-high-fan'",
+      "duration": 5000
+    },
+    "auto30Powerful": {
+      "prefix": "harmony",
+      "command": "-d 'HVAC' -c '30-pwr'",
+      "duration": 5000
+    }
+  },
+  "mediaCenter": {
+    "off": {
+      "prefix": "harmony",
+      "command": "-l 10.0.0.3 -a 'PowerOff'",
+      "duration": 6000
+    },
+    "on": {
+      "prefix": "harmony",
+      "command": "-l 10.0.0.3 -a 'TV'",
+      "duration": 11000
+    }
+  },
+  "playstation": {
+    "off": {
+      "prefix": "harmony",
+      "command": "-l 10.0.0.3 -a 'PowerOff'",
+      "duration": 6000
+    },
+    "on": [
+      {
+        "command": "/usr/local/bin/ps4-waker",
+        "duration": 100
+      },
+      {
+        "prefix": "harmony",
+        "command": "-l 10.0.0.3 -a 'PlayStation'",
+        "duration": 12000
+      }
+    ]
+  },
+  "speakers": {
+    "off": {
+      "prefix": "harmony",
+      "command": "-l 10.0.0.3 -a 'PowerOff'",
+      "duration": 6000
+    },
+    "on": {
+      "prefix": "harmony",
+      "command": "-l 10.0.0.3 -a 'Music'",
+      "duration": 10000
+    }
+  }
+}
