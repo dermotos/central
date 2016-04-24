@@ -9,7 +9,7 @@ var host = "10.0.0.4",
     username = "newdeveloper",
     api = new hue.HueApi(host, username);
 
-var displayResults = function(result) {
+var displayResults = function (result) {
     console.log(JSON.stringify(result, null, 2));
 };
 
@@ -20,43 +20,43 @@ var displayResults = function(result) {
 // });
 
 
-exports.setScene = function(id){
+exports.setScene = function (id) {
     api.activateScene(id).then(displayResults).done();
 }
 
-exports.alert = function(){
+exports.alert = function () {
     var alertState = lightState.create().shortAlert();
-	api.setGroupLightState(0, alertState).then(displayResults).done();
+    api.setGroupLightState(0, alertState).then(displayResults).done();
 }
 
 
-exports.latestScene = function(callback){
+exports.latestScene = function (callback) {
     console.log("Getting list of latest scenes:");
-    api.scenes().then(function(result){
-        
-        var sortedResult = _.sortBy(result,'lastupdated').reverse();
+    api.scenes().then(function (result) {
+
+        var sortedResult = _.sortBy(result, 'lastupdated').reverse();
         var latestScene;
-        
+
         for (var index = 0; index < sortedResult.length; index++) {
             var element = sortedResult[index];
-            if(element.lastupdated != null){
+            if (element.lastupdated != null) {
                 latestScene = element;
                 break;
             }
-        }   
+        }
         callback(latestScene);
     }).done();
 }
 
-exports.getLightPowerState = function(light) {
-  //Returns bool
+exports.getLightPowerState = function (light) {
+    //Returns bool
 };
 
 // [light] is a light identifier or array of light identifiers
 // [brightness] is a value between 0 (off) and 100
 // [colorTemperature] is either a kelvin value between 2000 and 6500, or the string "auto" for circidian based color temperature
-exports.setLightTemperature = function(light, brightness, colorTemperature) {
-  if(light instanceof Array){
+exports.setLightTemperature = function (light, brightness, colorTemperature) {
+    if (light instanceof Array) {
 
-  }
+    }
 };

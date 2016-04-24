@@ -8,8 +8,8 @@ var tcp = require('net');
 var carrier = require('carrier'); //Easy new-line terminated chunking over TCP (from spark/arduino)
 var server;
 
-var heartbeatSendInterval =       25 * 1000;
-var heartbeatReceiveThreshold =   60 * 1000;
+var heartbeatSendInterval = 25 * 1000;
+var heartbeatReceiveThreshold = 60 * 1000;
 
 
 //Polyfill. TODO: Move these into a separate file
@@ -26,56 +26,56 @@ exports.sensorStates = {
   "couch": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "desk": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "desklamp": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "bedroom-blinds": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "bedside": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "bedroom-door": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "kitchen": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "bathroom": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   },
   "tv": {
     socket: null,
     connected: false,
-    heartbeatInTimeout : null,
-    heartbeatOutInterval : null,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null,
   }
 };
 
@@ -99,7 +99,7 @@ function socketHandler(socket) {
       items[i] = items[i].replace('\r', '');
     };
 
-    
+
 
     //** Normalisation **
     // Some existing switches use older firmware that sends "checkin" instead of "heartbeat", normalize it...
@@ -116,7 +116,7 @@ function socketHandler(socket) {
       items[1] = "fader"; // Normalisation
     }
     // ** ******************************* **
-    
+
     /* Connection hardening
      * Each device (sensor)...
      *    - Sends a heartbeat every 25 seconds
@@ -130,66 +130,66 @@ function socketHandler(socket) {
      * */
 
     if (items[1] == "heartbeat") {
-      console.log("Heartbeat received ("+ items[0] +")");
+      console.log("Heartbeat received (" + items[0] + ")");
       var sensor = self.sensorStates[items[0]];
       if (typeof (sensor) === 'undefined') {
         console.log("An unknown sensor connected (" + items[0] + "). DEBUG");
         return;
-      }else{
+      } else {
         // Heartbeat received for known sensor
-        
-         if(!sensor.connected){
+
+        if (!sensor.connected) {
           // Sensor has just connected (or reconnected)
           sensor.connected = true;
           sensor.socket = socket;
           sensor.socket.write("^heartbeat$"); // Send the first heartbeat immediately
-          sensor.heartbeatOutInterval = setInterval(function(){
+          sensor.heartbeatOutInterval = setInterval(function () {
             sensor.socket.write("^heartbeat$");
-          },heartbeatSendInterval);
+          }, heartbeatSendInterval);
         }
-        
-        
-        
+
+
+
         // We've received a heartbeat, so reset the heartbeat in watcher.
         clearTimeout(sensor.heartbeatInTimeout);
-        sensor.heartbeatInTimeout = setTimeout(function(){
+        sensor.heartbeatInTimeout = setTimeout(function () {
           //Code that runs if we don't receive a heartbeat from this device:
           console.log(items[0] + " is not responding, closing connection.");
           disconnectSensor(sensor);
-        },heartbeatReceiveThreshold);
+        }, heartbeatReceiveThreshold);
 
       }
-      
-    }else{
-       var action = {
-      category: "sensor",
-      source: items[0], //eg: bedroom-door, bedroom-blinds, kitchen etc
-      action: items[1], //eg: north-button-double-pressed, motion-started, left-scale, etc...
-      args: [] //Max of one arg in currently implemented hardware. Support for more. eg: fader value, scales value.
-    };
 
-    if (items.length > 2) {
-      for (var i = 2; i < items.length; i++) {
-        action.args.push(items[i]);
+    } else {
+      var action = {
+        category: "sensor",
+        source: items[0], //eg: bedroom-door, bedroom-blinds, kitchen etc
+        action: items[1], //eg: north-button-double-pressed, motion-started, left-scale, etc...
+        args: [] //Max of one arg in currently implemented hardware. Support for more. eg: fader value, scales value.
+      };
+
+      if (items.length > 2) {
+        for (var i = 2; i < items.length; i++) {
+          action.args.push(items[i]);
+        }
       }
+
+      eventEmitter.emit('event', action);
     }
 
-    eventEmitter.emit('event', action);
-    }
-    
-    
-    
-    
-   
+
+
+
+
 
   }); //end of carrier
-  
-  function disconnectSensor(errSensor){
-    
+
+  function disconnectSensor(errSensor) {
+
     errSensor.connected = false;
     clearInterval(errSensor.heartbeatOutInterval);
     errSensor.heartbeatInterval = null;
-    if(!(typeof(errSensor.socket) === 'undefined' || errSensor.socket == null)){
+    if (!(typeof (errSensor.socket) === 'undefined' || errSensor.socket == null)) {
       errSensor.socket.destroy();
       errSensor.socket = null;
     }
@@ -205,14 +205,14 @@ function socketHandler(socket) {
     for (var key in Object.keys(self.sensorStates)) {
       if (self.sensorStates.hasOwnProperty(key)) {
         var element = self.sensorStates[key];
-        if(element.socket == socket){
+        if (element.socket == socket) {
           console.log("Found erronous sensor: " + key + ". Shutting down socket...");
           targetSensor = element;
           break;
         };
       }
     } // end for
-    
+
     disconnectSensor(targetSensor);
 
   });

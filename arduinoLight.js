@@ -7,11 +7,11 @@ var eventEmitter;
 
 var self = this;
 
-exports.initialize = function(emitter){
-  eventEmitter = emitter;
+exports.initialize = function (emitter) {
+    eventEmitter = emitter;
 };
 
-exports.getLightState = function(room,index,callback){
+exports.getLightState = function (room, index, callback) {
     console.log("getBlindState is not implemented, and probably wont be.");
 }
 
@@ -19,21 +19,19 @@ exports.getLightState = function(room,index,callback){
 // device : "desklamp"
 // state : "on" | "off"
 
-exports.setLightState = function(device,state){
-   if(device == "desklamp"){
-      var actor = sensors.sensorStates["desklamp"];
-      if(typeof(actor) === 'undefined' || typeof(actor.socket) === 'undefined'){
-        callback("Specified blind's remote interface unavailable");
-      }else{
-          if(state == "on"){
-              actor.socket.write('^control-lamp,on$');
-          }
-          else if(state == "off"){
-              actor.socket.write('^control-lamp,off$');
-          }
-        
-      }
-      
+exports.setLightState = function (device, state) {
+    if (device == "desklamp") {
+        var actor = sensors.sensorStates["desklamp"];
+        if (typeof (actor) === 'undefined' || typeof (actor.socket) === 'undefined') {
+            callback("Specified blind's remote interface unavailable");
+        } else {
+            if (state == "on") {
+                actor.socket.write('^control-lamp,on$');
+            }
+            else if (state == "off") {
+                actor.socket.write('^control-lamp,off$');
+            }
+        }
     }
 }
 

@@ -2,7 +2,7 @@
   "name": "CentralControl",
   "description": "Home automation central controller",
   "author": "Dermot O'Sullivan",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "angular": "*",

@@ -43,7 +43,7 @@ var DAY_END_HOUR = 21;
 var DAY_END_MINUTE = 59;
 
 
-exports.initialize = function(emitter){
+exports.initialize = function (emitter) {
   eventEmitter = emitter;
 
   // On initialization, compute sun position times for the current day, and create a
@@ -55,11 +55,11 @@ exports.initialize = function(emitter){
   scheduler.scheduleJob(scheduleRule, calculateSunRelatedTimes());
 };
 
-exports.test = function(){
+exports.test = function () {
   console.log(moment(times.sunrise));
 }
 
-exports.whiteForTime = function(time){
+exports.whiteForTime = function (time) {
   /*
   Initially, return a daylight color from 6am until sunset,
   Then return progressively warmer colours from sunset until midnight, when its warmest.
@@ -71,17 +71,17 @@ exports.whiteForTime = function(time){
   //console.log("Sunset: "+ moment(times.sunset).format());
   //console.log(time.isBefore(times.sunset));
 
-  if(time.hour() < DAY_BEGIN_HOUR){
+  if (time.hour() < DAY_BEGIN_HOUR) {
     //Late night mode
     //console.log("Return late night");
     return WARMEST_WHITE;
   }
-  if(time.hour() >= DAY_BEGIN_HOUR && time.isBefore(times.sunset)){
+  if (time.hour() >= DAY_BEGIN_HOUR && time.isBefore(times.sunset)) {
     // Day light
     //console.log("Return day light");
     return COOLEST_WHITE;
   }
-  else{
+  else {
     //console.log("Calculating...");
     // Number of minutes between sunset and day end
     var hours = DAY_END_HOUR - moment(times.sunset).hours();
@@ -98,7 +98,7 @@ exports.whiteForTime = function(time){
   }
 }
 
-exports.brightnessForTime = function(time, min, max){
+exports.brightnessForTime = function (time, min, max) {
   /*
   Returns 100% brightness during the day.
   Returns 70% brightness after 11pm.
@@ -111,17 +111,17 @@ exports.brightnessForTime = function(time, min, max){
   //console.log("Sunset: "+ moment(times.sunset).format());
   //console.log(time.isBefore(times.sunset));
 
-  if(time.hour() < DAY_BEGIN_HOUR){
+  if (time.hour() < DAY_BEGIN_HOUR) {
     //Late night mode
     //console.log("Return late night");
     return dimmest;
   }
-  if(time.hour() >= DAY_BEGIN_HOUR && time.isBefore(times.sunset)){
+  if (time.hour() >= DAY_BEGIN_HOUR && time.isBefore(times.sunset)) {
     // Day light
     //console.log("Return day light");
     return brightest;
   }
-  else{
+  else {
     //console.log("Calculating...");
     // Number of minutes between sunset and 11pm:
     var hours = DAY_END_HOUR - moment(times.sunset).hours();
@@ -136,28 +136,28 @@ exports.brightnessForTime = function(time, min, max){
   }
 }
 
-exports.isBeforeSunrise = function(time){
+exports.isBeforeSunrise = function (time) {
   return time.isBefore(times.sunrise);
 }
 
-exports.isAfterSunrise = function(time){
+exports.isAfterSunrise = function (time) {
   return time.isAfter(times.sunrise);
 }
 
-exports.isBeforeSunset = function(time){
+exports.isBeforeSunset = function (time) {
   return time.isBefore(times.sunset);
 }
 
-exports.isAfterSunset = function(time){
+exports.isAfterSunset = function (time) {
   return time.isAfter(times.sunset);
 }
 
 
-exports.currentMoment = function(){
-	return moment().tz('Australia/Sydney');
+exports.currentMoment = function () {
+  return moment().tz('Australia/Sydney');
 }
 
 
-function calculateSunRelatedTimes(){
-  times = sunCalculator.getTimes(new Date(),sydneyLatLong[0],sydneyLatLong[1]);
+function calculateSunRelatedTimes() {
+  times = sunCalculator.getTimes(new Date(), sydneyLatLong[0], sydneyLatLong[1]);
 }

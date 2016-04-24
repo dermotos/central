@@ -20,15 +20,15 @@ var commandQueue = queue();
 commandQueue.concurrency = 1;
 
 
-exports.sendCommand = function (device,operation) {
-    var commandObject = getCommand(device,operation);
-    if(commandObject){
-        commandQueue.push(function(complete){
+exports.sendCommand = function (device, operation) {
+    var commandObject = getCommand(device, operation);
+    if (commandObject) {
+        commandQueue.push(function (complete) {
             var commandString = commandObject.prefix ? commandPrefixes[commandObject.prefix] + " " + commandObject.command : commandObject.command;
             executeCommand(commandString);
-            setTimeout(function(){
+            setTimeout(function () {
                 complete();
-            },commandObject.duration);
+            }, commandObject.duration);
         });
         hue.alert();
         commandQueue.start();
@@ -38,25 +38,25 @@ exports.sendCommand = function (device,operation) {
 
 
 
-function getCommand(device,operation){
+function getCommand(device, operation) {
     var device = commandTable[device];
-    if(device){
+    if (device) {
         var commandObject = device[operation];
-        if(commandObject){
+        if (commandObject) {
             return commandObject;
-        }else{
-           console.log("Unknown operation (" + operation + ") for device: " + device); 
-        } 
-    }else{
-       console.log("Unknown device specified: " + device); 
-    } 
-    
+        } else {
+            console.log("Unknown operation (" + operation + ") for device: " + device);
+        }
+    } else {
+        console.log("Unknown device specified: " + device);
+    }
+
     return;
 }
 
 function executeCommand(commandString) {
     console.log("Running command...");
-    exec(commandString, function (error, stdout, stderr) { 
+    exec(commandString, function (error, stdout, stderr) {
         console.log(stdout);
     });
 }
