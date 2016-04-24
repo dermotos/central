@@ -71,22 +71,80 @@
       "duration": 5000
     }
   },
+   "ceilingFan": {
+    "off": {
+      "prefix": "harmony",
+      "command": "-d 'Ceiling fan' -c 'PowerOff'",
+      "duration": 5000
+    },
+    "low": {
+      "prefix": "harmony",
+      "command": "-d 'Ceiling fan' -c 'FanLow'",
+      "duration": 5000
+    },
+    "medium": {
+      "prefix": "harmony",
+      "command": "-d 'Ceiling fan' -c 'FanMed'",
+      "duration": 5000
+    },
+    "high": {
+      "prefix": "harmony",
+      "command": "-d 'Ceiling fan' -c 'FanHigh'",
+      "duration": 5000
+    }
+  },
+  "bathroomFan": {
+    "off": {
+      "prefix": "wemo",
+      "command": "10.0.0.30 -a OFF",
+      "duration": 1000
+    },
+    "on": {
+      "prefix": "wemo",
+      "command": "10.0.0.30 -a ON",
+      "duration": 1000
+    }
+  },
+  "kitchenFan": {
+    "off": {
+      "prefix": "wemo",
+      "command": "10.0.0.31 -a OFF",
+      "duration": 1000
+    },
+    "on": {
+      "prefix": "wemo",
+      "command": "10.0.0.31 -a ON",
+      "duration": 1000
+    }
+  },
+  "floorFan": {
+    "off": {
+      "prefix": "wemo",
+      "command": "10.0.0.32 -a OFF",
+      "duration": 1000
+    },
+    "on": {
+      "prefix": "wemo",
+      "command": "10.0.0.32 -a ON",
+      "duration": 1000
+    }
+  },
   "mediaCenter": {
     "off": {
       "prefix": "harmony",
-      "command": "-l 10.0.0.3 -a 'PowerOff'",
+      "command": "-a 'PowerOff'",
       "duration": 6000
     },
     "on": {
       "prefix": "harmony",
-      "command": "-l 10.0.0.3 -a 'TV'",
+      "command": "-a 'TV'",
       "duration": 11000
     }
   },
   "playstation": {
     "off": {
       "prefix": "harmony",
-      "command": "-l 10.0.0.3 -a 'PowerOff'",
+      "command": "-a 'PowerOff'",
       "duration": 6000
     },
     "on": [
@@ -96,7 +154,7 @@
       },
       {
         "prefix": "harmony",
-        "command": "-l 10.0.0.3 -a 'PlayStation'",
+        "command": "-a 'PlayStation'",
         "duration": 12000
       }
     ]
@@ -104,12 +162,12 @@
   "speakers": {
     "off": {
       "prefix": "harmony",
-      "command": "-l 10.0.0.3 -a 'PowerOff'",
+      "command": "-a 'PowerOff'",
       "duration": 6000
     },
     "on": {
       "prefix": "harmony",
-      "command": "-l 10.0.0.3 -a 'Music'",
+      "command": "-a 'Music'",
       "duration": 10000
     }
   }

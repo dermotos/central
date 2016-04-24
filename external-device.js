@@ -4,6 +4,7 @@ var actions = require("./actions");
 var state = require('./state');
 var exec = require('child_process').exec;
 var queue = require('queue');
+var hue = require('./hue');
 var eventEmitter;
 
 
@@ -29,6 +30,7 @@ exports.sendCommand = function (device,operation) {
                 complete();
             },commandObject.duration);
         });
+        hue.alert();
         commandQueue.start();
     }
 }

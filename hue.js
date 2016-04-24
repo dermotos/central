@@ -24,6 +24,11 @@ exports.setScene = function(id){
     api.activateScene(id).then(displayResults).done();
 }
 
+exports.alert = function(){
+    var alertState = lightState.create().shortAlert();
+	api.setGroupLightState(0, alertState).then(displayResults).done();
+}
+
 
 exports.latestScene = function(callback){
     console.log("Getting list of latest scenes:");
