@@ -1,39 +1,421 @@
 {
+  "kitchen": {
+    "button-north-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+   "button-south-pressed": {
+       "type": "temporal-multi-scene",
+      "programmable" : false,
+      "toggle" : true,
+      "lightsAffected": [1,2,3],
+      "scenes" : {
+        "00-02" : "unassigned",
+        "02-sr" : "unassigned",
+        "sr-ss" : "unassigned",
+        "ss-22" : "unassigned",
+        "22-24" : "unassigned",
+        "off"   : "unassigned"
+      }
+    },
+    "button-south-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-long-pressed": {
+      "type": "central-scene",
+      "programmable" : false,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "motion-started": {
+      "type": "hue-scene",
+      "programmable" : false,
+      "scenes" : {
+        "00-02" : "unassigned",
+        "02-sr" : "unassigned",
+        "sr-ss" : "unassigned",
+        "ss-22" : "unassigned",
+        "22-24" : "unassigned"
+      }
+    },
+    "motion-stopped": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    } 
+  },
+  "bathroom": {
+    "button-north-pressed": {
+       "type": "hue-scene",
+      "programmable" : false,
+      "toggle" : true,
+      "lightsAffected": [1,2,3], 
+      "scenes" : {
+        "00-02" : "unassigned",
+        "02-sr" : "unassigned",
+        "sr-ss" : "unassigned",
+        "ss-22" : "unassigned",
+        "22-24" : "unassigned",
+        "off" : "unassigned"
+      }
+    },
+    "button-north-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "motion-started": {
+      "type": "hue-scene",
+      "programmable" : false,
+      "toggle" : true,
+      "lightsAffected": [1,2,3], 
+      "scenes" : {
+        "00-02" : "unassigned",
+        "02-sr" : "unassigned",
+        "sr-ss" : "unassigned",
+        "ss-22" : "unassigned",
+        "22-24" : "unassigned",
+        "off" : "unassigned"
+      }
+    },
+    "motion-stopped": {
+      "type": "hue-scene",
+      "programmable" : false,
+      "id": "unassigned"
+    } 
+  },
   "desk": {
     "button-north-pressed": {
       "type": "hue-scene",
       "programmable" : true,
-      "name": "Unassigned-north",
-      "id": "Unassigned-north-test"
+      "name": "unassigned",
+      "id": "unassigned"
     },
+    "button-north-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+   "button-south-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
     "button-east-pressed": {
-      "type": "scene",
-      "id": "Unassigned-east",
-      "name": "Unassigned-east"
-    },
-    "button-west-pressed": {
-      "type": "blind",
-      "id": "toggle",
-      "name": "Toggle blinds",
-       "args": [
-        "bedroom",
-        "2",
-        "toggle"
-      ]
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
     },
     "button-east-double-pressed": {
-      "type": "custom",
-      "id": "toggleBlind",
-      "name": "Toggle blind",
-      "args": [
-        "living-room-blind"
-      ]
-    },
-    "button-south-pressed": {
       "type": "hue-scene",
-      "id": "78aba2cbb-on-0",
-      "name": "Daylight on 0"
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
     },
+    "button-east-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-west-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "fader" : {
+      "type" : "fade",
+      "group" : "lounge"
+    }
+  },
+  "couch": {
+    "button-north-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+   "button-south-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-east-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-east-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-east-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-west-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "fader" : {
+      "type" : "fade",
+      "group" : "lounge"
+    }
+  },
+  "bedroom-door": {
+    "button-north-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+   "button-south-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-east-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-east-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-east-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-west-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "fader" : {
+      "type" : "fade",
+      "group" : "lounge"
+    }
+  },
+  "bedside": {
+    "button-north-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-north-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+   "button-south-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-south-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-east-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-east-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-east-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
+    "button-west-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-double-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    },
+    "button-west-long-pressed": {
+      "type": "hue-scene",
+      "programmable" : true,
+      "name": "unassigned",
+      "id": "unassigned"
+    }, 
     "fader" : {
       "type" : "fade",
       "group" : "lounge"

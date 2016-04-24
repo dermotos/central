@@ -61,14 +61,17 @@ function assignButton(source, action) {
   //Get the latest set scene on the hub, then assign its ID to the current button
   hue.latestScene(function (latestScene) {
     var actionMap = require('./config/action-map.json');
-
+    if(!actionMap[source][action].programmable){
+      console.log("This scene is not programmable and must be configured manually.");
+      return;
+    }
     actionMap[source][action].type = "hue-scene";
     actionMap[source][action].name = latestScene.name;
     actionMap[source][action].id = latestScene.id;
 
     fs.writeFile("./config/action-map.json", JSON.stringify(actionMap, null, 2), function (err) {
       if (err) {
-        console.log("Failed to update action-map.json. " + err);
+        console.log("Failed to update action-map.json " + err);
       }
       else {
         eventEmitter.emit('action-map-updated', null);
