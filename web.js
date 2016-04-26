@@ -17,6 +17,7 @@ var state = require("./state");
 var deviceControl = require('./external-device');
 var blinds = require('./blinds');
 var arduinoLight = require('./arduinoLight');
+var hue = require('./hue');
 
 /* ******************************
  * Static content service
@@ -26,6 +27,16 @@ var arduinoLight = require('./arduinoLight');
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
+
+//Convienience
+app.get("/info/scene/latest", function (req, res) {
+  hue.latestScene(function(latestScene){
+    res.write(JSON.stringify(latestScene,null,2));
+    res.end();
+  });
+  
+});
+
 
 /* ******************************
  * Modes
@@ -130,7 +141,7 @@ app.get("/debug/:switch/:action/:parameter", function (req, res) {
 app.get("/action-mapping/rules", function (req, res) {
   if (eventEmitter != undefined) {
     res.setHeader('Content-Type', 'application/json');
-    var actionMap = require('./action-map.json');
+    var actionMap = require('./config/action-map.json');
     res.send(actionMap);
   }
   res.end();
@@ -141,7 +152,7 @@ app.put("/action-mapping/rules", function (req, res) {
   if (eventEmitter != undefined) {
     var actionMap = req.body;
     res.write('ok');
-    fs.writeFile("./action-map.json", JSON.stringify(actionMap, null, 2), function (err) {
+    fs.writeFile("./config/action-map.json", JSON.stringify(actionMap, null, 2), function (err) {
       if (err) {
         console.log("Failed to update action-map.json. " + err);
       }
@@ -165,7 +176,7 @@ app.get("/action-mapping/catalog", function (req, res) {
 // PUT a change to a trigger                                    /action-mapping/rules/:id 
 app.put("/action-mapping/rules/:sensor/:trigger", function (req, res) {
   if (eventEmitter != undefined) {
-    var actionMap = require('./action-map.json');
+    var actionMap = require('./config/action-map.json');
     var actionCatalog = require('./config/action-catalog.json');
 
     var sensor = req.params.sensor;
@@ -185,7 +196,7 @@ app.put("/action-mapping/rules/:sensor/:trigger", function (req, res) {
         "id": req.body.id
       }
       actionMap[sensor][trigger] = replacementRule;
-      fs.writeFile("./action-map.json", JSON.stringify(actionMap, null, 2), function (err) {
+      fs.writeFile("./config/action-map.json", JSON.stringify(actionMap, null, 2), function (err) {
         if (err) {
           console.log("Failed to update action-map.json. " + err);
         }

@@ -49,7 +49,7 @@
       "id": "unassigned"
     },
     "motion-started": {
-      "type": "multi-scene",
+      "type": "temporal-multi-scene",
       "programmable": false,
       "scenes": {
         "00-02": "unassigned",
@@ -98,7 +98,7 @@
       "id": "unassigned"
     },
     "motion-started": {
-      "type": "multi-scene",
+      "type": "temporal-multi-scene",
       "programmable": false,
       "toggle": true,
       "lightsAffected": [
@@ -122,18 +122,12 @@
     }
   },
   "desk": {
-    "button-north-pressed": [{
+    "button-north-pressed": {
       "type": "hue-scene",
       "programmable": true,
       "name": "Daylight on 0",
       "id": "78aba2cbb-on-0"
     },
-    {
-      "type": "multi-scene",
-      "programmable": false,
-      "name": "Daylight on 0",
-      "id": "78aba2cbb-on-0"
-    }],
     "button-north-double-pressed": {
       "type": "hue-scene",
       "programmable": true,
