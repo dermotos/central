@@ -154,12 +154,20 @@ exports.isAfterSunrise = function(time){
   return time.isAfter(times.sunrise);
 }
 
+exports.sunrise = function(){
+  return times.sunrise;
+}
+
 exports.isBeforeSunset = function(time){
   return time.isBefore(times.sunset);
 }
 
 exports.isAfterSunset = function(time){
   return time.isAfter(times.sunset);
+}
+
+exports.sunrise = function(){
+  return times.sunset;
 }
 
 

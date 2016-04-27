@@ -54,8 +54,24 @@ exports.latestScene = function (callback) {
     }).done();
 }
 
-exports.getLightPowerState = function (light) {
+exports.setLightPowerState = function(lights,newState){
+    lights = (lights instanceof Array) ? lights : [lights];
+    var newPowerState = lightState.create().off();
+    for(var x = 0; x < lights.length; x++){
+        api.setLightState(lights[0],newPowerState).done();
+    }
+}
+
+
+exports.getLightPowerState = function (lightIndex,callback) {
     //Returns bool
+    var index = parseInt(lightIndex);
+    api.lightStatus(index).then(function(status){
+        console.log(JSON.stringify(status,null,2));
+        if(callback){
+            callback(status.state.on);
+        }
+    }).done();
 };
 
 // [light] is a light identifier or array of light identifiers

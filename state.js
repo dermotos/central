@@ -47,7 +47,6 @@ var state =
             timeoutAction: function () {
                 state['program-mode'].enabled = false;
                 console.log("program-mode timed out, and has been disabled");
-                console.log(state['program-mode'].enabled);
             }
         }
         // More modes could include lateNightMode, partyMode, awayMode
@@ -89,14 +88,21 @@ exports.setState = function (stateName, enable) {
 
 }
 
-exports.getState = function (requestedState) {
-    console.log("Getting state for " + requestedState);
+exports.getActiveStates = function(){
+    var activeStates = [];
+    for(var k in Object.keys(state)){
+        if(state[k].enabled){
+            activeStates.push(key);
+        }
+    }
+    return activeStates;
+}
 
+exports.getState = function (requestedState) {
     // Ensure the specified state is known:
     var found = false;
     var targetState;
     for (var k in state) {
-        console.log(k);
         if (k == requestedState) {
             found = true;
             targetState = state[k];
@@ -107,8 +113,6 @@ exports.getState = function (requestedState) {
         console.log("Information about an unknown state '" + requestedState + "' was requested");
         return "error";
     }
-
-    //console.log("The state is currently " + targetState.enabled);
 
     return targetState.enabled;
 }

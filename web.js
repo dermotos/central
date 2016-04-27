@@ -16,7 +16,7 @@ var server;
 var state = require("./state");
 var deviceControl = require('./external-device');
 var blinds = require('./blinds');
-var arduinoLight = require('./arduinoLight');
+var arduinoLight = require('./arduino-light');
 var hue = require('./hue');
 
 /* ******************************
@@ -84,7 +84,7 @@ app.get("/devices/:device/:operation", function (req, res) {
   res.end("ok");
 });
 
-app.get("/arduinoLight/:device/:operation", function (req, res) {
+app.get("/arduinolight/:device/:operation", function (req, res) {
   var device = req.params.device;
   var operation = req.params.operation;
   arduinoLight.setLightState(device, operation);

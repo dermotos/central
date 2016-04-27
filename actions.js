@@ -1,5 +1,6 @@
 var hue = require('./hue');
 var blinds = require('./blinds');
+var state = require('./state');
 
 
 
@@ -17,7 +18,34 @@ exports.executeAction = function (action, args) {
         console.log("central scenes not yet implemented")
     }
     else if(action.type == "multi-scene"){
-        console.log("Time sensitive scenes not yet implemented")
+        //Check if this scene is mode sensitive:
+        if(typeof(action.mode) !== 'undefined' || action.mode == "none"){
+            // Scene is mode sensitive, check if it's negated (i.e.: does NOT run when the mode is active)
+            var negate = (action.mode.indexOf("!") == 0);
+            var sceneMode = negate ? action.mode.substring(1) : action.mode;
+            // Check if mode is on or off...
+            var modeIsOn = state.getState(sceneMode);
+            console.log("Mode:" + modeIsOn + " Negate:"+ negate);
+            if(modeIsOn && !negate){
+                console.log("Scene is mode sensitive, and this mode is active, so, executing...");
+                executeMultiSceneAction(action);
+            }
+            else if(modeIsOn && negate){
+                console.log("This scene should only execute when the mode is off, but its currently on. Skipping");
+            }
+            else if(!modeIsOn && !negate){
+                console.log("Mode is off, but this scene requires it to be on to run. Skipping");
+            }
+            else if(!modeIsOn && negate){
+                console.log("Mode is off, and this scene only runs when this is the case. Executing...")
+                executeMultiSceneAction(action);
+            }
+        }
+        else{
+            // Scene isn't mode sensitive, so execute regardless
+            console.log("Scene isn't mode sensitive, executing...");
+            executeMultiSceneAction(action);
+        }
     }
     else if (action.type == "blind") {
         executeBlindAction(args);
@@ -31,6 +59,65 @@ exports.executeAction = function (action, args) {
 exports.executeFade = function (group, brightness) {
     console.log("Fade lights in " + group + " to " + brightness);
     hue.setBrightness(group, brightness);
+}
+
+function executeMultiSceneAction(action,lightsAreOn){
+    var turnedOn = false;
+    //First, check if this is a toggle action:
+    if(action.toggle && typeof(lightsAreOn) === 'undefined'){
+        //Its a toggle, and not a recall of this function.
+        // Check if one of the lightsAffected are on. if so, run the "off" scene, otherwise proceed as normal
+        hue.getLightPowerState(action.lightsAffected[0],function(on){
+            if(on){
+                executeMultiSceneAction(action,true);
+            }else{
+                executeMultiSceneAction(action,false);
+            }
+        });
+    }
+    else if(action.toggle && lightsAreOn){
+        // run the off command
+        console.log("Running the off scene");
+        turnedOn = false;
+        var offSceneID = action.scenes["off"];
+        hue.setScene(offSceneID);
+    }
+    else{
+        // run the correct scene in the collection for the current time of day
+        console.log("Running the correct scene for the time of day");
+        turnedOn = true;
+        for (var key in Object.keys(action.scenes)) {
+            if (Object.keys(action.scenes).hasOwnProperty(key)) {
+                if(timeRangeIsNow(key)){
+                    //Found the correct scene
+                    var sceneID = action.scenes[key];
+                    console.log("Setting the " + sceneID + " scene.");
+                    //hue.setScene(offSceneID);
+                    break;
+                }                
+            }
+        }  
+    }
+    
+    
+    /* There is a bug/issue with the hue bridge, where the light state
+       is not immediately updated and can report the old value for up to
+       15 seconds after the scene is set. This directly sets the power state
+       of the lights so it reports correctly. This is needed for toggles, which
+       check the state of the light and proceed accordingly based on that. */
+    if(action.toggle){
+        setTimeout(function(){
+            hue.setLightPowerState(action.lightsAffected,turnedOn);
+        },2000);
+        
+    }
+}
+
+//Returns true/false if the timeRange (in the format 00-02 for between midnight and 2am, including ss for sunset and sr for sunrise)
+// covers the current moment or not.
+function timeRangeIsNow(timeRange){
+    var parts = timeRange.split("-");
+    return true;
 }
 
 function executeScene(sceneID) {

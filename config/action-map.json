@@ -18,15 +18,12 @@
       "name": "unassigned",
       "id": "unassigned"
     },
-    "button-south-pressed": {
+    "button-south-pressed": [{
       "type": "multi-scene",
       "programmable": false,
+      "mode" : "!kitchen-work-mode",
       "toggle": true,
-      "lightsAffected": [
-        1,
-        2,
-        3
-      ],
+      "lightsAffected": [4,6,7],
       "scenes": {
         "00-02": "unassigned",
         "02-sr": "unassigned",
@@ -36,6 +33,21 @@
         "off": "unassigned"
       }
     },
+    {
+      "type": "multi-scene",
+      "programmable": false,
+      "mode" : "kitchen-work-mode",
+      "toggle": true,
+      "lightsAffected": [4,6,7],
+      "scenes": {
+        "00-02": "unassigned",
+        "02-sr": "unassigned",
+        "sr-ss": "unassigned",
+        "ss-22": "unassigned",
+        "22-24": "unassigned",
+        "off": "unassigned"
+      }
+    }],
     "button-south-double-pressed": {
       "type": "hue-scene",
       "programmable": true,

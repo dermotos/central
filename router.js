@@ -120,12 +120,12 @@ eventHandlers.sensorHandler = function (args) {
       console.log("Operation has " + action.length + " actions defined.")
       for (var x = 0; x < action.length; x++) {
         var currentAction = action[x];
-        console.log("Action is: " + JSON.stringify(currentAction));
+        //console.log("Action is: " + JSON.stringify(currentAction));
         actions.executeAction(currentAction, currentAction.args);
       }
     }
     else {
-      console.log("Action is: " + JSON.stringify(action));
+      //console.log("Action is: " + JSON.stringify(action));
       actions.executeAction(action, action.args);
     }
 
