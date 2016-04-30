@@ -15,9 +15,9 @@ exports.initialize = function (emitter) {
   self.loadRoutingTable();
 
   eventEmitter.on('event', function (args) {
-
-    console.log("EVENT EMITTER MONITOR:");
-    console.log(JSON.stringify(args));
+    console.log("\n");
+    //console.log("EVENT EMITTER MONITOR:");
+    //console.log(JSON.stringify(args));
 
     switch (args.category) {
       case "sensor":
@@ -91,7 +91,7 @@ eventHandlers.sensorHandler = function (args) {
   // There is a special case for the pot adjustment, where it adjusts the brightness of the lights in the current room
   // Note: There can be multiple actions for a sensor event. As a result, the action variable can be a single action,
   // or an array of actions.
-  console.log("IN sensor handler");
+  console.log("IN sensor handler. Args:");
   console.log(args);
   if (args.action == 'fader') {
     var action = routingTable[args.source][args.action];

@@ -57,7 +57,7 @@ function getCommand(device, operation) {
 function executeCommand(commandString) {
     console.log("Running command...");
     exec(commandString, function (error, stdout, stderr) {
-        console.log(stdout);
+        console.log("Command output:" + stdout);
     });
 }
 

@@ -56,6 +56,7 @@ exports.initialize = function(emitter){
 };
 
 exports.test = function(){
+  console.log("Returning sunrise time as moment");
   console.log(moment(times.sunrise));
 }
 
@@ -155,7 +156,7 @@ exports.isAfterSunrise = function(time){
 }
 
 exports.sunrise = function(){
-  return times.sunrise;
+  return moment(times.sunrise);
 }
 
 exports.isBeforeSunset = function(time){
@@ -166,8 +167,8 @@ exports.isAfterSunset = function(time){
   return time.isAfter(times.sunset);
 }
 
-exports.sunrise = function(){
-  return times.sunset;
+exports.sunset = function(){
+  return moment(times.sunset);
 }
 
 

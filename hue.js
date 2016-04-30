@@ -10,7 +10,8 @@ var host = "10.0.0.4",
     api = new hue.HueApi(host, username);
 
 var displayResults = function (result) {
-    console.log(JSON.stringify(result, null, 2));
+    console.log("Hue bridge command completed")
+    //console.log(JSON.stringify(result, null, 2));
 };
 
 //Valid values for group are "lounge" and "bedroom"
@@ -67,7 +68,7 @@ exports.getLightPowerState = function (lightIndex,callback) {
     //Returns bool
     var index = parseInt(lightIndex);
     api.lightStatus(index).then(function(status){
-        console.log(JSON.stringify(status,null,2));
+        console.log("Light at index(" + lightIndex + ") is " +  status.state.on ? "on" : "off");
         if(callback){
             callback(status.state.on);
         }

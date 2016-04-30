@@ -18,36 +18,46 @@
       "name": "unassigned",
       "id": "unassigned"
     },
-    "button-south-pressed": [{
-      "type": "multi-scene",
-      "programmable": false,
-      "mode" : "!kitchen-work-mode",
-      "toggle": true,
-      "lightsAffected": [4,6,7],
-      "scenes": {
-        "00-02": "unassigned",
-        "02-sr": "unassigned",
-        "sr-ss": "unassigned",
-        "ss-22": "unassigned",
-        "22-24": "unassigned",
-        "off": "unassigned"
+    "button-south-pressed": [
+      {
+        "type": "multi-scene",
+        "programmable": false,
+        "mode": "!kitchen-work-mode",
+        "toggle": true,
+        "lightsAffected": [
+          4,
+          6,
+          7
+        ],
+        "scenes": {
+          "00:00-02:00": "unassigned",
+          "02:00-sunrise": "unassigned",
+          "sunrise-sunset": "unassigned",
+          "sunset-22:00": "unassigned",
+          "22:00-24:00": "unassigned",
+          "off": "unassigned"
+        }
+      },
+      {
+        "type": "multi-scene",
+        "programmable": false,
+        "mode": "kitchen-work-mode",
+        "toggle": true,
+        "lightsAffected": [
+          4,
+          6,
+          7
+        ],
+        "scenes": {
+          "00:00-02:00": "unassigned",
+          "02:00-sunrise": "unassigned",
+          "sunrise-sunset": "unassigned",
+          "sunset-22:00": "unassigned",
+          "22:00-24:00": "unassigned",
+          "off": "unassigned"
+        }
       }
-    },
-    {
-      "type": "multi-scene",
-      "programmable": false,
-      "mode" : "kitchen-work-mode",
-      "toggle": true,
-      "lightsAffected": [4,6,7],
-      "scenes": {
-        "00-02": "unassigned",
-        "02-sr": "unassigned",
-        "sr-ss": "unassigned",
-        "ss-22": "unassigned",
-        "22-24": "unassigned",
-        "off": "unassigned"
-      }
-    }],
+    ],
     "button-south-double-pressed": {
       "type": "hue-scene",
       "programmable": true,
@@ -134,18 +144,20 @@
     }
   },
   "desk": {
-    "button-north-pressed": [{
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "Daylight on 0",
-      "id": "78aba2cbb-on-0"
-    },
-    {
-      "type": "multi-scene",
-      "programmable": false,
-      "name": "Daylight on 0",
-      "id": "78aba2cbb-on-0"
-    }],
+    "button-north-pressed": [
+      {
+        "type": "hue-scene",
+        "programmable": true,
+        "name": "Daylight on 0",
+        "id": "78aba2cbb-on-0"
+      },
+      {
+        "type": "multi-scene",
+        "programmable": false,
+        "name": "Daylight on 0",
+        "id": "78aba2cbb-on-0"
+      }
+    ],
     "button-north-double-pressed": {
       "type": "hue-scene",
       "programmable": true,

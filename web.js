@@ -43,7 +43,7 @@ app.get("/info/scene/latest", function (req, res) {
  * ******************************
 */
 
-app.get("/mode/:mode", function (req, res) {
+app.get("/mode/:mode/:newState", function (req, res) {
   var response = {
     "state": false,
     "previousState": false
@@ -61,7 +61,7 @@ app.get("/mode/:mode", function (req, res) {
     res.write("unknown state");
   }
   else {
-    var requestedState = (req.query.state == 'true');
+    var requestedState = (req.params.newState == 'on');
     if (requestedState != currentState) {
       state.setState(req.params.mode, requestedState);
     }

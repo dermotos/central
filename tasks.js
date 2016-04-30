@@ -69,8 +69,8 @@ exports.bedroom = {};
 
 exports.kitchen.lightsToggle = function (turnOn, temperature, brightness) {
   console.log("lights toggle");
-  console.log(turnOn);
-  console.log(hue);
+  //console.log(turnOn);
+  //console.log(hue);
 
   // Toggle handling
   if (typeof turnOn == 'undefined') {
