@@ -4,56 +4,81 @@
 
 var scheduler = require('node-schedule');
 var moment = require('moment');
+var sensors = require('./sensors');
 var eventEmitter;
 
 // Some state changes time-out. This array holds a list of setTimeout identifiers that are pending.
 var state =
     {
-        'kitchen-work-mode': {
-            enabled: false,
-            timeout: 1000 * 60 * 60 * 2, // 2 hours
-            timeoutIdentifier: 0,
-            action: function (newState) {
-                // Action to take when this mode changes state
-                console.log("I'm the action for the work mode");
-            },
-            timeoutAction: function () {
-                state['kitchen-work-mode'].enabled = false;
-                // Any action that should occur when the timeout occurs
-            }
-        },
-        'kitchen-manual-mode': {
-            enabled: false,
-            timeout: 1000 * 60 * 60 * 12, // 12 hours
-            timeoutIdentifier: 0,
-            action: function (newState) {
-                // Action to take when this mode changes state
-                console.log("I'm the action for the manual mode");
-            },
-            timeoutAction: function () {
-                state['kitchen-manual-mode'].enabled = false;
-            }
-        },
-        'program-mode': { // Used to program the light switches. The next button pressed is assigned the most recent active hue scene
-            enabled: false,
-            timeout: 60000 * 10, // 10 minutes
-            timeoutIdentifier: 0,
-            action: function (newState) {
-                // Action to take when this mode changes state
-                if (newState) {
-                    console.log("I'm the action for the program mode");
+        "modes": {
+            'kitchen-work-mode': {
+                enabled: false,
+                timeout: 1000 * 60 * 60 * 2, // 2 hours
+                timeoutIdentifier: 0,
+                action: function (newState) {
+                    // Action to take when this mode changes state
+                    console.log("*** Work mode is currently " + newState);
+                    sensors.setLED("kitchen","north",newState ? "on" : "off");
+                },
+                timeoutAction: function () {
+                    state['kitchen-work-mode'].enabled = false;
+                    // Any action that should occur when the timeout occurs
                 }
             },
-            timeoutAction: function () {
-                state['program-mode'].enabled = false;
-                console.log("program-mode timed out, and has been disabled");
+            'kitchen-manual-mode': {
+                enabled: false,
+                timeout: 1000 * 60 * 60 * 12, // 12 hours
+                timeoutIdentifier: 0,
+                action: function (newState) {
+                    // Action to take when this mode changes state
+                    console.log("I'm the action for the manual mode");
+                },
+                timeoutAction: function () {
+                    state['kitchen-manual-mode'].enabled = false;
+                }
+            },
+            'program-mode': { // Used to program the light switches. The next button pressed is assigned the most recent active hue scene
+                enabled: false,
+                timeout: 60000 * 10, // 10 minutes
+                timeoutIdentifier: 0,
+                action: function (newState) {
+                    // Action to take when this mode changes state
+                    if (newState) {
+                        console.log("I'm the action for the program mode");
+                    }
+                },
+                timeoutAction: function () {
+                    state['program-mode'].enabled = false;
+                    console.log("program-mode timed out, and has been disabled");
+                }
+            }
+            // More modes could include lateNightMode, partyMode, awayMode
+        },
+        "devices" : {
+            "ceiling-fan" : {
+                "current-state" : "off",
+                "states" : [
+                    "off",
+                    "low"
+                ]
             }
         }
-        // More modes could include lateNightMode, partyMode, awayMode
+
     };
 
 exports.initialize = function (emitter) {
     eventEmitter = emitter;
+}
+
+exports.setDeviceState = function(deviceName, newState){
+    var device = state.devices[deviceName];
+    if(typeof device === 'undefined'){
+        console.log("Attempting to make a state change to an unknown device:" + deviceName);
+    }
+}
+
+exports.advanceDeviceState = function(deviceName){
+    
 }
 
 exports.setState = function (stateName, enable) {
@@ -61,10 +86,10 @@ exports.setState = function (stateName, enable) {
     // Ensure the specified state is known:
     var found = false;
     var targetState;
-    for (var k in state) {
+    for (var k in state.modes) {
         if (k == stateName) {
             found = true;
-            targetState = state[k];
+            targetState = state.modes[k];
             break;
         }
     }
@@ -75,7 +100,10 @@ exports.setState = function (stateName, enable) {
 
 
     // Basically, toggle the on/off value if [enable] is undefined...
-    enable = (typeof enable == "undefined") ? !targetState.enabled : enable;
+    if((typeof enable == "undefined") || enable == "toggle"){
+        enable = !targetState.enabled;
+    }
+
     targetState.enabled = enable;
     // Setup the timeout action
     if (targetState.timeout > 0) {
@@ -88,10 +116,10 @@ exports.setState = function (stateName, enable) {
 
 }
 
-exports.getActiveStates = function(){
+exports.getActiveStates = function () {
     var activeStates = [];
-    for(var k in Object.keys(state)){
-        if(state[k].enabled){
+    for (var k in Object.keys(state.modes)) {
+        if (state[k].enabled) {
             activeStates.push(key);
         }
     }
@@ -102,10 +130,10 @@ exports.getState = function (requestedState) {
     // Ensure the specified state is known:
     var found = false;
     var targetState;
-    for (var k in state) {
+    for (var k in state.modes) {
         if (k == requestedState) {
             found = true;
-            targetState = state[k];
+            targetState = state.modes[k];
             break;
         }
     }

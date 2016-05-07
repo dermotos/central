@@ -28,6 +28,7 @@ exports.setBrightness = function (group,brightness){
 
 
 exports.setScene = function (id) {
+    console.log("Activating scene on hue bridge: " + id);
     api.activateScene(id).then(displayResults).done();
 }
 
@@ -57,7 +58,7 @@ exports.latestScene = function (callback) {
 
 exports.setLightPowerState = function(lights,newState){
     lights = (lights instanceof Array) ? lights : [lights];
-    var newPowerState = lightState.create().off();
+    var newPowerState = newState ? lightState.create().on() : lightState.create().off();
     for(var x = 0; x < lights.length; x++){
         api.setLightState(lights[0],newPowerState).done();
     }

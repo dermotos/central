@@ -89,8 +89,14 @@ exports.initialize = function (emitter) {
   });
 };
 
+
+exports.setLED = function(sensor,led,command){
+  var targetSensor = self.sensorStates[sensor];
+  targetSensor.socket.write('^set-led-state,' + led + ','+ command +'$');
+}
+
 function socketHandler(socket) {
-  console.log("New socket connection...");
+  //console.log("New socket connection...");
   carrier.carry(socket, function (msg) {
     var message = msg.toString();
     var items = message.split(":");
@@ -141,7 +147,7 @@ function socketHandler(socket) {
           // hue.latestScene(function(latestScene){
           //   console.log("Latest scene is " + latestScene.name + " - " + latestScene.id);
           // });
-          console.log("Heartbeat received (" + items[0] + ")");
+          //console.log("Heartbeat received (" + items[0] + ")");
         }
         else{
           console.log(items[0] + " connected.");
@@ -201,7 +207,6 @@ function socketHandler(socket) {
   function cleanSensorState() {
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     console.log("Sensor States:");
-    console.log(sensorStates);
     console.log(self.sensorStates);
     
     for (var key in Object.keys(self.sensorStates)) {

@@ -30,7 +30,7 @@ exports.sendCommand = function (device, operation) {
                 complete();
             }, commandObject.duration);
         });
-        hue.alert();
+        //hue.alert();
         commandQueue.start();
     }
 }

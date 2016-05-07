@@ -3,6 +3,7 @@ var blinds = require('./blinds');
 var state = require('./state');
 var circadian = require('./circadian');
 var moment = require('moment');
+var centralScenes = require("./central-scenes");
 
 
 
@@ -14,10 +15,13 @@ exports.getLightPowerState = function (light) {
 exports.executeAction = function (action, args) {
     //console.log("action:" + JSON.stringify(action));
     if (action.type == "hue-scene") {
-        executeScene(action.id);
+        executeHueScene(action.id);
     }
     else if (action.type == "central-scene") {
-        console.log("central scenes not yet implemented")
+        //console.log("central scenes not yet implemented");
+        //console.log(JSON.stringify(action,null,2));
+        executeCentralScene(action.id,action.parameters);
+        
     }
     else if (action.type == "multi-scene") {
         //Check if this scene is mode sensitive:
@@ -65,15 +69,23 @@ exports.executeFade = function (group, brightness) {
 }
 
 function executeMultiSceneAction(action, lightsAreOn) {
-    var turnedOn = false;
+    console.log("Executing multi-scene...");
+    console.log(action);
+    console.log(lightsAreOn);
+
     //First, check if this is a toggle action:
     if (action.toggle && typeof (lightsAreOn) === 'undefined') {
+        console.log("First time in here");
         //Its a toggle, and not a recall of this function.
         // Check if one of the lightsAffected are on. if so, run the "off" scene, otherwise proceed as normal
         hue.getLightPowerState(action.lightsAffected[0], function (on) {
             if (on) {
+                console.log("Lights seem to be on");
+                console.log(on);
                 executeMultiSceneAction(action, true);
             } else {
+                console.log("Lights seem to be off");
+                console.log(on);
                 executeMultiSceneAction(action, false);
             }
         });
@@ -81,14 +93,17 @@ function executeMultiSceneAction(action, lightsAreOn) {
     else if (action.toggle && lightsAreOn) {
         // run the off command
         console.log("Running the off scene");
-        turnedOn = false;
+
         var offSceneID = action.scenes["off"];
         hue.setScene(offSceneID);
+        setTimeout(function(){
+            hue.setLightPowerState(action.lightsAffected, false);
+        },2000); 
     }
     else {
         // run the correct scene in the collection for the current time of day
         console.log("Running the correct scene for the time of day");
-        turnedOn = true;
+    
         //console.log("Scenes: " + JSON.stringify(Object.keys(action.scenes), null, 2));
         var keys = Object.keys(action.scenes);
 
@@ -105,21 +120,9 @@ function executeMultiSceneAction(action, lightsAreOn) {
                 else {
                     console.log("Setting the " + sceneID + " scene.");
                     hue.setScene(sceneID);
+                    hue.setLightPowerState(action.lightsAffected, true);
                 }
                 break;
-            }
-        }
-
-        for (var key in Object.keys(action.scenes)) {
-            //console.log(key);
-            if (Object.keys(action.scenes).hasOwnProperty(key)) {
-                if (timeRangeIsNow(key)) {
-                    //Found the correct scene
-                    var sceneID = action.scenes[key];
-                    console.log("Setting the " + sceneID + " scene.");
-                    hue.setScene(sceneID);
-                    break;
-                }
             }
         }
     }
@@ -127,15 +130,10 @@ function executeMultiSceneAction(action, lightsAreOn) {
 
     /* There is a bug/issue with the hue bridge, where the light state
        is not immediately updated and can report the old value for up to
-       15 seconds after the scene is set. This directly sets the power state
+       15 seconds after the scene is set. This is why we directly set the power state
        of the lights so it reports correctly. This is needed for toggles, which
        check the state of the light and proceed accordingly based on that. */
-    if (action.toggle) {
-        setTimeout(function () {
-            hue.setLightPowerState(action.lightsAffected, turnedOn);
-        }, 2000);
 
-    }
 }
 
 //Returns true/false if the timeRange (in the format 00-02 for between midnight and 2am, including ss for sunset and sr for sunrise)
@@ -213,7 +211,17 @@ function timeRangeIsNow(timeRange) {
     
 }
 
-function executeScene(sceneID) {
+function executeCentralScene(sceneID,params) {
+    if (sceneID == "unassigned") {
+        console.log("Unassigned scene.");
+    }
+    else {
+        console.log("Activating central scene with id:" + sceneID);
+        centralScenes.setScene(sceneID,params);
+    }
+}
+
+function executeHueScene(sceneID) {
     if (sceneID == "unassigned") {
         console.log("Unassigned scene.");
     }

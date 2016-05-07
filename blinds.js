@@ -41,7 +41,7 @@ exports.setBlindState = function(room,index,state,callback){
         if(typeof(state) === 'undefined'){ state = "toggle"; }
         if(!(state == "open" ||state == "close" ||state == "stop" ||state == "toggle")) { state = "toggle"; }
         if(typeof(index) === 'undefined'){ index = 0; }
-        hue.alert();
+        //hue.alert();
         if(index == "2"){
           actor.socket.write('^control-blinds,0,'+ state +'$');
           actor.socket.write('^control-blinds,1,'+ state +'$');

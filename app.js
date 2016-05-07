@@ -8,6 +8,7 @@ var circadian = require("./circadian");
 var state = require("./state");
 var tasks = require("./tasks");
 var web = require('./web.js');
+var schedules = require('./schedules');
 var eventHandlers = {};
 
 

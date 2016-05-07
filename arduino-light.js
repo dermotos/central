@@ -20,16 +20,21 @@ exports.getLightState = function (room, index, callback) {
 // state : "on" | "off"
 
 exports.setLightState = function (device, state) {
+    console.log("Device" + device);
+    console.log("State " + state);
     if (device == "desklamp") {
         var actor = sensors.sensorStates["desklamp"];
         if (typeof (actor) === 'undefined' || typeof (actor.socket) === 'undefined') {
-            callback("Specified blind's remote interface unavailable");
+            callback("Specified light's remote interface unavailable");
         } else {
             if (state == "on") {
                 actor.socket.write('^control-lamp,on$');
             }
             else if (state == "off") {
                 actor.socket.write('^control-lamp,off$');
+            }
+            else if (state == "toggle") {
+                actor.socket.write('^control-lamp,toggle$');
             }
         }
     }

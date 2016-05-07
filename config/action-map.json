@@ -1,27 +1,62 @@
 {
   "kitchen": {
-    "button-north-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-north-pressed": [
+      {
+        "type": "central-scene",
+        "id": "mode-change",
+        "parameters": {
+          "mode": "kitchen-work-mode",
+          "state": "toggle"
+        }
+      },
+      {
+        "type": "multi-scene",
+        "mode": "!kitchen-work-mode",
+        "delay": 1500,
+        "lightsAffected": [
+          4,
+          6,
+          7
+        ],
+        "scenes": {
+          "00:00-02:00": "6e7be0536-on-0",
+          "02:00-sunrise": "e548cb5cd-on-0",
+          "sunrise-sunset": "01cbfce98-on-0",
+          "sunset-22:00": "ad466eade-on-0",
+          "22:00-24:00": "6e7be0536-on-0"
+        }
+      },
+      {
+        "type": "multi-scene",
+        "mode": "kitchen-work-mode",
+        "delay": 1500,
+        "lightsAffected": [
+          4,
+          6,
+          7
+        ],
+        "scenes": {
+          "00:00-02:00": "a14e89384-on-0",
+          "02:00-sunrise": "28d1a09f9-on-0",
+          "sunrise-sunset": "48b638bac-on-0",
+          "sunset-22:00": "48b638bac-on-0",
+          "22:00-24:00": "a14e89384-on-0"
+        }
+      }
+    ],
     "button-north-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-north-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-pressed": [
       {
         "type": "multi-scene",
-        "programmable": false,
         "mode": "!kitchen-work-mode",
         "toggle": true,
         "lightsAffected": [
@@ -30,17 +65,16 @@
           7
         ],
         "scenes": {
-          "00:00-02:00": "unassigned",
-          "02:00-sunrise": "unassigned",
-          "sunrise-sunset": "unassigned",
-          "sunset-22:00": "unassigned",
-          "22:00-24:00": "unassigned",
-          "off": "unassigned"
+          "00:00-02:00": "6e7be0536-on-0",
+          "02:00-sunrise": "e548cb5cd-on-0",
+          "sunrise-sunset": "01cbfce98-on-0",
+          "sunset-22:00": "ad466eade-on-0",
+          "22:00-24:00": "6e7be0536-on-0",
+          "off": "e2693ec5d-on-0"
         }
       },
       {
         "type": "multi-scene",
-        "programmable": false,
         "mode": "kitchen-work-mode",
         "toggle": true,
         "lightsAffected": [
@@ -49,258 +83,363 @@
           7
         ],
         "scenes": {
-          "00:00-02:00": "unassigned",
-          "02:00-sunrise": "unassigned",
-          "sunrise-sunset": "unassigned",
-          "sunset-22:00": "unassigned",
-          "22:00-24:00": "unassigned",
-          "off": "unassigned"
+          "00:00-02:00": "a14e89384-on-0",
+          "02:00-sunrise": "28d1a09f9-on-0",
+          "sunrise-sunset": "48b638bac-on-0",
+          "sunset-22:00": "48b638bac-on-0",
+          "22:00-24:00": "a14e89384-on-0",
+          "off": "e2693ec5d-on-0"
         }
       }
     ],
     "button-south-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-long-pressed": {
-      "type": "central-scene",
-      "programmable": false,
+      "type": "hue-scene",
       "name": "unassigned",
       "id": "unassigned"
     },
-    "motion-started": {
-      "type": "multi-scene",
-      "programmable": false,
-      "scenes": {
-        "00-02": "unassigned",
-        "02-sr": "unassigned",
-        "sr-ss": "unassigned",
-        "ss-22": "unassigned",
-        "22-24": "unassigned"
+    "motion-started": [
+      {
+        "type": "multi-scene",
+        "mode": "!kitchen-work-mode",
+        "toggle": false,
+        "lightsAffected": [
+          4,
+          6,
+          7
+        ],
+        "scenes": {
+          "00:00-02:00": "6e7be0536-on-0",
+          "02:00-sunrise": "e548cb5cd-on-0",
+          "sunrise-sunset": "01cbfce98-on-0",
+          "sunset-22:00": "ad466eade-on-0",
+          "22:00-24:00": "6e7be0536-on-0"
+        }
+      },
+      {
+        "type": "multi-scene",
+        "mode": "kitchen-work-mode",
+        "toggle": false,
+        "lightsAffected": [
+          4,
+          6,
+          7
+        ],
+        "scenes": {
+          "00:00-02:00": "a14e89384-on-0",
+          "02:00-sunrise": "28d1a09f9-on-0",
+          "sunrise-sunset": "48b638bac-on-0",
+          "sunset-22:00": "48b638bac-on-0",
+          "22:00-24:00": "a14e89384-on-0"
+        }
       }
-    },
+    ],
     "motion-stopped": {
       "type": "hue-scene",
-      "programmable": false,
-      "name": "unassigned",
-      "id": "unassigned"
+      "id": "e2693ec5d-on-0"
     }
   },
   "bathroom": {
-    "button-north-pressed": {
-      "type": "multi-scene",
-      "programmable": false,
-      "toggle": true,
-      "lightsAffected": [
-        1,
-        2,
-        3
-      ],
-      "scenes": {
-        "00-02": "unassigned",
-        "02-sr": "unassigned",
-        "sr-ss": "unassigned",
-        "ss-22": "unassigned",
-        "22-24": "unassigned",
-        "off": "unassigned"
+    "button-north-pressed": [
+      {
+        "type": "multi-scene",
+        "toggle": true,
+        "lightsAffected": [
+          13
+        ],
+        "scenes": {
+          "00:00-02:00": "ec35f1902-on-0",
+          "02:00-sunrise": "ce7a5c38a-on-0",
+          "sunrise-sunset": "9d522fce8-on-0",
+          "sunset-22:00": "c503000ad-on-0",
+          "22:00-24:00": "ec35f1902-on-0",
+          "off": "f573bbc63-on-0"
+        }
       }
-    },
+    ],
     "button-north-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "name": "min brightness",
+      "id": "ce7a5c38a-on-0"
     },
     "button-north-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "name": "max brightness",
+      "id": "9d522fce8-on-0"
     },
     "motion-started": {
       "type": "multi-scene",
-      "programmable": false,
       "toggle": true,
       "lightsAffected": [
-        1,
-        2,
-        3
+        13
       ],
       "scenes": {
-        "00-02": "unassigned",
-        "02-sr": "unassigned",
-        "sr-ss": "unassigned",
-        "ss-22": "unassigned",
-        "22-24": "unassigned",
-        "off": "unassigned"
+        "00:00-02:00": "ec35f1902-on-0",
+        "02:00-sunrise": "ce7a5c38a-on-0",
+        "sunrise-sunset": "9d522fce8-on-0",
+        "sunset-22:00": "c503000ad-on-0",
+        "22:00-24:00": "ec35f1902-on-0"
       }
     },
     "motion-stopped": {
       "type": "hue-scene",
-      "programmable": false,
-      "id": "unassigned"
+      "id": "f573bbc63-on-0"
     }
   },
   "desk": {
     "button-north-pressed": [
       {
         "type": "hue-scene",
-        "programmable": true,
-        "name": "Daylight on 0",
+        "name": "Daytime",
         "id": "78aba2cbb-on-0"
       },
       {
-        "type": "multi-scene",
-        "programmable": false,
-        "name": "Daylight on 0",
-        "id": "78aba2cbb-on-0"
+        "type": "hue-scene",
+        "name": "L white full on",
+        "id": "49f836a4f-on-0"
       }
     ],
-    "button-north-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "Evening on 0",
-      "id": "e915785b2-on-0"
-    },
-    "button-north-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "All Off on 0",
-      "id": "83562aa6f-on-0"
-    },
-    "button-south-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
-    "button-south-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
-    "button-south-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "All Off on 0",
-      "id": "83562aa6f-on-0"
-    },
+    "button-north-double-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Evening",
+        "id": "99fc3f94c-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white mid on 0",
+        "id": "42eb33478-on-0"
+      }
+    ],
+    "button-north-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Relaxing",
+        "id": "021fb3c6e-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "button-south-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp",
+        "id": "6a85bc5ff-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "button-south-double-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp alt",
+        "id": "30bb2b570-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "button-south-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp alt 2",
+        "id": "545c41e2b-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
     "button-east-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
+      "name": "Physically broken - fixable (soldering)",
       "id": "unassigned"
     },
     "button-east-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-east-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-west-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "arduino-light",
+      "parameters": {
+        "light": "desklamp",
+        "operation": "toggle"
+      }
     },
     "button-west-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "blind",
+      "parameters": {
+        "room": "lounge",
+        "index": "0",
+        "operation": "toggle"
+      }
     },
-    "button-west-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-west-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room off",
+        "id": "10f591d1d-on-0",
+        "__comment": "The off button"
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "operation": "off"
+        }
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
     "fader": {
       "type": "fade",
       "group": "lounge"
     }
   },
   "couch": {
-    "button-north-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
-    "button-north-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
-    "button-north-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-north-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp",
+        "id": "6a85bc5ff-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "button-north-double-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp alt",
+        "id": "30bb2b570-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "button-north-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp alt 2",
+        "id": "545c41e2b-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
     "button-south-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "Evening on 0",
-      "id": "99fc3f94c-on-0"
+      "id": "unassigned"
     },
     "button-south-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "Relax on 0",
-      "id": "021fb3c6e-on-0"
+      "id": "unassigned"
     },
     "button-south-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "Friends over on ",
-      "id": "bca1fea41-on-0"
-    },
-    "button-east-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
       "id": "unassigned"
     },
-    "button-east-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
-    "button-east-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
-    "button-west-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-east-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Daytime",
+        "id": "78aba2cbb-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white full on",
+        "id": "49f836a4f-on-0"
+      }
+    ],
+    "button-east-double-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Evening",
+        "id": "99fc3f94c-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white mid on 0",
+        "id": "42eb33478-on-0"
+      }
+    ],
+    "button-east-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Relaxing",
+        "id": "021fb3c6e-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "button-west-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Living room off",
+        "id": "10f591d1d-on-0",
+        "__comment": "The off button"
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "operation": "off"
+        }
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
     "button-west-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "name": "All house except living room off",
+      "id": "36e3b820a-on-0"
     },
     "button-west-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "blind",
+      "parameters": {
+        "room": "lounge",
+        "index": "0",
+        "operation": "toggle"
+      }
     },
     "fader": {
       "type": "fade",
@@ -309,158 +448,218 @@
   },
   "bedroom-door": {
     "button-north-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "multi-scene",
+      "toggle": true,
+      "lightsAffected": [
+        10,
+        11
+      ],
+      "scenes": {
+        "00:00-02:00": "7a21968ae-on-0",
+        "02:00-sunrise": "7a21968ae-on-0",
+        "sunrise-sunset": "e2f713575-on-0",
+        "sunset-22:00": "7a21968ae-on-0",
+        "22:00-24:00": "7a21968ae-on-0",
+        "off": "85df5359e-on-0"
+      }
     },
     "button-north-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "name": "Mood lighting",
+      "id": "364b81522-on-0"
     },
     "button-north-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "name": "Going to bed",
+      "id": "469353090-on-0"
     },
     "button-south-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
-    "button-east-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-east-pressed": [
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "operation": "toggle"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "operation": "toggle"
+        }
+      }
+    ],
     "button-east-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "blind",
+      "parameters": {
+        "room": "bedroom",
+        "index": "1",
+        "operation": "toggle"
+      }
     },
     "button-east-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "blind",
+      "parameters": {
+        "room": "bedroom",
+        "index": "0",
+        "operation": "toggle"
+      }
     },
     "button-west-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-west-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-west-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "fader": {
       "type": "fade",
-      "group": "lounge"
+      "group": "bedroom"
     }
   },
   "bedside": {
     "button-north-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-north-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-north-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
     "button-south-long-pressed": {
       "type": "hue-scene",
-      "programmable": true,
       "name": "unassigned",
       "id": "unassigned"
     },
-    "button-east-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-east-pressed": [
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "operation": "toggle"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "operation": "toggle"
+        }
+      }
+    ],
     "button-east-double-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "blind",
+      "parameters": {
+        "room": "bedroom",
+        "index": "1",
+        "operation": "toggle"
+      }
     },
     "button-east-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "central-scene",
+      "id": "blind",
+      "parameters": {
+        "room": "bedroom",
+        "index": "0",
+        "operation": "toggle"
+      }
     },
     "button-west-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "type": "multi-scene",
+      "toggle": true,
+      "lightsAffected": [
+        10,
+        11
+      ],
+      "scenes": {
+        "00:00-02:00": "7a21968ae-on-0",
+        "02:00-sunrise": "7a21968ae-on-0",
+        "sunrise-sunset": "e2f713575-on-0",
+        "sunset-22:00": "7a21968ae-on-0",
+        "22:00-24:00": "7a21968ae-on-0",
+        "off": "85df5359e-on-0"
+      }
     },
     "button-west-double-pressed": {
       "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
+      "name": "Mood lighting",
+      "id": "364b81522-on-0"
     },
-    "button-west-long-pressed": {
-      "type": "hue-scene",
-      "programmable": true,
-      "name": "unassigned",
-      "id": "unassigned"
-    },
+    "button-west-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "All house except living room off",
+        "id": "36e3b820a-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "Living room off",
+        "id": "10f591d1d-on-0",
+        "__comment": "The off button"
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "operation": "off"
+        }
+      }
+    ],
     "fader": {
       "type": "fade",
-      "group": "lounge"
+      "group": "bedroom"
     }
   }
 }

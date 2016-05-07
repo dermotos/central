@@ -120,20 +120,38 @@ eventHandlers.sensorHandler = function (args) {
       console.log("Operation has " + action.length + " actions defined.")
       for (var x = 0; x < action.length; x++) {
         var currentAction = action[x];
-        //console.log("Action is: " + JSON.stringify(currentAction));
-        actions.executeAction(currentAction, currentAction.args);
+        console.log("Action is: " + JSON.stringify(currentAction));
+        if (typeof currentAction.delay === 'undefined') {
+          actions.executeAction(currentAction, currentAction.args);
+        }
+        else {
+          runDelayedAction(currentAction);
+        }
+
       }
     }
     else {
       //console.log("Action is: " + JSON.stringify(action));
-      actions.executeAction(action, action.args);
+      if (typeof action.delay === 'undefined') {
+        actions.executeAction(action, action.args);
+      }
+      else {
+        var delay = action.delay;
+        console.log("Running delayed single action..." + JSON.stringify(action,null,2));
+        setTimeout(function () {
+          actions.executeAction(action, action.args);
+        }, delay);
+      }
     }
-
   }
 }
 
 
-
+function runDelayedAction(action){
+  setTimeout(function(){
+     actions.executeAction(action, action.args);
+  },action.delay);
+}
 
 
 
