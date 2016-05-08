@@ -100,12 +100,18 @@ app.get("/blinds/:room/:index/:action", function (req, res) {
 });
 
 
+app.get("/scene/:sceneID", function (req, res) {
+  hue.setScene(req.params.sceneID);
+  res.end();
+});
+
+
 /* ******************************
  * Virtual Switches
  * ******************************
 */
 
-app.get("/debug/:switch/:action", function (req, res) {
+app.get("/emulate/:switch/:action", function (req, res) {
   if (eventEmitter != undefined) {
     var action = {
       category: "sensor",
@@ -118,7 +124,7 @@ app.get("/debug/:switch/:action", function (req, res) {
   res.end();
 });
 
-app.get("/debug/:switch/:action/:parameter", function (req, res) {
+app.get("/emulate/:switch/:action/:parameter", function (req, res) {
   if (eventEmitter != undefined) {
     var action = {
       category: "sensor",

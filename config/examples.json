@@ -1,0 +1,19 @@
+{
+  "operateDeskLamp": {
+    "type": "central-scene",
+    "id": "arduino-light",
+    "parameters": {
+      "light": "desklamp",
+      "state": "off"
+    }
+  },
+  "Operate blinds": {
+    "type": "central-scene",
+    "id": "blind",
+    "parameters": {
+      "room": "lounge",
+      "index": "0",
+      "state": "toggle"
+    }
+  }
+}

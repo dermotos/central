@@ -1,5 +1,6 @@
 
-
+// This is an old script that originally ran things, but it grew and grew
+// without any structure to the point of being unmaintainable. Its just in the project for reference.
 
 console.info("Server starting...");
 

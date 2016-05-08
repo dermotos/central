@@ -30,7 +30,7 @@ exports.setBlindState = function(room,index,state,callback){
     } else if(room == "lounge"){
       actor = sensors.sensorStates["desklamp"]; //Same physical actor as the desklamp
     }
-    
+    console.log("Setting blind state to " + state);
     if(typeof(actor) === 'undefined' || typeof(actor.socket) === 'undefined' || actor.socket == null){
         console.log("Blind interface not connected");
         if(callback){
@@ -38,8 +38,11 @@ exports.setBlindState = function(room,index,state,callback){
         } 
       }else{
         //Set sensible defaults (0th blind, toggle) if parameters not defined
+        
         if(typeof(state) === 'undefined'){ state = "toggle"; }
-        if(!(state == "open" ||state == "close" ||state == "stop" ||state == "toggle")) { state = "toggle"; }
+        if(!(state == "open" ||state == "close" ||state == "stop" ||state == "toggle")) {
+           state = "toggle"; 
+          }
         if(typeof(index) === 'undefined'){ index = 0; }
         //hue.alert();
         if(index == "2"){

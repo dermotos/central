@@ -283,7 +283,7 @@
       "id": "arduino-light",
       "parameters": {
         "light": "desklamp",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "button-west-double-pressed": {
@@ -292,7 +292,7 @@
       "parameters": {
         "room": "lounge",
         "index": "0",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "button-west-long-pressed": [
@@ -307,7 +307,7 @@
         "id": "arduino-light",
         "parameters": {
           "light": "desklamp",
-          "operation": "off"
+          "state": "off"
         }
       },
       {
@@ -366,10 +366,71 @@
       "type": "hue-scene",
       "id": "unassigned"
     },
-    "button-south-long-pressed": {
-      "type": "hue-scene",
-      "id": "unassigned"
-    },
+    "button-south-long-pressed": [
+      {
+        "type": "hue-scene",
+        "name": "Going to bed",
+        "id": "8b5766a71-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "harmony-activity",
+        "parameters": {
+          "activity" : "speakers",
+          "state": "off"
+        }
+      }
+    ],
     "button-east-pressed": [
       {
         "type": "hue-scene",
@@ -418,7 +479,7 @@
         "id": "arduino-light",
         "parameters": {
           "light": "desklamp",
-          "operation": "off"
+          "state": "off"
         }
       },
       {
@@ -438,7 +499,7 @@
       "parameters": {
         "room": "lounge",
         "index": "0",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "fader": {
@@ -495,7 +556,7 @@
         "parameters": {
           "room": "bedroom",
           "index": "0",
-          "operation": "toggle"
+          "state": "toggle"
         }
       },
       {
@@ -504,7 +565,7 @@
         "parameters": {
           "room": "bedroom",
           "index": "1",
-          "operation": "toggle"
+          "state": "toggle"
         }
       }
     ],
@@ -514,7 +575,7 @@
       "parameters": {
         "room": "bedroom",
         "index": "1",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "button-east-long-pressed": {
@@ -523,7 +584,7 @@
       "parameters": {
         "room": "bedroom",
         "index": "0",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "button-west-pressed": {
@@ -584,7 +645,7 @@
         "parameters": {
           "room": "bedroom",
           "index": "0",
-          "operation": "toggle"
+          "state": "toggle"
         }
       },
       {
@@ -593,7 +654,7 @@
         "parameters": {
           "room": "bedroom",
           "index": "1",
-          "operation": "toggle"
+          "state": "toggle"
         }
       }
     ],
@@ -603,7 +664,7 @@
       "parameters": {
         "room": "bedroom",
         "index": "1",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "button-east-long-pressed": {
@@ -612,7 +673,7 @@
       "parameters": {
         "room": "bedroom",
         "index": "0",
-        "operation": "toggle"
+        "state": "toggle"
       }
     },
     "button-west-pressed": {
@@ -653,7 +714,7 @@
         "id": "arduino-light",
         "parameters": {
           "light": "desklamp",
-          "operation": "off"
+          "state": "off"
         }
       }
     ],
@@ -661,5 +722,407 @@
       "type": "fade",
       "group": "bedroom"
     }
+  },
+  "virtual": {
+    "work-at-home": [
+      {
+        "type": "hue-scene",
+        "name": "Daytime",
+        "id": "78aba2cbb-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white full on",
+        "id": "49f836a4f-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "open"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "low"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "open"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "open"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "on"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "on"
+        }
+      }
+    ],
+    "bright-mode": [
+      {
+        "type": "hue-scene",
+        "name": "Daytime",
+        "id": "78aba2cbb-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white full on",
+        "id": "49f836a4f-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "open"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "low"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "open"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "open"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      }
+    ],
+    "leaving-mode": [
+      {
+        "type": "hue-scene",
+        "name": "All off except kitchen",
+        "id": "f6c784b45-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      },
+       {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "wemo-device",
+        "parameters": {
+          "name": "bathroomFan",
+          "state": "on"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "wemo-device",
+        "parameters": {
+          "name": "kithenFan",
+          "state": "on"
+        }
+      }
+    ],
+    "arriving-home-evening-mode": [
+      {
+        "type": "hue-scene",
+        "name": "Evening",
+        "id": "99fc3f94c-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "close"
+        }
+      },
+       {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "wemo-device",
+        "parameters": {
+          "name": "bathroomFan",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "wemo-device",
+        "parameters": {
+          "name": "kithenFan",
+          "state": "off"
+        }
+      }
+    ],
+    "hangover-mode": [
+      {
+        "type": "hue-scene",
+        "name": "Hungover",
+        "id": "8ca6e0c7c-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "low"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      }
+    ],
+    "guest-mode": [
+      {
+        "type": "hue-scene",
+        "name": "Friends over",
+        "id": "2be86dbbf-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "low"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
+          "state": "low"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      },
+       {
+        "type": "central-scene",
+        "id": "harmony-activity",
+        "parameters": {
+          "activity" : "speakers",
+          "state": "on"
+        }
+      }
+    ],
+    "test" : [
+       {
+        "type": "central-scene",
+        "id": "wemo-device",
+        "parameters": {
+          "name": "bathroomFan",
+          "state": "off"
+        }
+      }
+    ]
   }
 }

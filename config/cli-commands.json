@@ -141,7 +141,7 @@
       "duration": 11000
     }
   },
-  "playstation": {
+  "playStation": {
     "off": {
       "prefix": "harmony",
       "command": "-a 'PowerOff'",
@@ -150,7 +150,7 @@
     "on": [
       {
         "command": "/usr/local/bin/ps4-waker",
-        "duration": 100
+        "duration": 1000
       },
       {
         "prefix": "harmony",
@@ -169,6 +169,16 @@
       "prefix": "harmony",
       "command": "-a 'Music'",
       "duration": 10000
+    }
+  },
+   "imac-display": {
+    "off": {
+      "command": "pmset displaysleepnow",
+      "duration": 500
+    },
+    "on": {
+      "command": "caffeinate -u -t 2",
+      "duration": 2500
     }
   }
 }

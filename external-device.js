@@ -22,6 +22,24 @@ commandQueue.concurrency = 1;
 
 exports.sendCommand = function (device, operation) {
     var commandObject = getCommand(device, operation);
+    console.log("Command object: " + JSON.stringify(commandObject));
+    
+    if(commandObject instanceof Array){
+        console.log("Found array of commands");
+        for (var index = 0; index < commandObject.length; index++) {
+            var element = commandObject[index];
+            commandQueue.push(function (complete) {
+            var commandString = element.prefix ? commandPrefixes[element.prefix] + " " + element.command : element.command;
+            executeCommand(commandString);
+            setTimeout(function () {
+                complete();
+            }, element.duration);
+        });
+        //hue.alert();
+        commandQueue.start();
+        }
+        
+    }   
     if (commandObject) {
         commandQueue.push(function (complete) {
             var commandString = commandObject.prefix ? commandPrefixes[commandObject.prefix] + " " + commandObject.command : commandObject.command;
@@ -55,7 +73,7 @@ function getCommand(device, operation) {
 }
 
 function executeCommand(commandString) {
-    console.log("Running command...");
+    console.log("Running command... " + commandString);
     exec(commandString, function (error, stdout, stderr) {
         console.log("Command output:" + stdout);
     });
