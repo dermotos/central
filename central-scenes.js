@@ -30,6 +30,9 @@ var scenes = {
     "harmony-activity" : function(params){
         deviceControl.sendCommand(params.activity, params.state);
     },
+    "command" : function(params){
+        deviceControl.executeRawCommand(params.command)
+    },
     "mode-change" : function(params){
         console.log("Params:");
         console.log(params);

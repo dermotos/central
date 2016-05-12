@@ -173,7 +173,10 @@ function socketHandler(socket) {
         sensor.heartbeatInTimeout = setTimeout(function () {
           //Code that runs if we don't receive a heartbeat from this device:
           console.log(items[0] + " is not responding, closing connection.");
-          sensor.socket.destroy();
+          if(sensor.socket){
+            sensor.socket.destroy();
+          }
+          
           sensor.socket = null;
         }, heartbeatReceiveThreshold);
 

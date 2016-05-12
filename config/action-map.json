@@ -255,7 +255,7 @@
       {
         "type": "hue-scene",
         "name": "Living room lamp alt 2",
-        "id": "545c41e2b-on-0"
+        "id": "301b4ebfa-on-0"
       },
       {
         "type": "hue-scene",
@@ -350,7 +350,7 @@
       {
         "type": "hue-scene",
         "name": "Living room lamp alt 2",
-        "id": "545c41e2b-on-0"
+        "id": "301b4ebfa-on-0"
       },
       {
         "type": "hue-scene",
@@ -426,7 +426,7 @@
         "type": "central-scene",
         "id": "harmony-activity",
         "parameters": {
-          "activity" : "speakers",
+          "activity": "speakers",
           "state": "off"
         }
       }
@@ -491,7 +491,7 @@
     "button-west-double-pressed": {
       "type": "hue-scene",
       "name": "All house except living room off",
-      "id": "36e3b820a-on-0"
+      "id": "c4b9526b6-on-0"
     },
     "button-west-long-pressed": {
       "type": "central-scene",
@@ -701,12 +701,12 @@
       {
         "type": "hue-scene",
         "name": "All house except living room off",
-        "id": "36e3b820a-on-0"
+        "id": "c4b9526b6-on-0"
       },
       {
         "type": "hue-scene",
         "name": "Living room off",
-        "id": "10f591d1d-on-0",
+        "id": "9fe136a50-on-0",
         "__comment": "The off button"
       },
       {
@@ -714,6 +714,29 @@
         "id": "arduino-light",
         "parameters": {
           "light": "desklamp",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      },
+       {
+        "type": "central-scene",
+        "id": "harmony-activity",
+        "parameters": {
+          "activity": "speakers",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "ceiling-fan",
+        "name": "Ceiling fan adjustment",
+        "parameters": {
           "state": "off"
         }
       }
@@ -890,7 +913,7 @@
           "state": "off"
         }
       },
-       {
+      {
         "type": "central-scene",
         "id": "imac-display",
         "parameters": {
@@ -955,7 +978,7 @@
           "state": "close"
         }
       },
-       {
+      {
         "type": "central-scene",
         "id": "imac-display",
         "parameters": {
@@ -1040,7 +1063,7 @@
       {
         "type": "hue-scene",
         "name": "Friends over",
-        "id": "2be86dbbf-on-0"
+        "id": "9d9dbdb50-on-0"
       },
       {
         "type": "hue-scene",
@@ -1105,22 +1128,107 @@
           "state": "off"
         }
       },
-       {
+      {
         "type": "central-scene",
         "id": "harmony-activity",
         "parameters": {
-          "activity" : "speakers",
+          "activity": "speakers",
           "state": "on"
         }
       }
     ],
-    "test" : [
+     "playstation": [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp alt 2",
+        "id": "301b4ebfa-on-0"
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      },
+      {
+        "type":"central-scene",
+        "id" : "command",
+        "__comment":"Wakes the PS4 from rest mode",
+        "parameters": {
+          "command" : "/usr/local/bin/ps4-waker/ps4-waker"  
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "harmony-activity",
+        "parameters": {
+          "activity": "playStation",
+          "state": "on"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "lounge",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "0",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "blind",
+        "parameters": {
+          "room": "bedroom",
+          "index": "1",
+          "state": "close"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      },
+      {
+        "type": "central-scene",
+        "id": "imac-display",
+        "parameters": {
+          "state": "off"
+        }
+      }
+    ],
+    "media-off" : [
+      {
+        "type": "hue-scene",
+        "name": "Living room lamp alt 2",
+        "id": "bd449d7b0-on-0"
+      },
        {
         "type": "central-scene",
-        "id": "wemo-device",
+        "id": "harmony-activity",
         "parameters": {
-          "name": "bathroomFan",
+          "activity": "playStation",
           "state": "off"
+        }
+      }
+    ],
+    "test": [
+      {
+        "type":"central-scene",
+        "id" : "command",
+        "__comment":"Wakes the PS4 from rest mode",
+        "parameters": {
+          "command" : "/usr/local/bin/ps4-waker/ps4-waker"  
         }
       }
     ]

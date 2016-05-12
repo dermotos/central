@@ -20,6 +20,11 @@ var commandQueue = queue();
 commandQueue.concurrency = 1;
 
 
+exports.executeRawCommand = function(command){
+    console.log("Executing CLI command: " + command);
+    executeCommand(command);
+}
+
 exports.sendCommand = function (device, operation) {
     var commandObject = getCommand(device, operation);
     console.log("Command object: " + JSON.stringify(commandObject));

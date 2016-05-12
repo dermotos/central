@@ -94,15 +94,17 @@ eventHandlers.sensorHandler = function (args) {
   console.log("IN sensor handler. Args:");
   console.log(args);
   if (args.action == 'fader') {
-    var action = routingTable[args.source][args.action];
-    if (action instanceof Array) {
-      console.log("Error! - Multiple actions are not supported for fader operations");
-      if (action.length > 0) {
-        action = action[0];
+    if (routingTable[args.source]) {
+      var action = routingTable[args.source][args.action];
+      if (action instanceof Array) {
+        console.log("Error! - Multiple actions are not supported for fader operations");
+        if (action.length > 0) {
+          action = action[0];
+        }
+        else return;
       }
-      else return;
+      actions.executeFade(action.group, args.args[0]);
     }
-    actions.executeFade(action.group, args.args[0]);
   }
   else {
     if (state.getState("program-mode")) {
@@ -137,7 +139,7 @@ eventHandlers.sensorHandler = function (args) {
       }
       else {
         var delay = action.delay;
-        console.log("Running delayed single action..." + JSON.stringify(action,null,2));
+        console.log("Running delayed single action..." + JSON.stringify(action, null, 2));
         setTimeout(function () {
           actions.executeAction(action, action.args);
         }, delay);
@@ -147,10 +149,10 @@ eventHandlers.sensorHandler = function (args) {
 }
 
 
-function runDelayedAction(action){
-  setTimeout(function(){
-     actions.executeAction(action, action.args);
-  },action.delay);
+function runDelayedAction(action) {
+  setTimeout(function () {
+    actions.executeAction(action, action.args);
+  }, action.delay);
 }
 
 
