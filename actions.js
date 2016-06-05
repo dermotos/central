@@ -12,41 +12,87 @@ exports.getLightPowerState = function (light) {
     //Returns bool
 };
 
+function checkModes(action) {
+    
+    if(!action.mode){
+        return true;
+    }
+    //If it isn't an array, make it an array of 1 object
+    if (!(action.mode instanceof Array)) {
+        action.mode = [action.mode];
+    }
+
+    var shouldExecute = true;
+
+    //Loop through each mode, and check the current state.
+    for (var i = 0; i < action.mode.length; i++) {
+        
+        var mode = action.mode[i];
+        var negate = (mode.indexOf("!") == 0);
+        var sceneMode = negate ? mode.substring(1) : mode;
+        var modeIsOn = state.getState(sceneMode);
+
+        if ((modeIsOn && negate) || (!modeIsOn && !negate)) {
+            //console.log("This scene should only execute when the mode is off, but its currently on. Skipping");
+            shouldExecute = false;
+            break;
+        }
+        else if (!modeIsOn && !negate) {
+            shouldExecute = false;
+            break;
+        }
+
+    }
+
+    return shouldExecute;
+
+    // var negate = (action.mode.indexOf("!") == 0);
+    // var sceneMode = negate ? action.mode.substring(1) : action.mode;
+    // // Check if mode is on or off...
+    // var modeIsOn = state.getState(sceneMode);
+    // //console.log("Mode:" + modeIsOn + " Negate:" + negate);
+    // if (modeIsOn && !negate) {
+    //     //console.log("Scene is mode sensitive, and this mode is active, so, executing...");
+    //     executeMultiSceneAction(action);
+    // }
+    // else if (modeIsOn && negate) {
+    //     //console.log("This scene should only execute when the mode is off, but its currently on. Skipping");
+    // }
+    // else if (!modeIsOn && !negate) {
+    //     //console.log("Mode is off, but this scene requires it to be on to run. Skipping");
+    // }
+    // else if (!modeIsOn && negate) {
+    //     //console.log("Mode is off, and this scene only runs when this is the case. Executing...")
+    //     executeMultiSceneAction(action);
+    // }
+}
+
 exports.executeAction = function (action, args) {
     //console.log("action:" + JSON.stringify(action));
     if (action.type == "hue-scene") {
-        executeHueScene(action.id);
+        if (checkModes(action)) {
+            executeHueScene(action.id);
+        }
+
     }
     else if (action.type == "central-scene") {
         //console.log("central scenes not yet implemented");
         //console.log(JSON.stringify(action,null,2));
-        executeCentralScene(action.id,action.parameters);
-        
+        if (checkModes(action)) {
+            executeCentralScene(action.id, action.parameters);
+        }
+
+
     }
     else if (action.type == "multi-scene") {
         //Check if this scene is mode sensitive:
         console.log("Testing multi-scene mode rule...");
         if (typeof (action.mode) !== 'undefined' || action.mode == "none") {
             // Scene is mode sensitive, check if it's negated (i.e.: does NOT run when the mode is active)
-            var negate = (action.mode.indexOf("!") == 0);
-            var sceneMode = negate ? action.mode.substring(1) : action.mode;
-            // Check if mode is on or off...
-            var modeIsOn = state.getState(sceneMode);
-            //console.log("Mode:" + modeIsOn + " Negate:" + negate);
-            if (modeIsOn && !negate) {
-                //console.log("Scene is mode sensitive, and this mode is active, so, executing...");
+            if (checkModes(action)) {
                 executeMultiSceneAction(action);
             }
-            else if (modeIsOn && negate) {
-                //console.log("This scene should only execute when the mode is off, but its currently on. Skipping");
-            }
-            else if (!modeIsOn && !negate) {
-                //console.log("Mode is off, but this scene requires it to be on to run. Skipping");
-            }
-            else if (!modeIsOn && negate) {
-                //console.log("Mode is off, and this scene only runs when this is the case. Executing...")
-                executeMultiSceneAction(action);
-            }
+
         }
         else {
             // Scene isn't mode sensitive, so execute regardless
@@ -96,14 +142,14 @@ function executeMultiSceneAction(action, lightsAreOn) {
 
         var offSceneID = action.scenes["off"];
         hue.setScene(offSceneID);
-        setTimeout(function(){
+        setTimeout(function () {
             hue.setLightPowerState(action.lightsAffected, false);
-        },2000); 
+        }, 2000);
     }
     else {
         // run the correct scene in the collection for the current time of day
         console.log("Running the correct scene for the time of day");
-    
+
         //console.log("Scenes: " + JSON.stringify(Object.keys(action.scenes), null, 2));
         var keys = Object.keys(action.scenes);
 
@@ -147,10 +193,10 @@ function timeRangeIsNow(timeRange) {
         var dateTime = null;
         var time = timeParts.split(":");
         //console.log("TIME: " + time );
-        var incrementToNextDay = (time[0]== 24);
-        
+        var incrementToNextDay = (time[0] == 24);
+
         //console.log("Time parts:" + now.year() + "-"+ now.month() + "-"+ now.day() + "-"+ now.year() + "-" );
-        
+
         dateTime = moment({
             year: now.year(),
             month: now.month(),
@@ -197,27 +243,27 @@ function timeRangeIsNow(timeRange) {
     } else {
         endTime = momentFromTime(part[1]);
     }
-    
+
     //console.log("Start time: " + startTime);
     //console.log("End time: " + endTime);
-    var inRange =  moment().isBetween(startTime, endTime);
-    if(inRange){
+    var inRange = moment().isBetween(startTime, endTime);
+    if (inRange) {
         console.log(timeRange + " is in range");
     }
-    else{
+    else {
         console.log(timeRange + " is not in range");
     }
     return inRange;
-    
+
 }
 
-function executeCentralScene(sceneID,params) {
+function executeCentralScene(sceneID, params) {
     if (sceneID == "unassigned") {
         console.log("Unassigned scene.");
     }
     else {
         console.log("Activating central scene with id:" + sceneID);
-        centralScenes.setScene(sceneID,params);
+        centralScenes.setScene(sceneID, params);
     }
 }
 

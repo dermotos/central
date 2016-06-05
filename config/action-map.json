@@ -20,9 +20,9 @@
         ],
         "scenes": {
           "00:00-02:00": "6e7be0536-on-0",
-          "02:00-sunrise": "e548cb5cd-on-0",
-          "sunrise-sunset": "01cbfce98-on-0",
-          "sunset-22:00": "ad466eade-on-0",
+          "02:00-sunrise": "098010fff-on-0",
+          "sunrise-sunset": "4c27eacbf-on-0",
+          "sunset-22:00": "7693f313c-on-0",
           "22:00-24:00": "6e7be0536-on-0"
         }
       },
@@ -36,11 +36,11 @@
           7
         ],
         "scenes": {
-          "00:00-02:00": "a14e89384-on-0",
+          "00:00-02:00": "f742deb2a-on-0",
           "02:00-sunrise": "28d1a09f9-on-0",
-          "sunrise-sunset": "48b638bac-on-0",
-          "sunset-22:00": "48b638bac-on-0",
-          "22:00-24:00": "a14e89384-on-0"
+          "sunrise-sunset": "bdafcdefa-on-0",
+          "sunset-22:00": "bdafcdefa-on-0",
+          "22:00-24:00": "f742deb2a-on-0"
         }
       }
     ],
@@ -54,7 +54,15 @@
       "name": "unassigned",
       "id": "unassigned"
     },
-    "button-south-pressed": [
+    "button-south-pressed": {
+      "type": "central-scene",
+      "id": "mode-change",
+      "parameters": {
+        "mode": "kitchen-manual-mode",
+        "state": "toggle"
+      }
+    },
+    "button-south-double-pressed": [
       {
         "type": "multi-scene",
         "mode": "!kitchen-work-mode",
@@ -66,11 +74,11 @@
         ],
         "scenes": {
           "00:00-02:00": "6e7be0536-on-0",
-          "02:00-sunrise": "e548cb5cd-on-0",
-          "sunrise-sunset": "01cbfce98-on-0",
-          "sunset-22:00": "ad466eade-on-0",
+          "02:00-sunrise": "098010fff-on-0",
+          "sunrise-sunset": "4c27eacbf-on-0",
+          "sunset-22:00": "7693f313c-on-0",
           "22:00-24:00": "6e7be0536-on-0",
-          "off": "e2693ec5d-on-0"
+          "off": "849b40ceb-on-0"
         }
       },
       {
@@ -83,20 +91,15 @@
           7
         ],
         "scenes": {
-          "00:00-02:00": "a14e89384-on-0",
+          "00:00-02:00": "f742deb2a-on-0",
           "02:00-sunrise": "28d1a09f9-on-0",
-          "sunrise-sunset": "48b638bac-on-0",
-          "sunset-22:00": "48b638bac-on-0",
-          "22:00-24:00": "a14e89384-on-0",
-          "off": "e2693ec5d-on-0"
+          "sunrise-sunset": "bdafcdefa-on-0",
+          "sunset-22:00": "bdafcdefa-on-0",
+          "22:00-24:00": "f742deb2a-on-0",
+          "off": "849b40ceb-on-0"
         }
       }
     ],
-    "button-south-double-pressed": {
-      "type": "hue-scene",
-      "name": "unassigned",
-      "id": "unassigned"
-    },
     "button-south-long-pressed": {
       "type": "hue-scene",
       "name": "unassigned",
@@ -105,7 +108,10 @@
     "motion-started": [
       {
         "type": "multi-scene",
-        "mode": "!kitchen-work-mode",
+        "mode": [
+          "!kitchen-work-mode",
+          "!kitchen-manual-mode"
+        ],
         "toggle": false,
         "lightsAffected": [
           4,
@@ -114,15 +120,18 @@
         ],
         "scenes": {
           "00:00-02:00": "6e7be0536-on-0",
-          "02:00-sunrise": "e548cb5cd-on-0",
-          "sunrise-sunset": "01cbfce98-on-0",
-          "sunset-22:00": "ad466eade-on-0",
+          "02:00-sunrise": "098010fff-on-0",
+          "sunrise-sunset": "4c27eacbf-on-0",
+          "sunset-22:00": "7693f313c-on-0",
           "22:00-24:00": "6e7be0536-on-0"
         }
       },
       {
         "type": "multi-scene",
-        "mode": "kitchen-work-mode",
+        "mode": [
+          "kitchen-work-mode",
+          "!kitchen-manual-mode"
+        ],
         "toggle": false,
         "lightsAffected": [
           4,
@@ -130,17 +139,18 @@
           7
         ],
         "scenes": {
-          "00:00-02:00": "a14e89384-on-0",
+          "00:00-02:00": "f742deb2a-on-0",
           "02:00-sunrise": "28d1a09f9-on-0",
-          "sunrise-sunset": "48b638bac-on-0",
-          "sunset-22:00": "48b638bac-on-0",
-          "22:00-24:00": "a14e89384-on-0"
+          "sunrise-sunset": "bdafcdefa-on-0",
+          "sunset-22:00": "bdafcdefa-on-0",
+          "22:00-24:00": "f742deb2a-on-0"
         }
       }
     ],
     "motion-stopped": {
       "type": "hue-scene",
-      "id": "e2693ec5d-on-0"
+      "mode": "!kitchen-manual-mode",
+      "id": "849b40ceb-on-0"
     }
   },
   "bathroom": {
@@ -153,18 +163,18 @@
         ],
         "scenes": {
           "00:00-02:00": "ec35f1902-on-0",
-          "02:00-sunrise": "ce7a5c38a-on-0",
+          "02:00-sunrise": "9198c3880-on-0",
           "sunrise-sunset": "9d522fce8-on-0",
           "sunset-22:00": "c503000ad-on-0",
           "22:00-24:00": "ec35f1902-on-0",
-          "off": "f573bbc63-on-0"
+          "off": "849b40ceb-on-0"
         }
       }
     ],
     "button-north-double-pressed": {
       "type": "hue-scene",
       "name": "min brightness",
-      "id": "ce7a5c38a-on-0"
+      "id": "9198c3880-on-0"
     },
     "button-north-long-pressed": {
       "type": "hue-scene",
@@ -179,7 +189,7 @@
       ],
       "scenes": {
         "00:00-02:00": "ec35f1902-on-0",
-        "02:00-sunrise": "ce7a5c38a-on-0",
+        "02:00-sunrise": "9198c3880-on-0",
         "sunrise-sunset": "9d522fce8-on-0",
         "sunset-22:00": "c503000ad-on-0",
         "22:00-24:00": "ec35f1902-on-0"
@@ -187,7 +197,7 @@
     },
     "motion-stopped": {
       "type": "hue-scene",
-      "id": "f573bbc63-on-0"
+      "id": "849b40ceb-on-0"
     }
   },
   "desk": {
@@ -490,8 +500,8 @@
     ],
     "button-west-double-pressed": {
       "type": "hue-scene",
-      "name": "All house except living room off",
-      "id": "c4b9526b6-on-0"
+      "name": "All house except Off except livin",
+      "id": "3e180111a-on-0"
     },
     "button-west-long-pressed": {
       "type": "central-scene",
@@ -527,12 +537,12 @@
     "button-north-double-pressed": {
       "type": "hue-scene",
       "name": "Mood lighting",
-      "id": "364b81522-on-0"
+      "id": "6bfaa70fa-on-0"
     },
     "button-north-long-pressed": {
       "type": "hue-scene",
       "name": "Going to bed",
-      "id": "469353090-on-0"
+      "id": "04428fa53-on-0"
     },
     "button-south-pressed": {
       "type": "hue-scene",
@@ -695,7 +705,7 @@
     "button-west-double-pressed": {
       "type": "hue-scene",
       "name": "Mood lighting",
-      "id": "364b81522-on-0"
+      "id": "6bfaa70fa-on-0"
     },
     "button-west-long-pressed": [
       {
@@ -724,7 +734,7 @@
           "state": "off"
         }
       },
-       {
+      {
         "type": "central-scene",
         "id": "harmony-activity",
         "parameters": {
@@ -1137,23 +1147,23 @@
         }
       }
     ],
-     "playstation": [
+    "playstation": [
       {
         "type": "hue-scene",
-        "name": "Living room lamp alt 2",
-        "id": "301b4ebfa-on-0"
+        "name": "Playstation on 0",
+        "id": "34e54f4d9-on-0"
       },
       {
         "type": "hue-scene",
-        "name": "L white off on 0",
-        "id": "6066ac658-on-0"
+        "name": "All house except Off except livin",
+        "id": "3e180111a-on-0"
       },
       {
-        "type":"central-scene",
-        "id" : "command",
-        "__comment":"Wakes the PS4 from rest mode",
+        "type": "central-scene",
+        "id": "command",
+        "__comment": "Wakes the PS4 from rest mode",
         "parameters": {
-          "command" : "/usr/local/bin/ps4-waker/ps4-waker"  
+          "command": "/usr/local/bin/ps4-waker/ps4-waker"
         }
       },
       {
@@ -1207,13 +1217,13 @@
         }
       }
     ],
-    "media-off" : [
+    "media-off": [
       {
         "type": "hue-scene",
         "name": "Living room lamp alt 2",
         "id": "bd449d7b0-on-0"
       },
-       {
+      {
         "type": "central-scene",
         "id": "harmony-activity",
         "parameters": {
@@ -1224,11 +1234,11 @@
     ],
     "test": [
       {
-        "type":"central-scene",
-        "id" : "command",
-        "__comment":"Wakes the PS4 from rest mode",
+        "type": "central-scene",
+        "id": "command",
+        "__comment": "Wakes the PS4 from rest mode",
         "parameters": {
-          "command" : "/usr/local/bin/ps4-waker/ps4-waker"  
+          "command": "/usr/local/bin/ps4-waker/ps4-waker"
         }
       }
     ]

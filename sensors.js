@@ -109,7 +109,10 @@ function socketHandler(socket) {
     //** Normalisation **
     // Some existing switches use older firmware that sends "checkin" instead of "heartbeat", normalize it...
     items[1] = (items[1] == "checkin") ? "heartbeat" : items[1];
-
+    if(!(items && items[1])){
+      console.log("Items is undefined in sensor.js Debug this. The message content was:" + message);
+      return;
+    }
     if (items[1].length == 0) {
       console.log("Unspecified argument");
       return;

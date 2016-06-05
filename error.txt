@@ -1,0 +1,1024 @@
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bathroom',
+  action: 'button-north-pressed',
+  args: [] }
+Operation has 1 actions defined.
+Action is: {"type":"multi-scene","toggle":true,"lightsAffected":[13],"scenes":{"00:00-02:00":"ec35f1902-on-0","02:00-sunrise":"9198c3880-on-0","sunrise-sunset":"9d522fce8-on-0","sunset-22:00":"c503000ad-on-0","22:00-24:00":"ec35f1902-on-0","off":"849b40ceb-on-0"}}
+Testing multi-scene mode rule...
+Scene isn't mode sensitive, executing...
+Executing multi-scene...
+{ type: 'multi-scene',
+  toggle: true,
+  lightsAffected: [ 13 ],
+  scenes: 
+   { '00:00-02:00': 'ec35f1902-on-0',
+     '02:00-sunrise': '9198c3880-on-0',
+     'sunrise-sunset': '9d522fce8-on-0',
+     'sunset-22:00': 'c503000ad-on-0',
+     '22:00-24:00': 'ec35f1902-on-0',
+     off: '849b40ceb-on-0' } }
+undefined
+First time in here
+on
+Lights seem to be off
+false
+Executing multi-scene...
+{ type: 'multi-scene',
+  toggle: true,
+  lightsAffected: [ 13 ],
+  scenes: 
+   { '00:00-02:00': 'ec35f1902-on-0',
+     '02:00-sunrise': '9198c3880-on-0',
+     'sunrise-sunset': '9d522fce8-on-0',
+     'sunset-22:00': 'c503000ad-on-0',
+     '22:00-24:00': 'ec35f1902-on-0',
+     off: '849b40ceb-on-0' } }
+false
+Running the correct scene for the time of day
+Date time Monday, May 23rd 2016, 12:00:00 am
+Date time Monday, May 23rd 2016, 2:00:00 am
+00:00-02:00 is not in range
+Date time Monday, May 23rd 2016, 2:00:00 am
+02:00-sunrise is not in range
+sunrise-sunset is not in range
+Date time Monday, May 23rd 2016, 10:00:00 pm
+sunset-22:00 is not in range
+Date time Monday, May 23rd 2016, 10:00:00 pm
+Date time Tuesday, May 24th 2016, 12:00:00 am
+22:00-24:00 is in range
+Setting the ec35f1902-on-0 scene.
+Activating scene on hue bridge: ec35f1902-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bathroom',
+  action: 'button-north-double-pressed',
+  args: [] }
+Activating scene with id:9198c3880-on-0
+Activating scene on hue bridge: 9198c3880-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bathroom',
+  action: 'button-north-double-pressed',
+  args: [] }
+Activating scene with id:9198c3880-on-0
+Activating scene on hue bridge: 9198c3880-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bathroom',
+  action: 'button-north-double-pressed',
+  args: [] }
+Activating scene with id:9198c3880-on-0
+Activating scene on hue bridge: 9198c3880-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bathroom',
+  action: 'button-north-double-pressed',
+  args: [] }
+Activating scene with id:9198c3880-on-0
+Activating scene on hue bridge: 9198c3880-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bathroom',
+  action: 'button-north-long-pressed',
+  args: [] }
+Activating scene with id:9d522fce8-on-0
+Activating scene on hue bridge: 9d522fce8-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'kitchen',
+  action: 'motion-started',
+  args: [] }
+Operation has 2 actions defined.
+Action is: {"type":"multi-scene","mode":["!kitchen-work-mode","!kitchen-manual-mode"],"toggle":false,"lightsAffected":[4,6,7],"scenes":{"00:00-02:00":"6e7be0536-on-0","02:00-sunrise":"098010fff-on-0","sunrise-sunset":"4c27eacbf-on-0","sunset-22:00":"7693f313c-on-0","22:00-24:00":"6e7be0536-on-0"}}
+Testing multi-scene mode rule...
+Executing multi-scene...
+{ type: 'multi-scene',
+  mode: [ '!kitchen-work-mode', '!kitchen-manual-mode' ],
+  toggle: false,
+  lightsAffected: [ 4, 6, 7 ],
+  scenes: 
+   { '00:00-02:00': '6e7be0536-on-0',
+     '02:00-sunrise': '098010fff-on-0',
+     'sunrise-sunset': '4c27eacbf-on-0',
+     'sunset-22:00': '7693f313c-on-0',
+     '22:00-24:00': '6e7be0536-on-0' } }
+undefined
+Running the correct scene for the time of day
+Date time Monday, May 23rd 2016, 12:00:00 am
+Date time Monday, May 23rd 2016, 2:00:00 am
+00:00-02:00 is not in range
+Date time Monday, May 23rd 2016, 2:00:00 am
+02:00-sunrise is not in range
+sunrise-sunset is not in range
+Date time Monday, May 23rd 2016, 10:00:00 pm
+sunset-22:00 is not in range
+Date time Monday, May 23rd 2016, 10:00:00 pm
+Date time Tuesday, May 24th 2016, 12:00:00 am
+22:00-24:00 is in range
+Setting the 6e7be0536-on-0 scene.
+Activating scene on hue bridge: 6e7be0536-on-0
+Action is: {"type":"multi-scene","mode":["kitchen-work-mode","!kitchen-manual-mode"],"toggle":false,"lightsAffected":[4,6,7],"scenes":{"00:00-02:00":"f742deb2a-on-0","02:00-sunrise":"28d1a09f9-on-0","sunrise-sunset":"bdafcdefa-on-0","sunset-22:00":"bdafcdefa-on-0","22:00-24:00":"f742deb2a-on-0"}}
+Testing multi-scene mode rule...
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'kitchen',
+  action: 'motion-stopped',
+  args: [] }
+Activating scene with id:e2693ec5d-on-0
+Activating scene on hue bridge: e2693ec5d-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bedroom-door',
+  action: 'button-north-pressed',
+  args: [] }
+Testing multi-scene mode rule...
+Scene isn't mode sensitive, executing...
+Executing multi-scene...
+{ type: 'multi-scene',
+  toggle: true,
+  lightsAffected: [ 10, 11 ],
+  scenes: 
+   { '00:00-02:00': '7a21968ae-on-0',
+     '02:00-sunrise': '7a21968ae-on-0',
+     'sunrise-sunset': 'e2f713575-on-0',
+     'sunset-22:00': '7a21968ae-on-0',
+     '22:00-24:00': '7a21968ae-on-0',
+     off: '85df5359e-on-0' } }
+undefined
+First time in here
+on
+Lights seem to be off
+false
+Executing multi-scene...
+{ type: 'multi-scene',
+  toggle: true,
+  lightsAffected: [ 10, 11 ],
+  scenes: 
+   { '00:00-02:00': '7a21968ae-on-0',
+     '02:00-sunrise': '7a21968ae-on-0',
+     'sunrise-sunset': 'e2f713575-on-0',
+     'sunset-22:00': '7a21968ae-on-0',
+     '22:00-24:00': '7a21968ae-on-0',
+     off: '85df5359e-on-0' } }
+false
+Running the correct scene for the time of day
+Date time Monday, May 23rd 2016, 12:00:00 am
+Date time Monday, May 23rd 2016, 2:00:00 am
+00:00-02:00 is not in range
+Date time Monday, May 23rd 2016, 2:00:00 am
+02:00-sunrise is not in range
+sunrise-sunset is not in range
+Date time Monday, May 23rd 2016, 10:00:00 pm
+sunset-22:00 is not in range
+Date time Monday, May 23rd 2016, 10:00:00 pm
+Date time Tuesday, May 24th 2016, 12:00:00 am
+22:00-24:00 is in range
+Setting the 7a21968ae-on-0 scene.
+Activating scene on hue bridge: 7a21968ae-on-0
+Hue bridge command completed
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bedside',
+  action: 'button-west-long-pressed',
+  args: [] }
+Operation has 6 actions defined.
+Action is: {"type":"hue-scene","name":"All house except living room off","id":"c4b9526b6-on-0"}
+Activating scene with id:c4b9526b6-on-0
+Activating scene on hue bridge: c4b9526b6-on-0
+Action is: {"type":"hue-scene","name":"Living room off","id":"9fe136a50-on-0","__comment":"The off button"}
+Activating scene with id:9fe136a50-on-0
+Activating scene on hue bridge: 9fe136a50-on-0
+Action is: {"type":"central-scene","id":"arduino-light","parameters":{"light":"desklamp","state":"off"}}
+Activating central scene with id:arduino-light
+Set central scene arduino-light
+setting....
+Devicedesklamp
+State off
+*****************************************
+TypeError: Cannot read property 'write' of null
+    at Object.exports.setLightState (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/arduino-light.js:34:29)
+    at Object.scenes.arduino-light (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/central-scenes.js:14:22)
+    at Object.exports.setScene (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/central-scenes.js:55:15)
+    at executeCentralScene (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/actions.js:266:23)
+    at Object.exports.executeAction (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/actions.js:82:13)
+    at Object.eventHandlers.sensorHandler (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/router.js:127:19)
+    at EventEmitter.<anonymous> (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/router.js:24:23)
+    at emitOne (events.js:77:13)
+    at EventEmitter.emit (events.js:169:7)
+    at Carrier.<anonymous> (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:202:20)
+*****************************************
+
+Hue bridge command completed
+Hue bridge command completed
+*****************************************
+TypeError: Cannot read property 'execute' of undefined
+    at Job.invoke (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/node_modules/node-schedule/lib/schedule.js:177:13)
+    at null._onTimeout (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/node_modules/node-schedule/lib/schedule.js:445:11)
+    at Timer.listOnTimeout (timers.js:92:15)
+*****************************************
+
+A socket error occurred, closing socket...
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Sensor States:
+{ couch: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13172108,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7893350,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desk: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13160315,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7902915,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desklamp: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13163851,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7896585,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-blinds': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13170393,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7917547,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bedside: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13166480,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 676981,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-door': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13182670,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7899095,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  kitchen: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13153762,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7887642,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bathroom: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 13157057,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7897594,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  tv: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: true,
+        _idleTimeout: 60000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 9579610,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 101678,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } } }
+Key
+0
+obj:
+undefined
+undefined
+*****************************************
+TypeError: Cannot read property 'socket' of undefined
+    at cleanSensorState (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:225:13)
+    at Socket.<anonymous> (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:241:5)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at emitErrorNT (net.js:1255:8)
+    at nextTickCallbackWith2Args (node.js:474:9)
+    at process._tickCallback (node.js:388:17)
+*****************************************
+
+A socket error occurred, closing socket...
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Sensor States:
+{ couch: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14268042,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7893350,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desk: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14256371,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7902915,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desklamp: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14274485,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7896585,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-blinds': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14258958,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7917547,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bedside: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14262337,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 676981,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-door': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14278804,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7899095,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  kitchen: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14258825,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7887642,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bathroom: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 14252988,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7897594,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  tv: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: true,
+        _idleTimeout: 60000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 9579610,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 101678,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } } }
+Key
+0
+obj:
+undefined
+undefined
+*****************************************
+TypeError: Cannot read property 'socket' of undefined
+    at cleanSensorState (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:225:13)
+    at Socket.<anonymous> (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:241:5)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at emitErrorNT (net.js:1255:8)
+    at nextTickCallbackWith2Args (node.js:474:9)
+    at process._tickCallback (node.js:388:17)
+*****************************************
+
+A socket error occurred, closing socket...
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Sensor States:
+{ couch: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15453089,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7893350,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desk: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15441310,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7902915,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desklamp: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15444754,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7896585,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-blinds': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15471207,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7917547,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bedside: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15448159,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 676981,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-door': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15464115,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7899095,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  kitchen: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15444789,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7887642,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bathroom: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 15447125,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7897594,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  tv: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: true,
+        _idleTimeout: 60000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 9579610,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 101678,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } } }
+Key
+0
+obj:
+undefined
+undefined
+*****************************************
+TypeError: Cannot read property 'socket' of undefined
+    at cleanSensorState (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:225:13)
+    at Socket.<anonymous> (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:241:5)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at emitErrorNT (net.js:1255:8)
+    at nextTickCallbackWith2Args (node.js:474:9)
+    at process._tickCallback (node.js:388:17)
+*****************************************
+
+A socket error occurred, closing socket...
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Sensor States:
+{ couch: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21596820,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7893350,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desk: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21595191,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7902915,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  desklamp: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21597328,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7896585,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-blinds': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21614241,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7917547,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bedside: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21621376,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 676981,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  'bedroom-door': 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21608106,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7899095,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  kitchen: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21619010,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7887642,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  bathroom: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: false,
+        _idleTimeout: 60000,
+        _idlePrev: [Object],
+        _idleNext: [Object],
+        _idleStart: 21620488,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 7897594,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } },
+  tv: 
+   { socket: null,
+     connected: true,
+     heartbeatInTimeout: 
+      { _called: true,
+        _idleTimeout: 60000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 9579610,
+        _onTimeout: [Function],
+        _repeat: null },
+     heartbeatOutInterval: 
+      { _called: true,
+        _idleTimeout: 25000,
+        _idlePrev: null,
+        _idleNext: null,
+        _idleStart: 101678,
+        _onTimeout: [Function: wrapper],
+        _repeat: [Function] } } }
+Key
+0
+obj:
+undefined
+undefined
+*****************************************
+TypeError: Cannot read property 'socket' of undefined
+    at cleanSensorState (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:225:13)
+    at Socket.<anonymous> (/Users/dermotos/Dropbox/Dev/HomeAutomation/central2/sensors.js:241:5)
+    at emitOne (events.js:77:13)
+    at Socket.emit (events.js:169:7)
+    at emitErrorNT (net.js:1255:8)
+    at nextTickCallbackWith2Args (node.js:474:9)
+    at process._tickCallback (node.js:388:17)
+*****************************************
+
+Setting blind state to open
+Blind interface not connected
+Setting blind state to open
+Blind interface not connected
+Setting blind state to open
+Blind interface not connected
+
+
+IN sensor handler. Args:
+{ category: 'sensor',
+  source: 'bedside',
+  action: 'button-east-double-pressed',
+  args: [] }
+Activating central scene with id:blind
+Set central scene blind
+Setting blind state to toggle
+Blind interface not connected
+Blind scene operation completed.

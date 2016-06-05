@@ -21,8 +21,9 @@ var state =
                     sensors.setLED("kitchen","north",newState ? "on" : "off");
                 },
                 timeoutAction: function () {
-                    state['modes']['kitchen-work-mode'].enabled = false;
                     // Any action that should occur when the timeout occurs
+                    state['modes']['kitchen-work-mode'].enabled = false;
+                    sensors.setLED("kitchen","north","off");   
                 }
             },
             'kitchen-manual-mode': {
@@ -31,10 +32,12 @@ var state =
                 timeoutIdentifier: 0,
                 action: function (newState) {
                     // Action to take when this mode changes state
-                    console.log("I'm the action for the manual mode");
+                    console.log("*** Kitchen manual mode is currently " + newState);
+                    sensors.setLED("kitchen","south",newState ? "on" : "off");
                 },
                 timeoutAction: function () {
                     state['modes']['kitchen-manual-mode'].enabled = false;
+                    sensors.setLED("kitchen","south","off");   
                 }
             },
             'program-mode': { // Used to program the light switches. The next button pressed is assigned the most recent active hue scene

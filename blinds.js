@@ -33,6 +33,17 @@ exports.setBlindState = function(room,index,state,callback){
     console.log("Setting blind state to " + state);
     if(typeof(actor) === 'undefined' || typeof(actor.socket) === 'undefined' || actor.socket == null){
         console.log("Blind interface not connected");
+        //DEBUG
+        if(typeof(actor) === 'undefined'){
+          
+        }
+        if(typeof(actor.socket) === 'undefined'){
+          
+        }
+        if(actor.socket == null){
+          
+        }
+        // ----
         if(callback){
           callback("error");
         } 
