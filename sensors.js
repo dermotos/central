@@ -23,6 +23,8 @@ if (!String.prototype.startsWith) {
 
 var self = this;
 
+//TODO: Move to configuration file:
+
 exports.sensorStates = {
   "couch": {
     socket: null,
@@ -97,11 +99,13 @@ exports.setLED = function(sensor,led,command){
 
 function socketHandler(socket) {
   //console.log("New socket connection...");
+  var sensorConnection = null;
+  var sensorName = "";
   carrier.carry(socket, function (msg) {
     var message = msg.toString();
     var items = message.split(":");
 
-    //Clean the command strings of carrage return characters that were fucking up everything royally.
+    //Clean the command strings of carriage return characters that were fucking up everything royally.
     for (var i = items.length - 1; i >= 0; i--) {
       items[i] = items[i].replace('\r', '');
     };
@@ -110,16 +114,16 @@ function socketHandler(socket) {
     // Some existing switches use older firmware that sends "checkin" instead of "heartbeat", normalize it...
     items[1] = (items[1] == "checkin") ? "heartbeat" : items[1];
     if(!(items && items[1])){
-      console.log("Items is undefined in sensor.js Debug this. The message content was:" + message);
+      console.log("Unknown or malformed message received from sensor. The message content was:" + message.replace('\r', ''));
       return;
     }
     if (items[1].length == 0) {
-      console.log("Unspecified argument");
+      console.log("Unspecified argument received from sensor");
       return;
     }
-    //console.log(items);
+
     //substring: eg: pot-24. 24 is the arg.
-    if (items[1].startsWith("pot")) {
+    if (items[1].startsWith("pot")) { 
       items[2] = items[1].substr(4); // argument, eg: 24
       items[1] = "fader"; // Normalisation
     }
@@ -139,42 +143,35 @@ function socketHandler(socket) {
      * */
 
     if (items[1] == "heartbeat") {
-      
-      var sensor = self.sensorStates[items[0]];
-      if (!sensor) {
+      sensorConnection = self.sensorStates[items[0]];
+      if (!sensorConnection) {
         console.log("An unknown sensor sent a heartbeat (" + items[0] + "). DEBUG");
         return;
       } else {
+        sensorName = items[0];
         // Heartbeat received for known sensor
-
-        if (!sensor.connected) { // Sensor has just connected (or reconnected)
+        if (!sensorConnection.connected) { // Sensor was not connected and has just connected (or reconnected)
           console.log(items[0] + " connected.");
-          sensor.connected = true;
-          sensor.socket = socket;
-          sensor.socket.write("^heartbeat$"); // Send the first heartbeat immediately
-          sensor.heartbeatOutInterval = setInterval(function () {
-            if(sensor.socket){
-              sensor.socket.write("^heartbeat$");
+          sensorConnection.connected = true;
+          sensorConnection.socket = socket;
+          sensorConnection.socket.write("^heartbeat$"); // Send the first heartbeat immediately
+          sensorConnection.heartbeatOutInterval = setInterval(function () {
+            console.log("Sending heartbeat out to " + sensorName); // verbose logging - remove.
+            if(sensorConnection.socket){
+              sensorConnection.socket.write("^heartbeat$");
             }else{
-              sensor.socket = null;
-              cleanSensorState();
+              //Close down connection
+              closeConnection(sensorConnection);
             }
             
           }, heartbeatSendInterval);
         }
-
-
-
-        // We've received a heartbeat, so reset the heartbeat in watcher.
-        clearTimeout(sensor.heartbeatInTimeout);
-        sensor.heartbeatInTimeout = setTimeout(function () {
+        // We've received a heartbeat, so reset the heartbeat-in watcher.
+        clearTimeout(sensorConnection.heartbeatInTimeout);
+        sensorConnection.heartbeatInTimeout = setTimeout(function () {
           //Code that runs if we don't receive a heartbeat from this device:
-          console.log(items[0] + " is not responding, closing connection.");
-          if(sensor.socket){
-            sensor.socket.destroy();
-          }
-          
-          sensor.socket = null;
+          console.log("No heartbeat received from " + items[0] + " sensor in over " + (heartbeatReceiveThreshold / 1000) + " seconds.");
+          closeConnection(sensorConnection);
         }, heartbeatReceiveThreshold);
 
       }
@@ -198,39 +195,21 @@ function socketHandler(socket) {
 
   }); //end of carrier
 
-  // function closeSocket(sensor,socket){
-  //   if(sensor)
-  // }
+ 
+  function closeConnection(sensorConnection){
+      console.log("Closing connection to " + sensorName);
+      sensorConnection.connected = false;
+      sensorConnection.socket.destroy();
+      clearTimeout(sensorConnection.heartbeatInTimeout);
+      clearInterval(sensorConnection.heartbeatOutInterval);
+      self.sensorStates[sensorName] = sensorConnection;
+    }
   
 
-  function cleanSensorState() {
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    console.log("Sensor States:");
-    console.log(self.sensorStates);
-    
-    for (var key in Object.keys(self.sensorStates)) {
-      console.log("Key");
-      console.log(key);
-      var obj = self.sensorStates[key];
-      console.log("obj:");
-      console.log(obj);
-      console.log(JSON.stringify(obj));
-      if(obj.socket == null){
-        console.log("Cleaning state for "+ key);
-        clearInterval(obj.heartbeatOutInterval);
-        clearTimeout(obj.heartbeatInTimeout);
-        obj.heartbeatOutInterval = null;
-        obj.heartbeatInTimeout = null;
-        obj.connected = false;
-      }
-    }
-  }
-
   // Add a 'close' event handler to this instance of socket
-  socket.on('error', function (data) {
-    console.log("A socket error occurred, closing socket...");
-    socket.destroy();
-    socket = null;
-    cleanSensorState();
+  socket.on('error', function (err) {
+    console.log("A socket error occurred : ");
+    console.log(err);
+    closeConnection(sensorConnection);
   });
 }
