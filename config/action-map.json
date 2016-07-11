@@ -190,7 +190,7 @@
           "sunrise-sunset": "9d522fce8-on-0",
           "sunset-22:00": "c503000ad-on-0",
           "22:00-24:00": "ec35f1902-on-0",
-          "off": "849b40ceb-on-0"
+          "off": "96d371db4-on-0"
         }
       }
     ],
@@ -220,7 +220,7 @@
     },
     "motion-stopped": {
       "type": "hue-scene",
-      "id": "849b40ceb-on-0"
+      "id": "96d371db4-on-0"
     }
   },
   "desk": {
