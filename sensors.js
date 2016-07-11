@@ -126,6 +126,7 @@ function socketHandler(socket) {
     // ** ******************************* **
 
     /* Connection hardening
+     * Some sensors use v1.0 kickstarter hardware, and aren't the most solid...
      * Each device (sensor)...
      *    - Sends a heartbeat every 25 seconds
      *    - Expects a heartbeat every 60 seconds or less from central control (should be 2-3 within this time)
@@ -140,21 +141,14 @@ function socketHandler(socket) {
     if (items[1] == "heartbeat") {
       
       var sensor = self.sensorStates[items[0]];
-      if (typeof (sensor) === 'undefined') {
-        console.log("An unknown sensor connected (" + items[0] + "). DEBUG");
+      if (!sensor) {
+        console.log("An unknown sensor sent a heartbeat (" + items[0] + "). DEBUG");
         return;
       } else {
         // Heartbeat received for known sensor
 
-        if (sensor.connected) {
-          // hue.latestScene(function(latestScene){
-          //   console.log("Latest scene is " + latestScene.name + " - " + latestScene.id);
-          // });
-          //console.log("Heartbeat received (" + items[0] + ")");
-        }
-        else{
+        if (!sensor.connected) { // Sensor has just connected (or reconnected)
           console.log(items[0] + " connected.");
-          // Sensor has just connected (or reconnected)
           sensor.connected = true;
           sensor.socket = socket;
           sensor.socket.write("^heartbeat$"); // Send the first heartbeat immediately
@@ -202,12 +196,11 @@ function socketHandler(socket) {
       eventEmitter.emit('event', action);
     }
 
-
-
-
-
-
   }); //end of carrier
+
+  // function closeSocket(sensor,socket){
+  //   if(sensor)
+  // }
   
 
   function cleanSensorState() {

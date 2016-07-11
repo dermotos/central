@@ -1,0 +1,22 @@
+{
+    "80:e4:da:71:ab:e3" : {
+        "name" : "flic-0",
+        "color" : "black",
+        "__comment" : "eg: control media devices..."
+    },
+    "80:e4:da:71:aa:8d" : {
+        "name" : "flic-1",
+        "color" : "black",
+        "__comment" : "eg: control media devices..."
+    },
+    "80:e4:da:71:d5:d3" : {
+        "name" : "flic-2",
+        "color" : "white",
+        "__comment" : "eg: control media devices..."
+    },
+    "80:e4:da:71:d6:11" : {
+        "name" : "flic-3",
+        "color" : "white",
+        "__comment" : "eg: control media devices..."
+    }
+}

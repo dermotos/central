@@ -21,6 +21,7 @@ exports.initialize = function (emitter) {
 
     switch (args.category) {
       case "sensor":
+      case "flic":
         eventHandlers.sensorHandler(args);
         break;
 
