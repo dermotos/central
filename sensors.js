@@ -156,7 +156,7 @@ function socketHandler(socket) {
           sensorConnection.socket = socket;
           sensorConnection.socket.write("^heartbeat$"); // Send the first heartbeat immediately
           sensorConnection.heartbeatOutInterval = setInterval(function () {
-            console.log("Sending heartbeat out to " + sensorName); // verbose logging - remove.
+            //console.log("Sending heartbeat out to " + sensorName); // verbose logging - remove.
             if(sensorConnection.socket){
               sensorConnection.socket.write("^heartbeat$");
             }else{
