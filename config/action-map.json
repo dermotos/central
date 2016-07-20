@@ -22,6 +22,41 @@
     }
     ]
   },
+  "flic-2": {
+    "press" : [
+       {
+        "type": "hue-scene",
+        "name": "Watch-tv-on-0",
+        "id": "d7026da7f-on-0"
+      }
+    ],
+    "double-press" : [
+       {
+        "type": "hue-scene",
+        "name": "Living room off",
+        "id": "10f591d1d-on-0",
+        "__comment": "The off button"
+      },
+      {
+        "type": "central-scene",
+        "id": "arduino-light",
+        "parameters": {
+          "light": "desklamp",
+          "state": "off"
+        }
+      },
+      {
+        "type": "hue-scene",
+        "name": "L white off on 0",
+        "id": "6066ac658-on-0"
+      }
+    ],
+    "hold" : {
+      "type": "hue-scene",
+      "name": "All house except Off except livin",
+      "id": "3e180111a-on-0"
+    }
+  },
   "kitchen": {
     "button-north-pressed": [
       {
@@ -358,8 +393,8 @@
     "button-north-pressed": [
       {
         "type": "hue-scene",
-        "name": "Living room lamp",
-        "id": "6a85bc5ff-on-0"
+        "name": "Watch-tv-on-0",
+        "id": "d7026da7f-on-0"
       },
       {
         "type": "hue-scene",
