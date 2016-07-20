@@ -1,0 +1,23 @@
+
+{
+    "living-room-cycler" : {
+        "index" : 0,
+        "scenes" : [
+            {
+                "id" : "scene-something-on-0",
+                "type" : "hue-scene",
+                "name" : "tv watching scene"
+            },
+            {
+                "id" : "scene-something-on-0",
+                "type" : "hue-scene",
+                "name" : "tv watching scene"
+            },
+            {
+                "id" : "scene-something-on-0",
+                "type" : "hue-scene",
+                "name" : "tv watching scene"
+            }
+        ]
+    }
+}
