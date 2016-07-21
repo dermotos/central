@@ -3,6 +3,7 @@ var blinds = require('./blinds');
 var state = require('./state');
 var circadian = require('./circadian');
 var moment = require('moment');
+var cycler = require('./cyclers');
 var centralScenes = require("./central-scenes");
 
 
@@ -103,6 +104,9 @@ exports.executeAction = function (action, args) {
     else if (action.type == "blind") {
         executeBlindAction(args);
     }
+    else if(action.type == "cycler") {
+        executeCycler(action);
+    }
     else {
         console.log("Unspecified action");
     }
@@ -112,6 +116,19 @@ exports.executeAction = function (action, args) {
 exports.executeFade = function (group, brightness) {
     console.log("Fade lights in " + group + " to " + brightness);
     hue.setBrightness(group, brightness);
+}
+
+function executeCycler(action) {
+    if(action.direction == "up"){
+        cycler.up(action.id);
+    }
+    else if(action.direction == "down"){
+        cycler.down(action.id);
+    }
+    else{
+        console.log("Unknown direction specified in cycler");
+    }
+    
 }
 
 function executeMultiSceneAction(action, lightsAreOn) {

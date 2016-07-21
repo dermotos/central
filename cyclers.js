@@ -1,33 +1,53 @@
 
 var eventEmitter;
+var actions = require("./actions");
+var fs = require('fs');
 
 exports.initialize = function (emitter) {
   eventEmitter = emitter;
 };
 
+var configFile = './config/cyclers.json';
 var states = {};
-var cyclers = require('./config/cyclers.json');
+var cyclers = require(configFile);
 
 
 /*  */
-exports.increment = function(cyclerName, increment){
+exports.up = function(cyclerName){
   triggerScene(cyclerName,true);
 }
 
-exports.decrement = function(cyclerName, decrement){
+exports.down = function(cyclerName){
   triggerScene(cyclerName,false);
 }
 
-function triggerScene(cyclerName,){
+function triggerScene(cyclerName,advance){
    var currentCycler = cyclers[cyclerName];
   if(!currentCycler){
     console.log("Error! No cycler with name '" + cyclerName + "' found.");
   }
-  var currentScene = currentCycler.scenes[currentCycler.index];
-  // TODO: trigger action here...
+  var sceneAction = currentCycler.scenes[currentCycler.index];
+  actions.executeAction(sceneAction);
 
-  //TODO: Advance the scene index (looping over as required) and save the cyclers.json file back to disk.
-  // Finally, ad an action to trigger the advance or retreat of a "cycler"" scene
+  if(advance){
+    currentCycler.index = (currentCycler.index == currentCycler.scenes.length -1) ? 0 : currentCycler.index+1;
+  }
+  else{
+    currentCycler.index = (currentCycler.index == 0) ? currentCycler.scenes.length -1 : currentCycler.index-1;
+  }
+
+   fs.writeFile(configFile, JSON.stringify(cyclers, null, 2), function (err) {
+      if (err) {
+        console.log("Failed to update cyclers.json " + err);
+      }
+      else {
+        eventEmitter.emit('cyclers-updated', null);
+      }
+      console.log("Cyclers file updated");
+    });
+
+  //TODO: Save back to disk.
+  //TODO: Create a scene type that can trigger these scenes, then TEST
 
 }
 

@@ -1,23 +1,27 @@
-
 {
-    "living-room-cycler" : {
-        "index" : 0,
-        "scenes" : [
-            {
-                "id" : "scene-something-on-0",
-                "type" : "hue-scene",
-                "name" : "tv watching scene"
-            },
-            {
-                "id" : "scene-something-on-0",
-                "type" : "hue-scene",
-                "name" : "tv watching scene"
-            },
-            {
-                "id" : "scene-something-on-0",
-                "type" : "hue-scene",
-                "name" : "tv watching scene"
-            }
-        ]
-    }
+  "living-room-cycler": {
+    "index": 2,
+    "scenes": [
+      {
+        "id": "e915785b2-on-0",
+        "type": "hue-scene",
+        "name": "Evening"
+      },
+      {
+        "id": "d7026da7f-on-0",
+        "type": "hue-scene",
+        "name": "Watch TV"
+      },
+      {
+        "id": "30bb2b570-on-0",
+        "type": "hue-scene",
+        "name": "L lamp alt 1"
+      },
+      {
+        "id": "545c41e2b-on-0",
+        "type": "hue-scene",
+        "name": "L lamp alt 2"
+      }
+    ]
+  }
 }

@@ -54,8 +54,17 @@
     "hold" : {
       "type": "hue-scene",
       "name": "All house except Off except livin",
-      "id": "3e180111a-on-0"
+      "id": "2b3aa21fe-on-0"
     }
+  },
+   "flic-3": {
+    "press" : [
+       {
+        "type": "cycler",
+        "direction": "up",
+        "id": "living-room-cycler"
+      }
+    ]
   },
   "kitchen": {
     "button-north-pressed": [
@@ -72,16 +81,16 @@
         "mode": "!kitchen-work-mode",
         "delay": 1500,
         "lightsAffected": [
-          4,
-          6,
-          7
+          14,
+          15,
+          16
         ],
         "scenes": {
-          "00:00-02:00": "6e7be0536-on-0",
-          "02:00-sunrise": "098010fff-on-0",
-          "sunrise-sunset": "4c27eacbf-on-0",
-          "sunset-22:00": "7693f313c-on-0",
-          "22:00-24:00": "6e7be0536-on-0"
+          "00:00-02:00": "80a848eb7-on-0",
+          "02:00-sunrise": "fc0f87608-on-0",
+          "sunrise-sunset": "f1b787ae0-on-0",
+          "sunset-22:00": "d58f8ecf3-on-0",
+          "22:00-24:00": "80a848eb7-on-0"
         }
       },
       {
@@ -89,16 +98,16 @@
         "mode": "kitchen-work-mode",
         "delay": 1500,
         "lightsAffected": [
-          4,
-          6,
-          7
+          14,
+          15,
+          16
         ],
         "scenes": {
-          "00:00-02:00": "f742deb2a-on-0",
-          "02:00-sunrise": "28d1a09f9-on-0",
-          "sunrise-sunset": "bdafcdefa-on-0",
-          "sunset-22:00": "bdafcdefa-on-0",
-          "22:00-24:00": "f742deb2a-on-0"
+          "00:00-02:00": "0b93111e7-on-0",
+          "02:00-sunrise": "84bc68ca0-on-0",
+          "sunrise-sunset": "f1b787ae0-on-0",
+          "sunset-22:00": "f1b787ae0-on-0",
+          "22:00-24:00": "0b93111e7-on-0"
         }
       }
     ],
@@ -126,17 +135,17 @@
         "mode": "!kitchen-work-mode",
         "toggle": true,
         "lightsAffected": [
-          4,
-          6,
-          7
+          14,
+          15,
+          16
         ],
         "scenes": {
-          "00:00-02:00": "6e7be0536-on-0",
-          "02:00-sunrise": "098010fff-on-0",
-          "sunrise-sunset": "4c27eacbf-on-0",
-          "sunset-22:00": "7693f313c-on-0",
-          "22:00-24:00": "6e7be0536-on-0",
-          "off": "849b40ceb-on-0"
+          "00:00-02:00": "80a848eb7-on-0",
+          "02:00-sunrise": "fc0f87608-on-0",
+          "sunrise-sunset": "f1b787ae0-on-0",
+          "sunset-22:00": "d58f8ecf3-on-0",
+          "22:00-24:00": "80a848eb7-on-0",
+          "off": "fc0f87608-on-0"
         }
       },
       {
@@ -144,17 +153,17 @@
         "mode": "kitchen-work-mode",
         "toggle": true,
         "lightsAffected": [
-          4,
-          6,
-          7
+          14,
+          15,
+          16
         ],
         "scenes": {
-          "00:00-02:00": "f742deb2a-on-0",
-          "02:00-sunrise": "28d1a09f9-on-0",
-          "sunrise-sunset": "bdafcdefa-on-0",
-          "sunset-22:00": "bdafcdefa-on-0",
-          "22:00-24:00": "f742deb2a-on-0",
-          "off": "849b40ceb-on-0"
+          "00:00-02:00": "0b93111e7-on-0",
+          "02:00-sunrise": "84bc68ca0-on-0",
+          "sunrise-sunset": "f1b787ae0-on-0",
+          "sunset-22:00": "f1b787ae0-on-0",
+          "22:00-24:00": "0b93111e7-on-0",
+          "off": "fc0f87608-on-0"
         }
       }
     ],
@@ -172,16 +181,16 @@
         ],
         "toggle": false,
         "lightsAffected": [
-          4,
-          6,
-          7
+          14,
+          15,
+          16
         ],
         "scenes": {
-          "00:00-02:00": "6e7be0536-on-0",
-          "02:00-sunrise": "098010fff-on-0",
-          "sunrise-sunset": "4c27eacbf-on-0",
-          "sunset-22:00": "7693f313c-on-0",
-          "22:00-24:00": "6e7be0536-on-0"
+          "00:00-02:00": "80a848eb7-on-0",
+          "02:00-sunrise": "fc0f87608-on-0",
+          "sunrise-sunset": "f1b787ae0-on-0",
+          "sunset-22:00": "d58f8ecf3-on-0",
+          "22:00-24:00": "80a848eb7-on-0"
         }
       },
       {
@@ -192,23 +201,23 @@
         ],
         "toggle": false,
         "lightsAffected": [
-          4,
-          6,
-          7
+          14,
+          15,
+          16
         ],
         "scenes": {
-          "00:00-02:00": "f742deb2a-on-0",
-          "02:00-sunrise": "28d1a09f9-on-0",
-          "sunrise-sunset": "bdafcdefa-on-0",
-          "sunset-22:00": "bdafcdefa-on-0",
-          "22:00-24:00": "f742deb2a-on-0"
+          "00:00-02:00": "0b93111e7-on-0",
+          "02:00-sunrise": "84bc68ca0-on-0",
+          "sunrise-sunset": "f1b787ae0-on-0",
+          "sunset-22:00": "f1b787ae0-on-0",
+          "22:00-24:00": "0b93111e7-on-0"
         }
       }
     ],
     "motion-stopped": {
       "type": "hue-scene",
       "mode": "!kitchen-manual-mode",
-      "id": "849b40ceb-on-0"
+      "id": "fc0f87608-on-0"
     }
   },
   "bathroom": {
@@ -559,7 +568,7 @@
     "button-west-double-pressed": {
       "type": "hue-scene",
       "name": "All house except Off except livin",
-      "id": "3e180111a-on-0"
+      "id": "2b3aa21fe-on-0"
     },
     "button-west-long-pressed": {
       "type": "central-scene",
@@ -957,24 +966,6 @@
       },
       {
         "type": "central-scene",
-        "id": "blind",
-        "parameters": {
-          "room": "bedroom",
-          "index": "0",
-          "state": "close"
-        }
-      },
-      {
-        "type": "central-scene",
-        "id": "blind",
-        "parameters": {
-          "room": "bedroom",
-          "index": "1",
-          "state": "close"
-        }
-      },
-      {
-        "type": "central-scene",
         "id": "arduino-light",
         "parameters": {
           "light": "desklamp",
@@ -1214,7 +1205,7 @@
       {
         "type": "hue-scene",
         "name": "All house except Off except livin",
-        "id": "3e180111a-on-0"
+        "id": "2b3aa21fe-on-0"
       },
       {
         "type": "central-scene",

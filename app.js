@@ -10,6 +10,7 @@ var tasks = require("./tasks");
 var web = require('./web.js');
 var flic = require('./flic.js');
 var schedules = require('./schedules');
+var cyclers = require('./cyclers');
 var eventHandlers = {};
 
 
@@ -18,7 +19,7 @@ state.initialize(eventEmitter);
 router.initialize(eventEmitter);
 sensors.initialize(eventEmitter);
 flic.initialize(eventEmitter);
-//schedules.initialize(eventEmitter);
+cyclers.initialize(eventEmitter);
 circadian.initialize(eventEmitter);
 tasks.initialize(eventEmitter);
 web.initialize(3001,eventEmitter);
