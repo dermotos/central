@@ -71,6 +71,18 @@
       "duration": 5000
     }
   },
+  "candles" : {
+    "on" : {
+      "prefix": "harmony",
+      "command": "-d 'Candles' -c 'PowerOn'",
+      "duration": 5000
+    },
+    "off" : {
+       "prefix": "harmony",
+      "command": "-d 'Candles' -c 'PowerOff'",
+      "duration": 5000
+    }
+  },
    "ceilingFan": {
     "off": {
       "prefix": "harmony",

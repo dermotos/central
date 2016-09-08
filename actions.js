@@ -76,6 +76,11 @@ exports.executeAction = function (action, args) {
         }
 
     }
+    else if(action.type == "hue-sensor") {
+        if (checkModes(action)) {
+            hue.setSensorFlag(action.id,action.state);
+        }
+    }
     else if (action.type == "central-scene") {
         //console.log("central scenes not yet implemented");
         //console.log(JSON.stringify(action,null,2));

@@ -2,6 +2,8 @@ var hue = require('node-hue-api');
 var _ = require('underscore');
 var request = require('request');
 
+var huejay = require('huejay');
+
 
 var lightState = hue.lightState;
 
@@ -9,10 +11,31 @@ var host = "10.0.0.4",
     username = "newdeveloper",
     api = new hue.HueApi(host, username);
 
+var hjClient = new huejay.Client({
+    host : host,
+    username : username
+});
+
 var displayResults = function (result) {
     console.log("Hue bridge command completed")
     //console.log(JSON.stringify(result, null, 2));
 };
+
+
+exports.setSensorFlag = function(id,state){
+    hjClient.sensors.getById(id)
+        .then(sensor => {
+            console.log("Sensor found");
+            sensor.state.flag = state;
+            return hjClient.sensors.save(sensor);
+        })
+        .then(sensor => {
+            console.log("Sensor saved");
+        })
+        .catch(error => {
+            console.log(error.stack);
+        });
+}
 
 //Valid values for group are "lounge" and "bedroom"
 exports.setBrightness = function (group,brightness){

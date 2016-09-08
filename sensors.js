@@ -30,55 +30,61 @@ exports.sensorStates = {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "desk": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "desklamp": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "bedroom-blinds": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "bedside": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "bedroom-door": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "kitchen": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "bathroom": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
   },
   "tv": {
     socket: null,
     connected: false,
     heartbeatInTimeout: null,
-    heartbeatOutInterval: null,
+    heartbeatOutInterval: null
+  },
+  "front-door-lock" : {
+    socket: null,
+    connected: false,
+    heartbeatInTimeout: null,
+    heartbeatOutInterval: null
   }
 };
 

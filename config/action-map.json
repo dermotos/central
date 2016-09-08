@@ -238,11 +238,13 @@
         }
       }
     ],
-    "button-north-double-pressed": {
+    "button-north-double-pressed": [
+      {
       "type": "hue-scene",
       "name": "min brightness",
       "id": "9198c3880-on-0"
-    },
+    }
+    ],
     "button-north-long-pressed": {
       "type": "hue-scene",
       "name": "max brightness",
@@ -506,7 +508,20 @@
           "activity": "speakers",
           "state": "off"
         }
+      },
+      {
+        "type" : "hue-sensor",
+        "id" : 8,
+        "state" : false,
+        "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
+      },
+      {
+        "type" : "hue-sensor",
+        "id" : 9,
+        "state" : false,
+        "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
       }
+
     ],
     "button-east-pressed": [
       {
@@ -565,11 +580,23 @@
         "id": "6066ac658-on-0"
       }
     ],
-    "button-west-double-pressed": {
+    "button-west-double-pressed": [{
       "type": "hue-scene",
       "name": "All house except Off except livin",
       "id": "2b3aa21fe-on-0"
     },
+    {
+      "type" : "hue-sensor",
+      "id" : 8,
+      "state" : false,
+      "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
+    },
+    {
+      "type" : "hue-sensor",
+      "id" : 9,
+      "state" : false,
+      "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
+    }],
     "button-west-long-pressed": {
       "type": "central-scene",
       "id": "blind",
@@ -787,6 +814,18 @@
         "__comment": "The off button"
       },
       {
+        "type" : "hue-sensor",
+        "id" : 8,
+        "state" : false,
+        "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
+      },
+      {
+        "type" : "hue-sensor",
+        "id" : 9,
+        "state" : false,
+        "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
+      },
+      {
         "type": "central-scene",
         "id": "arduino-light",
         "parameters": {
@@ -824,6 +863,24 @@
     }
   },
   "virtual": {
+    "candles-on" :
+    {
+       "type": "central-scene",
+        "id": "harmony-activity",
+        "parameters": {
+          "activity": "candles",
+          "state": "on"
+        }
+    },
+    "candles-off" :
+    {
+       "type": "central-scene",
+        "id": "harmony-activity",
+        "parameters": {
+          "activity": "speakers",
+          "state": "off"
+        }
+    },
     "work-at-home": [
       {
         "type": "hue-scene",
@@ -948,21 +1005,26 @@
         "id": "f6c784b45-on-0"
       },
       {
-        "type": "central-scene",
-        "id": "blind",
-        "parameters": {
-          "room": "lounge",
-          "index": "0",
-          "state": "close"
-        }
+        "type": "hue-scene",
+        "name": "All house except Off except livin",
+        "id": "2b3aa21fe-on-0"
       },
       {
-        "type": "central-scene",
-        "id": "ceiling-fan",
-        "name": "Ceiling fan adjustment",
-        "parameters": {
-          "state": "off"
-        }
+        "type" : "hue-scene",
+        "name" : "Bathroom light off",
+        "id" : "96d371db4-on-0"
+      },
+      {
+        "type" : "hue-sensor",
+        "id" : 8,
+        "state" : false,
+        "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
+      },
+      {
+        "type" : "hue-sensor",
+        "id" : 9,
+        "state" : false,
+        "__comment" : "turns off the sensor in the bridge, used by the Hue Tap"
       },
       {
         "type": "central-scene",
@@ -1281,13 +1343,15 @@
         }
       }
     ],
-    "test": [
+    "unlock-front-door": [
       {
         "type": "central-scene",
-        "id": "command",
-        "__comment": "Wakes the PS4 from rest mode",
+        "id": "momentary-lock",
+        "__comment": "Opens a momentary lock",
         "parameters": {
-          "command": "/usr/local/bin/ps4-waker/ps4-waker"
+          "lock": "front-door-lock",
+          "operation" : "open",
+          "duration" : 5000
         }
       }
     ]

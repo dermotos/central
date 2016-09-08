@@ -3,6 +3,7 @@ var arduinoLight = require('./arduino-light');
 var blinds = require('./blinds');
 var state = require('./state');
 var deviceControl = require('./external-device');
+var momentaryLocks = require('./momentary-lock');
 
 /* Central scenes are custom internal scenes */
 
@@ -12,6 +13,15 @@ var scenes = {
         var state = params.state;
         console.log("setting....");
         arduinoLight.setLightState(light, state);
+    },
+    "momentary-lock" : function(params){
+        if(params.operation == "open"){
+            momentaryLocks.openLock(params.lock,params.duration);
+        }
+        else{
+            console.log("UNSUPPORTED LOCK OPERATION " + params.operation);
+            return;
+        }
     },
      "blind" : function(params){
         var room = params.room;

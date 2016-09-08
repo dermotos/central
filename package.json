@@ -12,6 +12,7 @@
     "colors": "*",
     "express": "*",
     "forever-monitor": "^1.7.0",
+    "huejay": "^1.2.2",
     "ip": "*",
     "moment": "*",
     "moment-timezone": "*",
